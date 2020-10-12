@@ -1,0 +1,46 @@
+#/home/DREXEL/aw868/aw868_gem5/condor_simulation
+Executable    = /home/DREXEL/aw868/aw868_gem5/build/ARM/gem5.opt
+Requirements = (machine != "wyrm.ece.drexel.edu" && machine != "fafnir.ece.drexel.edu" && machine != "hooktail.ece.drexel.edu" && machine != "thorn.ece.drexel.edu")
+#Requirements = (machine == "smaug.ece.drexel.edu")
+Universe      = vanilla
+getenv = True
+
+#### REPLAY SETTINGS####
+Error   = synthtraffic.err
+Output  = synthtraffic.out
+Log     = synthtraffic.log
+
+SYNTHTRAFFIC_RUN_SCRIPT =  /home/DREXEL/aw868/aw868_gem5/configs/example/garnet_synth_traffic.py
+
+
+CHIPLETS_TEST_ARGS3 = --num-cpus=256 --num-dirs=256 --network=garnet2.0 --topology=Mesh_XYZ_Chiplets --mesh-rows=8 --y-depth=8 --z-depth=4 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=1
+CHIPLETS_TEST_ARGS4 = --num-cpus=256 --num-dirs=256 --network=garnet2.0 --topology=Mesh_XYZ_Chiplets --mesh-rows=8 --y-depth=8 --z-depth=4 --sim-cycles=500000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=3
+CHIPLETS_TEST_ARGS6 = --num-cpus=256 --num-dirs=256 --network=garnet2.0 --topology=Mesh_XYZ_Chiplets --mesh-rows=16 --y-depth=16 --z-depth=1 --sim-cycles=500000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4
+
+
+#EXPERIMENT_DIR = /scratchlair/aw868-scratch/synthtraffic_results
+EXPERIMENT_DIR = /home/DREXEL/aw868/Research/synthtraffic_results
+
+
+OUTPUT_DIR = $(EXPERIMENT_DIR)
+
+
+###########################################
+###### 8x8x4 with 4 Chiplet Topology ######
+###########################################
+
+Initialdir = $(EXPERIMENT_DIR)/Testing/chiplets_8x8x4_ir05_1vcpervnet/
+arguments = "-d $(OUTPUT_DIR)/Testing/chiplets_8x8x4_ir05_1vcpervnet/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(CHIPLETS_TEST_ARGS3) --injectionrate=0.5"
+Queue
+
+Initialdir = $(EXPERIMENT_DIR)/Testing/chiplets_16x16x1_ir05_4vcpervnet_1m/
+arguments = "-d $(OUTPUT_DIR)/Testing/chiplets_16x16x1_ir05_4vcpervnet_1m/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(CHIPLETS_TEST_ARGS6) --injectionrate=0.5"
+#Queue
+
+Initialdir = $(EXPERIMENT_DIR)/Testing/chiplets_8x8x4_ir03_3vcpervnet_1m_bowser/
+arguments = "-d $(OUTPUT_DIR)/Testing/chiplets_8x8x4_ir03_3vcpervnet_1m_bowser/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(CHIPLETS_TEST_ARGS4) --injectionrate=0.3"
+#Queue
+
+Initialdir = $(EXPERIMENT_DIR)/Testing/chiplets_8x8x4_ir03_3vcpervnet_1m_smaug/
+arguments = "-d $(OUTPUT_DIR)/Testing/chiplets_8x8x4_ir03_3vcpervnet_1m_smaug/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(CHIPLETS_TEST_ARGS4) --injectionrate=0.3"
+#Queue

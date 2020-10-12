@@ -1,0 +1,8 @@
+To run simulations:
+condor_submit [name of file]
+
+To check on simulations:
+condor_q
+
+To delete current simulations:
+condor_rm [user]

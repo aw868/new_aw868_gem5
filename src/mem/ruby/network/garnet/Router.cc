@@ -1,8 +1,6 @@
 /*
- * Copyright (c) 2020 Advanced Micro Devices, Inc.
- * Copyright (c) 2020 Inria
- * Copyright (c) 2016 Georgia Institute of Technology
  * Copyright (c) 2008 Princeton University
+ * Copyright (c) 2016 Georgia Institute of Technology
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,29 +25,50 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Authors: Niket Agarwal
+ *          Tushar Krishna
  */
 
 
-#include "mem/ruby/network/garnet/Router.hh"
-
+#include "base/stl_helpers.hh"
 #include "debug/RubyNetwork.hh"
-#include "mem/ruby/network/garnet/CreditLink.hh"
-#include "mem/ruby/network/garnet/GarnetNetwork.hh"
-#include "mem/ruby/network/garnet/InputUnit.hh"
-#include "mem/ruby/network/garnet/NetworkLink.hh"
-#include "mem/ruby/network/garnet/OutputUnit.hh"
+#include "mem/ruby/network/garnet2.0/CreditLink.hh"
+#include "mem/ruby/network/garnet2.0/CrossbarSwitch.hh"
+#include "mem/ruby/network/garnet2.0/GarnetNetwork.hh"
+#include "mem/ruby/network/garnet2.0/InputUnit.hh"
+#include "mem/ruby/network/garnet2.0/NetworkLink.hh"
+#include "mem/ruby/network/garnet2.0/OutputUnit.hh"
+#include "mem/ruby/network/garnet2.0/Router.hh"
+#include "mem/ruby/network/garnet2.0/RoutingUnit.hh"
+#include "mem/ruby/network/garnet2.0/SwitchAllocator.hh"
 
 using namespace std;
+using m5::stl_helpers::deletePointers;
 
 Router::Router(const Params *p)
-  : BasicRouter(p), Consumer(this), m_latency(p->latency),
-    m_virtual_networks(p->virt_nets), m_vc_per_vnet(p->vcs_per_vnet),
-    m_num_vcs(m_virtual_networks * m_vc_per_vnet), m_bit_width(p->width),
-    m_network_ptr(nullptr), routingUnit(this), switchAllocator(this),
-    crossbarSwitch(this)
+    : BasicRouter(p), Consumer(this)
 {
+    m_latency = p->latency;
+    m_virtual_networks = p->virt_nets;
+    m_vc_per_vnet = p->vcs_per_vnet;
+    m_num_vcs = m_virtual_networks * m_vc_per_vnet;
+
+    m_routing_unit = new RoutingUnit(this);
+    m_sw_alloc = new SwitchAllocator(this);
+    m_switch = new CrossbarSwitch(this);
+
     m_input_unit.clear();
     m_output_unit.clear();
+}
+
+Router::~Router()
+{
+    deletePointers(m_input_unit);
+    deletePointers(m_output_unit);
+    delete m_routing_unit;
+    delete m_sw_alloc;
+    delete m_switch;
 }
 
 void
@@ -57,15 +76,14 @@ Router::init()
 {
     BasicRouter::init();
 
-    switchAllocator.init();
-    crossbarSwitch.init();
+    m_sw_alloc->init();
+    m_switch->init();
 }
 
 void
 Router::wakeup()
 {
     DPRINTF(RubyNetwork, "Router %d woke up\n", m_id);
-    assert(clockEdge() == curTick());
 
     // check for incoming flits
     for (int inport = 0; inport < m_input_unit.size(); inport++) {
@@ -83,60 +101,48 @@ Router::wakeup()
     }
 
     // Switch Allocation
-    switchAllocator.wakeup();
+    m_sw_alloc->wakeup();
 
     // Switch Traversal
-    crossbarSwitch.wakeup();
+    m_switch->wakeup();
 }
 
 void
 Router::addInPort(PortDirection inport_dirn,
                   NetworkLink *in_link, CreditLink *credit_link)
 {
-    fatal_if(in_link->bitWidth != m_bit_width, "Widths of link %s(%d)does"
-            " not match that of Router%d(%d). Consider inserting SerDes "
-            "Units.", in_link->name(), in_link->bitWidth, m_id, m_bit_width);
-
     int port_num = m_input_unit.size();
     InputUnit *input_unit = new InputUnit(port_num, inport_dirn, this);
 
     input_unit->set_in_link(in_link);
     input_unit->set_credit_link(credit_link);
     in_link->setLinkConsumer(this);
-    in_link->setVcsPerVnet(get_vc_per_vnet());
-    credit_link->setSourceQueue(input_unit->getCreditQueue(), this);
-    credit_link->setVcsPerVnet(get_vc_per_vnet());
+    credit_link->setSourceQueue(input_unit->getCreditQueue());
 
-    m_input_unit.push_back(std::shared_ptr<InputUnit>(input_unit));
+    m_input_unit.push_back(input_unit);
 
-    routingUnit.addInDirection(inport_dirn, port_num);
+    m_routing_unit->addInDirection(inport_dirn, port_num);
 }
 
 void
 Router::addOutPort(PortDirection outport_dirn,
                    NetworkLink *out_link,
-                   std::vector<NetDest>& routing_table_entry, int link_weight,
-                   CreditLink *credit_link, uint32_t consumerVcs)
+                   const NetDest& routing_table_entry, int link_weight,
+                   CreditLink *credit_link)
 {
-    fatal_if(out_link->bitWidth != m_bit_width, "Widths of units do not match."
-            " Consider inserting SerDes Units");
-
     int port_num = m_output_unit.size();
-    OutputUnit *output_unit = new OutputUnit(port_num, outport_dirn, this,
-                                             consumerVcs);
+    OutputUnit *output_unit = new OutputUnit(port_num, outport_dirn, this);
 
     output_unit->set_out_link(out_link);
     output_unit->set_credit_link(credit_link);
     credit_link->setLinkConsumer(this);
-    credit_link->setVcsPerVnet(consumerVcs);
-    out_link->setSourceQueue(output_unit->getOutQueue(), this);
-    out_link->setVcsPerVnet(consumerVcs);
+    out_link->setSourceQueue(output_unit->getOutQueue());
 
-    m_output_unit.push_back(std::shared_ptr<OutputUnit>(output_unit));
+    m_output_unit.push_back(output_unit);
 
-    routingUnit.addRoute(routing_table_entry);
-    routingUnit.addWeight(link_weight);
-    routingUnit.addOutDirection(outport_dirn, port_num);
+    m_routing_unit->addRoute(routing_table_entry);
+    m_routing_unit->addWeight(link_weight);
+    m_routing_unit->addOutDirection(outport_dirn, port_num);
 }
 
 PortDirection
@@ -154,13 +160,13 @@ Router::getInportDirection(int inport)
 int
 Router::route_compute(RouteInfo route, int inport, PortDirection inport_dirn)
 {
-    return routingUnit.outportCompute(route, inport, inport_dirn);
+    return m_routing_unit->outportCompute(route, inport, inport_dirn);
 }
 
 void
 Router::grant_switch(int inport, flit *t_flit)
 {
-    crossbarSwitch.update_sw_winner(inport, t_flit);
+    m_switch->update_sw_winner(inport, t_flit);
 }
 
 void
@@ -221,21 +227,22 @@ Router::collateStats()
         }
     }
 
-    m_sw_input_arbiter_activity = switchAllocator.get_input_arbiter_activity();
-    m_sw_output_arbiter_activity =
-        switchAllocator.get_output_arbiter_activity();
-    m_crossbar_activity = crossbarSwitch.get_crossbar_activity();
+    m_sw_input_arbiter_activity = m_sw_alloc->get_input_arbiter_activity();
+    m_sw_output_arbiter_activity = m_sw_alloc->get_output_arbiter_activity();
+    m_crossbar_activity = m_switch->get_crossbar_activity();
 }
 
 void
 Router::resetStats()
 {
-    for (int i = 0; i < m_input_unit.size(); i++) {
+    for (int j = 0; j < m_virtual_networks; j++) {
+        for (int i = 0; i < m_input_unit.size(); i++) {
             m_input_unit[i]->resetStats();
+        }
     }
 
-    crossbarSwitch.resetStats();
-    switchAllocator.resetStats();
+    m_switch->resetStats();
+    m_sw_alloc->resetStats();
 }
 
 void
@@ -271,7 +278,7 @@ uint32_t
 Router::functionalWrite(Packet *pkt)
 {
     uint32_t num_functional_writes = 0;
-    num_functional_writes += crossbarSwitch.functionalWrite(pkt);
+    num_functional_writes += m_switch->functionalWrite(pkt);
 
     for (uint32_t i = 0; i < m_input_unit.size(); i++) {
         num_functional_writes += m_input_unit[i]->functionalWrite(pkt);

@@ -38,13 +38,8 @@ from common import FileSystemConfig
 
 from .BaseTopology import SimpleTopology
 
-# Creates a generic Mesh assuming an equal number of cache
-# and directory controllers.
-# XY routing is enforced (using link weights)
-# to guarantee deadlock freedom.
-
-class Mesh_XY(SimpleTopology):
-    description='Mesh_XY'
+class MeshXY_Corners(SimpleTopology):
+    description='MeshXY_Corners'
 
     def __init__(self, controllers):
         self.nodes = controllers
@@ -53,18 +48,16 @@ class Mesh_XY(SimpleTopology):
     # assuming an equal number of cache and directory cntrls
 
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
+        print("File: MeshXY_Corners.py")
         nodes = self.nodes
 
         num_routers = options.num_cpus
         num_rows = options.mesh_rows
 
-        print("options.y_depth: ", options.y_depth);
-
         # default values for link latency and router latency.
         # Can be over-ridden on a per link/router basis
         link_latency = options.link_latency # used by simple and garnet
         router_latency = options.router_latency # only used by garnet
-
 
         # There must be an evenly divisible number of cntrls to routers
         # Also, obviously the number or rows must be <= the number of routers
@@ -76,6 +69,24 @@ class Mesh_XY(SimpleTopology):
             num_columns = int(num_routers / num_rows)
 
         assert(num_columns * num_rows == num_routers)
+        print("Total Number Routers: ", num_routers)
+        print("num_rows: ", num_rows)
+        print("num_columns: ", num_columns)
+
+        # First determine which nodes are cache cntrls vs. dirs vs. dma
+        cache_nodes = []
+        dir_nodes = []
+        for node in nodes:
+            if node.type == 'L1Cache_Controller':
+                cache_nodes.append(node)
+            elif node.type == 'Directory_Controller':
+                dir_nodes.append(node)
+
+        assert(num_rows > 0 and num_rows <= num_routers)
+        assert(num_columns * num_rows == num_routers)
+        caches_per_router, remainder = divmod(len(cache_nodes), num_routers)
+        assert(remainder == 0)
+        assert(len(dir_nodes) == 4)
 
         # Create the routers in the mesh
         routers = [Router(router_id=i, latency = router_latency) \
@@ -85,37 +96,33 @@ class Mesh_XY(SimpleTopology):
         # link counter to set unique link ids
         link_count = 0
 
-        # Add all but the remainder nodes to the list of nodes to be uniformly
-        # distributed across the network.
-        network_nodes = []
-        remainder_nodes = []
-        for node_index in range(len(nodes)):
-            if node_index < (len(nodes) - remainder):
-                network_nodes.append(nodes[node_index])
-            else:
-                remainder_nodes.append(nodes[node_index])
-
-        # Connect each node to the appropriate router
+        # Connect each cache controller to the appropriate router
         ext_links = []
-        for (i, n) in enumerate(network_nodes):
+        for (i, n) in enumerate(cache_nodes):
             cntrl_level, router_id = divmod(i, num_routers)
-            assert(cntrl_level < cntrls_per_router)
+            assert(cntrl_level < caches_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
                                     int_node=routers[router_id],
                                     latency = link_latency))
             link_count += 1
 
-        # Connect the remainding nodes to router 0.  These should only be
-        # DMA nodes.
-        for (i, node) in enumerate(remainder_nodes):
-            assert(node.type == 'DMA_Controller')
-            assert(i < remainder)
-            ext_links.append(ExtLink(link_id=link_count, ext_node=node,
-                                    int_node=routers[0],
-                                    latency = link_latency))
-            link_count += 1
-
-        network.ext_links = ext_links
+        # Connect the dir nodes to the corners.
+        ext_links.append(ExtLink(link_id=link_count, ext_node=dir_nodes[0],
+                                int_node=routers[0],
+                                latency = link_latency))
+        link_count += 1
+        ext_links.append(ExtLink(link_id=link_count, ext_node=dir_nodes[1],
+                                int_node=routers[num_columns - 1],
+                                latency = link_latency))
+        link_count += 1
+        ext_links.append(ExtLink(link_id=link_count, ext_node=dir_nodes[2],
+                                int_node=routers[num_routers - num_columns],
+                                latency = link_latency))
+        link_count += 1
+        ext_links.append(ExtLink(link_id=link_count, ext_node=dir_nodes[3],
+                                int_node=routers[num_routers - 1],
+                                latency = link_latency))
+        link_count += 1
 
         # Create the mesh links.
         int_links = []

@@ -1,5 +1,4 @@
 /*
- * Copyright (c) 2020 Advanced Micro Devices, Inc.
  * Copyright (c) 2008 Princeton University
  * Copyright (c) 2016 Georgia Institute of Technology
  * All rights reserved.
@@ -26,26 +25,29 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Authors: Niket Agarwal
+ *          Tushar Krishna
  */
 
-
-#include "mem/ruby/network/garnet/GarnetNetwork.hh"
 
 #include <cassert>
 
 #include "base/cast.hh"
-#include "debug/RubyNetwork.hh"
+#include "base/stl_helpers.hh"
 #include "mem/ruby/common/NetDest.hh"
 #include "mem/ruby/network/MessageBuffer.hh"
-#include "mem/ruby/network/garnet/CommonTypes.hh"
-#include "mem/ruby/network/garnet/CreditLink.hh"
-#include "mem/ruby/network/garnet/GarnetLink.hh"
-#include "mem/ruby/network/garnet/NetworkInterface.hh"
-#include "mem/ruby/network/garnet/NetworkLink.hh"
-#include "mem/ruby/network/garnet/Router.hh"
+#include "mem/ruby/network/garnet2.0/CommonTypes.hh"
+#include "mem/ruby/network/garnet2.0/CreditLink.hh"
+#include "mem/ruby/network/garnet2.0/GarnetLink.hh"
+#include "mem/ruby/network/garnet2.0/GarnetNetwork.hh"
+#include "mem/ruby/network/garnet2.0/NetworkInterface.hh"
+#include "mem/ruby/network/garnet2.0/NetworkLink.hh"
+#include "mem/ruby/network/garnet2.0/Router.hh"
 #include "mem/ruby/system/RubySystem.hh"
 
 using namespace std;
+using m5::stl_helpers::deletePointers;
 
 /*
  * GarnetNetwork sets up the routers and links and collects stats.
@@ -57,8 +59,12 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     : Network(p)
 {
     m_num_rows = p->num_rows;
+    m_num_cols = p->y_depth;
+    m_z_depth = p->z_depth;
+    m_num_chiplets_x = p->num_chiplets_x;
+    m_num_chiplets_y = p->num_chiplets_y;
     m_ni_flit_size = p->ni_flit_size;
-    m_max_vcs_per_vnet = 0;
+    m_vcs_per_vnet = p->vcs_per_vnet;
     m_buffers_per_data_vc = p->buffers_per_data_vc;
     m_buffers_per_ctrl_vc = p->buffers_per_ctrl_vc;
     m_routing_algorithm = p->routing_algorithm;
@@ -93,32 +99,78 @@ GarnetNetwork::GarnetNetwork(const Params *p)
         m_nis.push_back(ni);
         ni->init_net_ptr(this);
     }
-
-    // Print Garnet version
-    inform("Garnet version %s\n", garnetVersion);
 }
 
 void
 GarnetNetwork::init()
 {
     Network::init();
-
+    // cout<<"File: /src/mem/ruby/network/garnet2.0/GarnetNetwork.cc"<<endl;
     for (int i=0; i < m_nodes; i++) {
         m_nis[i]->addNode(m_toNetQueues[i], m_fromNetQueues[i]);
     }
-
     // The topology pointer should have already been initialized in the
     // parent network constructor
     assert(m_topology_ptr != NULL);
     m_topology_ptr->createLinks(this);
-
     // Initialize topology specific parameters
-    if (getNumRows() > 0) {
-        // Only for Mesh topology
-        // m_num_rows and m_num_cols are only used for
-        // implementing XY or custom routing in RoutingUnit.cc
+    if (getNumRows() > 0 && getRoutingAlgorithm() == 2) { //if XYZ algorithm
+        // cout<<"Using XYZ Routing Algorithm (2)"<<endl;
         m_num_rows = getNumRows();
-        m_num_cols = m_routers.size() / m_num_rows;
+
+        if (getZDepth()>0){
+            m_z_depth = getZDepth();
+        } else {
+            m_z_depth = (m_routers.size() / m_num_rows) / m_num_rows;
+        }
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
+        }
+
+        //display dimensions of router for user/debug
+        // cout<<"router size: "<<m_routers.size()<<endl;
+        // cout<<"m_num_rows: "<<m_num_rows<<endl;
+        // cout<<"m_num_cols: "<<m_num_cols<<endl;
+        // cout<<"m_z_depth: "<<m_z_depth<<endl;
+        // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
+        assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
+    } else if (getNumRows() > 0 && (getRoutingAlgorithm() == 5 || getRoutingAlgorithm() == 6)) {
+        // cout<<"Using XYZ Routing Algorithm (5)"<<endl;
+        m_num_rows = getNumRows();
+
+        if (getZDepth()>0){
+            m_z_depth = getZDepth();
+        } else {
+            m_z_depth = (m_routers.size() / m_num_rows) / m_num_rows;
+        }
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
+        }
+
+        //display dimensions of router for user/debug
+        // cout<<"router size: "<<m_routers.size()<<endl;
+        // cout<<"m_num_rows: "<<m_num_rows<<endl;
+        // cout<<"m_num_cols: "<<m_num_cols<<endl;
+        // cout<<"m_z_depth: "<<m_z_depth<<endl;
+        // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
+        assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
+    } else if (getNumRows() > 0) { //XY algorithm
+        cout<<"Using XY Algorithm (1)"<<endl;
+        m_num_rows = getNumRows();
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = m_routers.size() / m_num_rows;
+        }
+        cout<<"m_num_rows: "<<m_num_rows<<endl;
+        cout<<"m_num_cols: "<<m_num_cols<<endl;
         assert(m_num_rows * m_num_cols == m_routers.size());
     } else {
         m_num_rows = -1;
@@ -130,7 +182,7 @@ GarnetNetwork::init()
         for (vector<Router*>::const_iterator i= m_routers.begin();
              i != m_routers.end(); ++i) {
             Router* router = safe_cast<Router*>(*i);
-            M5_VAR_USED int router_id =
+            int router_id M5_VAR_USED =
                 fault_model->declare_router(router->get_num_inports(),
                                             router->get_num_outports(),
                                             router->get_vc_per_vnet(),
@@ -143,6 +195,14 @@ GarnetNetwork::init()
     }
 }
 
+GarnetNetwork::~GarnetNetwork()
+{
+    deletePointers(m_routers);
+    deletePointers(m_nis);
+    deletePointers(m_networklinks);
+    deletePointers(m_creditlinks);
+}
+
 /*
  * This function creates a link from the Network Interface (NI)
  * into the Network.
@@ -151,11 +211,10 @@ GarnetNetwork::init()
 */
 
 void
-GarnetNetwork::makeExtInLink(NodeID global_src, SwitchID dest, BasicLink* link,
-                             std::vector<NetDest>& routing_table_entry)
+GarnetNetwork::makeExtInLink(NodeID src, SwitchID dest, BasicLink* link,
+                            const NetDest& routing_table_entry)
 {
-    NodeID local_src = getLocalNodeID(global_src);
-    assert(local_src < m_nodes);
+    assert(src < m_nodes);
 
     GarnetExtLink* garnet_link = safe_cast<GarnetExtLink*>(link);
 
@@ -168,46 +227,8 @@ GarnetNetwork::makeExtInLink(NodeID global_src, SwitchID dest, BasicLink* link,
     m_creditlinks.push_back(credit_link);
 
     PortDirection dst_inport_dirn = "Local";
-
-    m_max_vcs_per_vnet = std::max(m_max_vcs_per_vnet,
-                             m_routers[dest]->get_vc_per_vnet());
-
-    /*
-     * We check if a bridge was enabled at any end of the link.
-     * The bridge is enabled if either of clock domain
-     * crossing (CDC) or Serializer-Deserializer(SerDes) unit is
-     * enabled for the link at each end. The bridge encapsulates
-     * the functionality for both CDC and SerDes and is a Consumer
-     * object similiar to a NetworkLink.
-     *
-     * If a bridge was enabled we connect the NI and Routers to
-     * bridge before connecting the link. Example, if an external
-     * bridge is enabled, we would connect:
-     * NI--->NetworkBridge--->GarnetExtLink---->Router
-     */
-    if (garnet_link->extBridgeEn) {
-        DPRINTF(RubyNetwork, "Enable external bridge for %s\n",
-            garnet_link->name());
-        m_nis[local_src]->
-        addOutPort(garnet_link->extNetBridge[LinkDirection_In],
-                   garnet_link->extCredBridge[LinkDirection_In],
-                   dest, m_routers[dest]->get_vc_per_vnet());
-    } else {
-        m_nis[local_src]->addOutPort(net_link, credit_link, dest,
-            m_routers[dest]->get_vc_per_vnet());
-    }
-
-    if (garnet_link->intBridgeEn) {
-        DPRINTF(RubyNetwork, "Enable internal bridge for %s\n",
-            garnet_link->name());
-        m_routers[dest]->
-            addInPort(dst_inport_dirn,
-                      garnet_link->intNetBridge[LinkDirection_In],
-                      garnet_link->intCredBridge[LinkDirection_In]);
-    } else {
-        m_routers[dest]->addInPort(dst_inport_dirn, net_link, credit_link);
-    }
-
+    m_routers[dest]->addInPort(dst_inport_dirn, net_link, credit_link);
+    m_nis[src]->addOutPort(net_link, credit_link, dest);
 }
 
 /*
@@ -217,12 +238,10 @@ GarnetNetwork::makeExtInLink(NodeID global_src, SwitchID dest, BasicLink* link,
 */
 
 void
-GarnetNetwork::makeExtOutLink(SwitchID src, NodeID global_dest,
-                              BasicLink* link,
-                              std::vector<NetDest>& routing_table_entry)
+GarnetNetwork::makeExtOutLink(SwitchID src, NodeID dest, BasicLink* link,
+                             const NetDest& routing_table_entry)
 {
-    NodeID local_dest = getLocalNodeID(global_dest);
-    assert(local_dest < m_nodes);
+    assert(dest < m_nodes);
     assert(src < m_routers.size());
     assert(m_routers[src] != NULL);
 
@@ -237,49 +256,10 @@ GarnetNetwork::makeExtOutLink(SwitchID src, NodeID global_dest,
     m_creditlinks.push_back(credit_link);
 
     PortDirection src_outport_dirn = "Local";
-
-    m_max_vcs_per_vnet = std::max(m_max_vcs_per_vnet,
-                             m_routers[src]->get_vc_per_vnet());
-
-    /*
-     * We check if a bridge was enabled at any end of the link.
-     * The bridge is enabled if either of clock domain
-     * crossing (CDC) or Serializer-Deserializer(SerDes) unit is
-     * enabled for the link at each end. The bridge encapsulates
-     * the functionality for both CDC and SerDes and is a Consumer
-     * object similiar to a NetworkLink.
-     *
-     * If a bridge was enabled we connect the NI and Routers to
-     * bridge before connecting the link. Example, if an external
-     * bridge is enabled, we would connect:
-     * NI<---NetworkBridge<---GarnetExtLink<----Router
-     */
-    if (garnet_link->extBridgeEn) {
-        DPRINTF(RubyNetwork, "Enable external bridge for %s\n",
-            garnet_link->name());
-        m_nis[local_dest]->
-            addInPort(garnet_link->extNetBridge[LinkDirection_Out],
-                      garnet_link->extCredBridge[LinkDirection_Out]);
-    } else {
-        m_nis[local_dest]->addInPort(net_link, credit_link);
-    }
-
-    if (garnet_link->intBridgeEn) {
-        DPRINTF(RubyNetwork, "Enable internal bridge for %s\n",
-            garnet_link->name());
-        m_routers[src]->
-            addOutPort(src_outport_dirn,
-                       garnet_link->intNetBridge[LinkDirection_Out],
-                       routing_table_entry, link->m_weight,
-                       garnet_link->intCredBridge[LinkDirection_Out],
-                       m_routers[src]->get_vc_per_vnet());
-    } else {
-        m_routers[src]->
-            addOutPort(src_outport_dirn, net_link,
-                       routing_table_entry,
-                       link->m_weight, credit_link,
-                       m_routers[src]->get_vc_per_vnet());
-    }
+    m_routers[src]->addOutPort(src_outport_dirn, net_link,
+                               routing_table_entry,
+                               link->m_weight, credit_link);
+    m_nis[dest]->addInPort(net_link, credit_link);
 }
 
 /*
@@ -289,7 +269,7 @@ GarnetNetwork::makeExtOutLink(SwitchID src, NodeID global_dest,
 
 void
 GarnetNetwork::makeInternalLink(SwitchID src, SwitchID dest, BasicLink* link,
-                                std::vector<NetDest>& routing_table_entry,
+                                const NetDest& routing_table_entry,
                                 PortDirection src_outport_dirn,
                                 PortDirection dst_inport_dirn)
 {
@@ -303,46 +283,10 @@ GarnetNetwork::makeInternalLink(SwitchID src, SwitchID dest, BasicLink* link,
     m_networklinks.push_back(net_link);
     m_creditlinks.push_back(credit_link);
 
-    m_max_vcs_per_vnet = std::max(m_max_vcs_per_vnet,
-                             std::max(m_routers[dest]->get_vc_per_vnet(),
-                             m_routers[src]->get_vc_per_vnet()));
-
-    /*
-     * We check if a bridge was enabled at any end of the link.
-     * The bridge is enabled if either of clock domain
-     * crossing (CDC) or Serializer-Deserializer(SerDes) unit is
-     * enabled for the link at each end. The bridge encapsulates
-     * the functionality for both CDC and SerDes and is a Consumer
-     * object similiar to a NetworkLink.
-     *
-     * If a bridge was enabled we connect the NI and Routers to
-     * bridge before connecting the link. Example, if a source
-     * bridge is enabled, we would connect:
-     * Router--->NetworkBridge--->GarnetIntLink---->Router
-     */
-    if (garnet_link->dstBridgeEn) {
-        DPRINTF(RubyNetwork, "Enable destination bridge for %s\n",
-            garnet_link->name());
-        m_routers[dest]->addInPort(dst_inport_dirn,
-            garnet_link->dstNetBridge, garnet_link->dstCredBridge);
-    } else {
-        m_routers[dest]->addInPort(dst_inport_dirn, net_link, credit_link);
-    }
-
-    if (garnet_link->srcBridgeEn) {
-        DPRINTF(RubyNetwork, "Enable source bridge for %s\n",
-            garnet_link->name());
-        m_routers[src]->
-            addOutPort(src_outport_dirn, garnet_link->srcNetBridge,
-                       routing_table_entry,
-                       link->m_weight, garnet_link->srcCredBridge,
-                       m_routers[dest]->get_vc_per_vnet());
-    } else {
-        m_routers[src]->addOutPort(src_outport_dirn, net_link,
-                        routing_table_entry,
-                        link->m_weight, credit_link,
-                        m_routers[dest]->get_vc_per_vnet());
-    }
+    m_routers[dest]->addInPort(dst_inport_dirn, net_link, credit_link);
+    m_routers[src]->addOutPort(src_outport_dirn, net_link,
+                               routing_table_entry,
+                               link->m_weight, credit_link);
 }
 
 // Total routers in the network
@@ -354,11 +298,9 @@ GarnetNetwork::getNumRouters()
 
 // Get ID of router connected to a NI.
 int
-GarnetNetwork::get_router_id(int global_ni, int vnet)
+GarnetNetwork::get_router_id(int ni)
 {
-    NodeID local_ni = getLocalNodeID(global_ni);
-
-    return m_nis[local_ni]->get_router_id(vnet);
+    return m_nis[ni]->get_router_id();
 }
 
 void
@@ -497,8 +439,9 @@ GarnetNetwork::regStats()
         .name(name() + ".int_link_utilization");
     m_average_link_utilization
         .name(name() + ".avg_link_utilization");
+
     m_average_vc_load
-        .init(m_virtual_networks * m_max_vcs_per_vnet)
+        .init(m_virtual_networks * m_vcs_per_vnet)
         .name(name() + ".avg_vc_load")
         .flags(Stats::pdf | Stats::total | Stats::nozero | Stats::oneline)
         ;
@@ -533,20 +476,6 @@ GarnetNetwork::collateStats()
     // Ask the routers to collate their statistics
     for (int i = 0; i < m_routers.size(); i++) {
         m_routers[i]->collateStats();
-    }
-}
-
-void
-GarnetNetwork::resetStats()
-{
-    for (int i = 0; i < m_routers.size(); i++) {
-        m_routers[i]->resetStats();
-    }
-    for (int i = 0; i < m_networklinks.size(); i++) {
-        m_networklinks[i]->resetStats();
-    }
-    for (int i = 0; i < m_creditlinks.size(); i++) {
-        m_creditlinks[i]->resetStats();
     }
 }
 

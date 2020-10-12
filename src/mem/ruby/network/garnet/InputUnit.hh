@@ -1,7 +1,6 @@
 /*
- * Copyright (c) 2020 Inria
- * Copyright (c) 2016 Georgia Institute of Technology
  * Copyright (c) 2008 Princeton University
+ * Copyright (c) 2016 Georgia Institute of Technology
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,28 +25,31 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Authors: Niket Agarwal
+ *          Tushar Krishna
  */
 
 
-#ifndef __MEM_RUBY_NETWORK_GARNET_0_INPUTUNIT_HH__
-#define __MEM_RUBY_NETWORK_GARNET_0_INPUTUNIT_HH__
+#ifndef __MEM_RUBY_NETWORK_GARNET2_0_INPUTUNIT_HH__
+#define __MEM_RUBY_NETWORK_GARNET2_0_INPUTUNIT_HH__
 
 #include <iostream>
 #include <vector>
 
 #include "mem/ruby/common/Consumer.hh"
-#include "mem/ruby/network/garnet/CommonTypes.hh"
-#include "mem/ruby/network/garnet/CreditLink.hh"
-#include "mem/ruby/network/garnet/NetworkLink.hh"
-#include "mem/ruby/network/garnet/Router.hh"
-#include "mem/ruby/network/garnet/VirtualChannel.hh"
-#include "mem/ruby/network/garnet/flitBuffer.hh"
+#include "mem/ruby/network/garnet2.0/CommonTypes.hh"
+#include "mem/ruby/network/garnet2.0/CreditLink.hh"
+#include "mem/ruby/network/garnet2.0/NetworkLink.hh"
+#include "mem/ruby/network/garnet2.0/Router.hh"
+#include "mem/ruby/network/garnet2.0/VirtualChannel.hh"
+#include "mem/ruby/network/garnet2.0/flitBuffer.hh"
 
 class InputUnit : public Consumer
 {
   public:
     InputUnit(int id, PortDirection direction, Router *router);
-    ~InputUnit() = default;
+    ~InputUnit();
 
     void wakeup();
     void print(std::ostream& out) const {};
@@ -55,74 +57,74 @@ class InputUnit : public Consumer
     inline PortDirection get_direction() { return m_direction; }
 
     inline void
-    set_vc_idle(int vc, Tick curTime)
+    set_vc_idle(int vc, Cycles curTime)
     {
-        virtualChannels[vc].set_idle(curTime);
+        m_vcs[vc]->set_idle(curTime);
     }
 
     inline void
-    set_vc_active(int vc, Tick curTime)
+    set_vc_active(int vc, Cycles curTime)
     {
-        virtualChannels[vc].set_active(curTime);
+        m_vcs[vc]->set_active(curTime);
     }
 
     inline void
     grant_outport(int vc, int outport)
     {
-        virtualChannels[vc].set_outport(outport);
+        m_vcs[vc]->set_outport(outport);
     }
 
     inline void
     grant_outvc(int vc, int outvc)
     {
-        virtualChannels[vc].set_outvc(outvc);
+        m_vcs[vc]->set_outvc(outvc);
     }
 
     inline int
     get_outport(int invc)
     {
-        return virtualChannels[invc].get_outport();
+        return m_vcs[invc]->get_outport();
     }
 
     inline int
     get_outvc(int invc)
     {
-        return virtualChannels[invc].get_outvc();
+        return m_vcs[invc]->get_outvc();
     }
 
-    inline Tick
+    inline Cycles
     get_enqueue_time(int invc)
     {
-        return virtualChannels[invc].get_enqueue_time();
+        return m_vcs[invc]->get_enqueue_time();
     }
 
-    void increment_credit(int in_vc, bool free_signal, Tick curTime);
+    void increment_credit(int in_vc, bool free_signal, Cycles curTime);
 
     inline flit*
     peekTopFlit(int vc)
     {
-        return virtualChannels[vc].peekTopFlit();
+        return m_vcs[vc]->peekTopFlit();
     }
 
     inline flit*
     getTopFlit(int vc)
     {
-        return virtualChannels[vc].getTopFlit();
+        return m_vcs[vc]->getTopFlit();
     }
 
     inline bool
-    need_stage(int vc, flit_stage stage, Tick time)
+    need_stage(int vc, flit_stage stage, Cycles time)
     {
-        return virtualChannels[vc].need_stage(stage, time);
+        return m_vcs[vc]->need_stage(stage, time);
     }
 
     inline bool
-    isReady(int invc, Tick curTime)
+    isReady(int invc, Cycles curTime)
     {
-        return virtualChannels[invc].isReady(curTime);
+        return m_vcs[invc]->isReady(curTime);
     }
 
-    flitBuffer* getCreditQueue() { return &creditQueue; }
+    flitBuffer* getCreditQueue() { return creditQueue; }
 
     inline void
     set_in_link(NetworkLink *link)
@@ -147,20 +149,22 @@ class InputUnit : public Consumer
     void resetStats();
 
   private:
-    Router *m_router;
     int m_id;
     PortDirection m_direction;
+    int m_num_vcs;
     int m_vc_per_vnet;
+
+    Router *m_router;
     NetworkLink *m_in_link;
     CreditLink *m_credit_link;
-    flitBuffer creditQueue;
+    flitBuffer *creditQueue;
 
     // Input Virtual channels
-    std::vector<VirtualChannel> virtualChannels;
+    std::vector<VirtualChannel *> m_vcs;
 
     // Statistical variables
     std::vector<double> m_num_buffer_writes;
     std::vector<double> m_num_buffer_reads;
 };
 
-#endif // __MEM_RUBY_NETWORK_GARNET_0_INPUTUNIT_HH__
+#endif // __MEM_RUBY_NETWORK_GARNET2_0_INPUTUNIT_HH__

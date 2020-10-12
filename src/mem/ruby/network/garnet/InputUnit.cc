@@ -1,7 +1,6 @@
 /*
- * Copyright (c) 2020 Inria
- * Copyright (c) 2016 Georgia Institute of Technology
  * Copyright (c) 2008 Princeton University
+ * Copyright (c) 2016 Georgia Institute of Technology
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,22 +25,30 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Authors: Niket Agarwal
+ *          Tushar Krishna
  */
 
 
-#include "mem/ruby/network/garnet/InputUnit.hh"
-
+#include "base/stl_helpers.hh"
 #include "debug/RubyNetwork.hh"
-#include "mem/ruby/network/garnet/Credit.hh"
-#include "mem/ruby/network/garnet/Router.hh"
+#include "mem/ruby/network/garnet2.0/Credit.hh"
+#include "mem/ruby/network/garnet2.0/InputUnit.hh"
+#include "mem/ruby/network/garnet2.0/Router.hh"
 
 using namespace std;
+using m5::stl_helpers::deletePointers;
 
 InputUnit::InputUnit(int id, PortDirection direction, Router *router)
-  : Consumer(router), m_router(router), m_id(id), m_direction(direction),
-    m_vc_per_vnet(m_router->get_vc_per_vnet())
+            : Consumer(router)
 {
-    const int m_num_vcs = m_router->get_num_vcs();
+    m_id = id;
+    m_direction = direction;
+    m_router = router;
+    m_num_vcs = m_router->get_num_vcs();
+    m_vc_per_vnet = m_router->get_vc_per_vnet();
+
     m_num_buffer_reads.resize(m_num_vcs/m_vc_per_vnet);
     m_num_buffer_writes.resize(m_num_vcs/m_vc_per_vnet);
     for (int i = 0; i < m_num_buffer_reads.size(); i++) {
@@ -49,11 +56,18 @@ InputUnit::InputUnit(int id, PortDirection direction, Router *router)
         m_num_buffer_writes[i] = 0;
     }
 
+    creditQueue = new flitBuffer();
     // Instantiating the virtual channels
-    virtualChannels.reserve(m_num_vcs);
+    m_vcs.resize(m_num_vcs);
     for (int i=0; i < m_num_vcs; i++) {
-        virtualChannels.emplace_back();
+        m_vcs[i] = new VirtualChannel(i);
     }
+}
+
+InputUnit::~InputUnit()
+{
+    delete creditQueue;
+    deletePointers(m_vcs);
 }
 
 /*
@@ -70,64 +84,61 @@ void
 InputUnit::wakeup()
 {
     flit *t_flit;
-    if (m_in_link->isReady(curTick())) {
+    if (m_in_link->isReady(m_router->curCycle())) {
 
         t_flit = m_in_link->consumeLink();
-        DPRINTF(RubyNetwork, "Router[%d] Consuming:%s Width: %d Flit:%s\n",
-        m_router->get_id(), m_in_link->name(),
-        m_router->getBitWidth(), *t_flit);
-        assert(t_flit->m_width == m_router->getBitWidth());
         int vc = t_flit->get_vc();
         t_flit->increment_hops(); // for stats
+
+        // cout<<"InputUnit::wakeup(): NetworkLink ready @ cycle "<<m_router->curCycle()<<" flit "<<*t_flit<<endl;
 
         if ((t_flit->get_type() == HEAD_) ||
             (t_flit->get_type() == HEAD_TAIL_)) {
 
-            assert(virtualChannels[vc].get_state() == IDLE_);
-            set_vc_active(vc, curTick());
+            assert(m_vcs[vc]->get_state() == IDLE_);
+            set_vc_active(vc, m_router->curCycle());
 
             // Route computation for this vc
             int outport = m_router->route_compute(t_flit->get_route(),
                 m_id, m_direction);
 
+            // cout<<"InputUnit::wakeup(): outport="<<outport<<endl;
             // Update output port in VC
             // All flits in this packet will use this output port
             // The output port field in the flit is updated after it wins SA
             grant_outport(vc, outport);
-
+            // cout<<"InputUnit::wakeup(): HEAD_/HEAD_TAIL_ flit granted vc "<<vc<<" outport "<<outport<<" @ cycle "<<m_router->curCycle()<<endl;
         } else {
-            assert(virtualChannels[vc].get_state() == ACTIVE_);
+            assert(m_vcs[vc]->get_state() == ACTIVE_);
+            // cout<<"\t\t\t\t\t\t BODY_/TAIL_ flit vc "<<vc<<" is ACTIVE @ cycle "<<m_router->curCycle()<<endl;
         }
 
-
+        
         // Buffer the flit
-        virtualChannels[vc].insertFlit(t_flit);
-
+        m_vcs[vc]->insertFlit(t_flit);
+        // cout<<"\t\t\t\t\t\t flit buffered to vc "<<vc<<" @ cycle "<<m_router->curCycle()<<endl;
         int vnet = vc/m_vc_per_vnet;
         // number of writes same as reads
         // any flit that is written will be read only once
         m_num_buffer_writes[vnet]++;
         m_num_buffer_reads[vnet]++;
-
+        
         Cycles pipe_stages = m_router->get_pipe_stages();
         if (pipe_stages == 1) {
             // 1-cycle router
             // Flit goes for SA directly
-            t_flit->advance_stage(SA_, curTick());
+            t_flit->advance_stage(SA_, m_router->curCycle());
+            // cout<<"\t\t\t\t\t\t flit advanced to SA_ stage @ cycle "<<m_router->curCycle()<<endl;
         } else {
             assert(pipe_stages > 1);
             // Router delay is modeled by making flit wait in buffer for
             // (pipe_stages cycles - 1) cycles before going for SA
 
             Cycles wait_time = pipe_stages - Cycles(1);
-            t_flit->advance_stage(SA_, m_router->clockEdge(wait_time));
-
+            t_flit->advance_stage(SA_, m_router->curCycle() + wait_time);
+            // cout<<"\t\t\t\t\t\t flit will advance to SA_ stage @ cycle "<<m_router->curCycle() + wait_time<<endl;
             // Wakeup the router in that cycle to perform SA
             m_router->schedule_wakeup(Cycles(wait_time));
-        }
-
-        if (m_in_link->isReady(curTick())) {
-            m_router->schedule_wakeup(Cycles(1));
         }
     }
 }
@@ -135,12 +146,10 @@ InputUnit::wakeup()
 // Send a credit back to upstream router for this VC.
 // Called by SwitchAllocator when the flit in this VC wins the Switch.
 void
-InputUnit::increment_credit(int in_vc, bool free_signal, Tick curTime)
+InputUnit::increment_credit(int in_vc, bool free_signal, Cycles curTime)
 {
-    DPRINTF(RubyNetwork, "Router[%d]: Sending a credit vc:%d free:%d to %s\n",
-    m_router->get_id(), in_vc, free_signal, m_credit_link->name());
     Credit *t_credit = new Credit(in_vc, free_signal, curTime);
-    creditQueue.insert(t_credit);
+    creditQueue->insert(t_credit);
     m_credit_link->scheduleEventAbsolute(m_router->clockEdge(Cycles(1)));
 }
 
@@ -149,8 +158,8 @@ uint32_t
 InputUnit::functionalWrite(Packet *pkt)
 {
     uint32_t num_functional_writes = 0;
-    for (auto& virtual_channel : virtualChannels) {
-        num_functional_writes += virtual_channel.functionalWrite(pkt);
+    for (int i=0; i < m_num_vcs; i++) {
+        num_functional_writes += m_vcs[i]->functionalWrite(pkt);
     }
 
     return num_functional_writes;

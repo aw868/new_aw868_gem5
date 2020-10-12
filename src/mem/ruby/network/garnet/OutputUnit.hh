@@ -1,7 +1,6 @@
 /*
- * Copyright (c) 2020 Inria
- * Copyright (c) 2016 Georgia Institute of Technology
  * Copyright (c) 2008 Princeton University
+ * Copyright (c) 2016 Georgia Institute of Technology
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,30 +25,31 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Authors: Niket Agarwal
+ *          Tushar Krishna
  */
 
 
-#ifndef __MEM_RUBY_NETWORK_GARNET_0_OUTPUTUNIT_HH__
-#define __MEM_RUBY_NETWORK_GARNET_0_OUTPUTUNIT_HH__
+#ifndef __MEM_RUBY_NETWORK_GARNET2_0_OUTPUTUNIT_HH__
+#define __MEM_RUBY_NETWORK_GARNET2_0_OUTPUTUNIT_HH__
 
 #include <iostream>
 #include <vector>
 
-#include "base/compiler.hh"
 #include "mem/ruby/common/Consumer.hh"
-#include "mem/ruby/network/garnet/CommonTypes.hh"
-#include "mem/ruby/network/garnet/NetworkLink.hh"
-#include "mem/ruby/network/garnet/OutVcState.hh"
-
-class CreditLink;
-class Router;
+#include "mem/ruby/network/garnet2.0/CommonTypes.hh"
+#include "mem/ruby/network/garnet2.0/CreditLink.hh"
+#include "mem/ruby/network/garnet2.0/NetworkLink.hh"
+#include "mem/ruby/network/garnet2.0/OutVcState.hh"
+#include "mem/ruby/network/garnet2.0/Router.hh"
+#include "mem/ruby/network/garnet2.0/flitBuffer.hh"
 
 class OutputUnit : public Consumer
 {
   public:
-    OutputUnit(int id, PortDirection direction, Router *router,
-               uint32_t consumerVcs);
-    ~OutputUnit() = default;
+    OutputUnit(int id, PortDirection direction, Router *router);
+    ~OutputUnit();
     void set_out_link(NetworkLink *link);
     void set_credit_link(CreditLink *credit_link);
     void wakeup();
@@ -58,15 +58,15 @@ class OutputUnit : public Consumer
     void decrement_credit(int out_vc);
     void increment_credit(int out_vc);
     bool has_credit(int out_vc);
-    bool has_free_vc(int vnet);
-    int select_free_vc(int vnet);
+    bool has_free_vc(int vnet, int src_id, int dest_id, int outport);
+    int select_free_vc(int vnet, int src_id, int dest_id, int outport);
 
     inline PortDirection get_direction() { return m_direction; }
 
     int
     get_credit_count(int vc)
     {
-        return outVcState[vc].get_credit_count();
+        return m_outvc_state[vc]->get_credit_count();
     }
 
     inline int
@@ -76,39 +76,38 @@ class OutputUnit : public Consumer
     }
 
     inline void
-    set_vc_state(VC_state_type state, int vc, Tick curTime)
+    set_vc_state(VC_state_type state, int vc, Cycles curTime)
     {
-      outVcState[vc].setState(state, curTime);
+      m_outvc_state[vc]->setState(state, curTime);
     }
 
     inline bool
-    is_vc_idle(int vc, Tick curTime)
+    is_vc_idle(int vc, Cycles curTime)
     {
-        return (outVcState[vc].isInState(IDLE_, curTime));
+        return (m_outvc_state[vc]->isInState(IDLE_, curTime));
     }
 
-    void insert_flit(flit *t_flit);
-
-    inline int
-    getVcsPerVnet()
+    inline void
+    insert_flit(flit *t_flit)
     {
-        return m_vc_per_vnet;
+        m_out_buffer->insert(t_flit);
+        m_out_link->scheduleEventAbsolute(m_router->clockEdge(Cycles(1)));
     }
 
     uint32_t functionalWrite(Packet *pkt);
 
   private:
-    Router *m_router;
-    M5_CLASS_VAR_USED int m_id;
+    int m_id;
     PortDirection m_direction;
+    int m_num_vcs;
     int m_vc_per_vnet;
+    Router *m_router;
     NetworkLink *m_out_link;
     CreditLink *m_credit_link;
 
-    // This is for the network link to consume
-    flitBuffer outBuffer;
-    // vc state of downstream router
-    std::vector<OutVcState> outVcState;
+    flitBuffer *m_out_buffer; // This is for the network link to consume
+    std::vector<OutVcState *> m_outvc_state; // vc state of downstream router
+
 };
 
-#endif // __MEM_RUBY_NETWORK_GARNET_0_OUTPUTUNIT_HH__
+#endif // __MEM_RUBY_NETWORK_GARNET2_0_OUTPUTUNIT_HH__

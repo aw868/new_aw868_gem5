@@ -1,0 +1,43 @@
+TO ADD PARAMETERS:
+1. configs/network/Network.py
+    - init_network (line ~116)
+    - define_options (line~38)
+2. src/mem/ruby/network/garnet2.0/GarnetNetwork.py
+    - class GarnetNetwork(RubyNetwork) (line ~37)
+3. src/mem/ruby/network/garnet2.0/GarnetNetwork.hh
+    - protected: (line ~189)
+    - public: (line ~55)
+4. src/mem/ruby/network/garnet2.0/GarnetNetwork.cc
+    - GarnetNetwork::GarnetNetwork(const Params *p) (line ~59)
+
+
+TO ADD ROUTING ALGORITHMS:
+1. src/mem/ruby/network/garnet2.0/RoutingUnit.cc
+    - switch (routing_algorithm) { (line ~185)
+    - add int RoutingUnit::newRoutingAlgorithm function (end of file)
+2. src/mem/ruby/network/garnet2.0/RoutingUnit.hh
+    - public: (line ~46)
+3. src/mem/ruby/network/garnet2.0/CommonTypes.hh
+    - enum RoutingAlgorithm (line ~46)
+4. src/mem/ruby/network/garnet2.0/Network.py
+    - parser.add_option("--routing-algorithm", action="store", type="int", (line ~74)
+
+
+TO ADD TOPOLOGIES:
+1. config/topologies
+2. 
+
+
+CommonTypes.hh
+RoutingUnit.cc
+RoutingUnit.hh
+OutputUnit.cc
+OutputUnit.hh
+GarnetNetwork.cc
+GarnetNetwork.hh
+NetworkInterface.cc
+NetworkInterface.hh
+Router.cc
+Router.hh
+InputUnit.cc
+InputUnit.hh
