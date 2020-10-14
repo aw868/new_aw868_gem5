@@ -38,12 +38,12 @@
 #include <vector>
 
 #include "mem/ruby/common/Consumer.hh"
-#include "mem/ruby/network/garnet2.0/CommonTypes.hh"
-#include "mem/ruby/network/garnet2.0/CreditLink.hh"
-#include "mem/ruby/network/garnet2.0/NetworkLink.hh"
-#include "mem/ruby/network/garnet2.0/OutVcState.hh"
-#include "mem/ruby/network/garnet2.0/Router.hh"
-#include "mem/ruby/network/garnet2.0/flitBuffer.hh"
+#include "mem/ruby/network/garnet/CommonTypes.hh"
+#include "mem/ruby/network/garnet/CreditLink.hh"
+#include "mem/ruby/network/garnet/NetworkLink.hh"
+#include "mem/ruby/network/garnet/OutVcState.hh"
+#include "mem/ruby/network/garnet/Router.hh"
+#include "mem/ruby/network/garnet/flitBuffer.hh"
 
 class OutputUnit : public Consumer
 {

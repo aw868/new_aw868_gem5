@@ -33,15 +33,15 @@
 
 #include "base/stl_helpers.hh"
 #include "debug/RubyNetwork.hh"
-#include "mem/ruby/network/garnet2.0/CreditLink.hh"
-#include "mem/ruby/network/garnet2.0/CrossbarSwitch.hh"
-#include "mem/ruby/network/garnet2.0/GarnetNetwork.hh"
-#include "mem/ruby/network/garnet2.0/InputUnit.hh"
-#include "mem/ruby/network/garnet2.0/NetworkLink.hh"
-#include "mem/ruby/network/garnet2.0/OutputUnit.hh"
-#include "mem/ruby/network/garnet2.0/Router.hh"
-#include "mem/ruby/network/garnet2.0/RoutingUnit.hh"
-#include "mem/ruby/network/garnet2.0/SwitchAllocator.hh"
+#include "mem/ruby/network/garnet/CreditLink.hh"
+#include "mem/ruby/network/garnet/CrossbarSwitch.hh"
+#include "mem/ruby/network/garnet/GarnetNetwork.hh"
+#include "mem/ruby/network/garnet/InputUnit.hh"
+#include "mem/ruby/network/garnet/NetworkLink.hh"
+#include "mem/ruby/network/garnet/OutputUnit.hh"
+#include "mem/ruby/network/garnet/Router.hh"
+#include "mem/ruby/network/garnet/RoutingUnit.hh"
+#include "mem/ruby/network/garnet/SwitchAllocator.hh"
 
 using namespace std;
 using m5::stl_helpers::deletePointers;

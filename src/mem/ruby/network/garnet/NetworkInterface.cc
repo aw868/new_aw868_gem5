@@ -38,9 +38,9 @@
 #include "base/stl_helpers.hh"
 #include "debug/RubyNetwork.hh"
 #include "mem/ruby/network/MessageBuffer.hh"
-#include "mem/ruby/network/garnet2.0/Credit.hh"
-#include "mem/ruby/network/garnet2.0/NetworkInterface.hh"
-#include "mem/ruby/network/garnet2.0/flitBuffer.hh"
+#include "mem/ruby/network/garnet/Credit.hh"
+#include "mem/ruby/network/garnet/NetworkInterface.hh"
+#include "mem/ruby/network/garnet/flitBuffer.hh"
 #include "mem/ruby/slicc_interface/Message.hh"
 
 using namespace std;

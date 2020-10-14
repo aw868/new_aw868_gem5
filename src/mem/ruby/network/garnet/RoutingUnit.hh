@@ -36,9 +36,9 @@
 
 #include "mem/ruby/common/Consumer.hh"
 #include "mem/ruby/common/NetDest.hh"
-#include "mem/ruby/network/garnet2.0/CommonTypes.hh"
-#include "mem/ruby/network/garnet2.0/GarnetNetwork.hh"
-#include "mem/ruby/network/garnet2.0/flit.hh"
+#include "mem/ruby/network/garnet/CommonTypes.hh"
+#include "mem/ruby/network/garnet/GarnetNetwork.hh"
+#include "mem/ruby/network/garnet/flit.hh"
 
 class InputUnit;
 class Router;

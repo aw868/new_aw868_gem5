@@ -41,6 +41,14 @@ def define_options(parser):
                       help="check configs/topologies for complete set")
     parser.add_option("--mesh-rows", type="int", default=0,
                       help="the number of rows in the mesh topology")
+    parser.add_option("--y-depth", type="int", default=0,
+                      help="the number of columns in the mesh topology")
+    parser.add_option("--z-depth", type="int", default=0,
+                      help="the z-depth in the mesh topology (3D only)")
+    parser.add_option("--num-chiplets-x", type="int", default=1,
+                      help="number of chiplets in the x-dimension")
+    parser.add_option("--num-chiplets-y", type="int", default=1,
+                      help="number of chiplets in the y-dimension")
     parser.add_option("--network", type="choice", default="simple",
                       choices=['simple', 'garnet'],
                       help="""'simple'|'garnet' (garnet2.0 will be
@@ -66,8 +74,10 @@ def define_options(parser):
                       default=0,
                       help="""routing algorithm in network.
                             0: weight-based table
-                            1: XY (for Mesh. see garnet/RoutingUnit.cc)
-                            2: Custom (see garnet/RoutingUnit.cc""")
+                            1: XY (for Mesh. see garnet2.0/RoutingUnit.cc)
+                            2: XYZ
+                            3: XYZChiplets
+                            4: XYZChiplets2""")
     parser.add_option("--network-fault-model", action="store_true",
                       default=False,
                       help="""enable network fault model:
@@ -112,6 +122,10 @@ def init_network(options, network, InterfaceClass):
 
     if options.network == "garnet":
         network.num_rows = options.mesh_rows
+        network.y_depth = options.y_depth
+        network.z_depth = options.z_depth
+        network.num_chiplets_x = options.num_chiplets_x
+        network.num_chiplets_y = options.num_chiplets_y
         network.vcs_per_vnet = options.vcs_per_vnet
         network.ni_flit_size = options.link_width_bits / 8
         network.routing_algorithm = options.routing_algorithm

@@ -33,9 +33,9 @@
 
 #include "base/cast.hh"
 #include "base/logging.hh"
-#include "mem/ruby/network/garnet2.0/InputUnit.hh"
-#include "mem/ruby/network/garnet2.0/Router.hh"
-#include "mem/ruby/network/garnet2.0/RoutingUnit.hh"
+#include "mem/ruby/network/garnet/InputUnit.hh"
+#include "mem/ruby/network/garnet/Router.hh"
+#include "mem/ruby/network/garnet/RoutingUnit.hh"
 #include "mem/ruby/slicc_interface/Message.hh"
 
 using namespace std;

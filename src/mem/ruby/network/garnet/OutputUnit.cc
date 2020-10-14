@@ -33,9 +33,9 @@
 
 #include "base/stl_helpers.hh"
 #include "debug/RubyNetwork.hh"
-#include "mem/ruby/network/garnet2.0/Credit.hh"
-#include "mem/ruby/network/garnet2.0/OutputUnit.hh"
-#include "mem/ruby/network/garnet2.0/Router.hh"
+#include "mem/ruby/network/garnet/Credit.hh"
+#include "mem/ruby/network/garnet/OutputUnit.hh"
+#include "mem/ruby/network/garnet/Router.hh"
 
 using namespace std;
 using m5::stl_helpers::deletePointers;

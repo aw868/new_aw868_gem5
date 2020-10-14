@@ -58,10 +58,11 @@ class SEWorkloadMeta(type(Workload)):
         SEWorkloadMeta.all_se_workload_classes.append(cls)
         return cls
 
-class SEWorkload(Workload, metaclass=SEWorkloadMeta):
+class SEWorkload(Workload):
     type = 'SEWorkload'
     cxx_header = "sim/se_workload.hh"
     cxx_class = 'SEWorkload'
+    __metaclass__ = SEWorkloadMeta
 
     @classmethod
     def _is_compatible_with(cls, obj):
