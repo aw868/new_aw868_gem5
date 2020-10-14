@@ -69,12 +69,6 @@ class RoutingUnit
     int outportComputeXYZ(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
-    int outportComputeWestFirst(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
-    int outportComputeNorthLast(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
     int outportComputeXYZChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
