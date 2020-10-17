@@ -63,6 +63,53 @@ class GarnetNetwork : public Network
     // for 2D topology
     int getNumRows() const { return m_num_rows; }
     int getNumCols() { return m_num_cols; }
+    int getZDepth() { return m_z_depth; }
+    int getNumChipletsX() { return m_num_chiplets_x;}
+    int getNumChipletsY() { return m_num_chiplets_y;}
+    int* getCoords(int router_id, int coords[]) {
+        int z_coord = router_id/(m_num_rows*m_num_cols); //calculating z coordinate
+        int x_coord = -1;
+        int y_coord = -1;
+
+        if(m_num_cols == 1){
+            x_coord = (router_id-(z_coord*m_num_rows*m_num_cols)) / m_num_cols; //calculating x coordinate
+            y_coord = (router_id-(z_coord*m_num_rows*m_num_cols)) % m_num_cols; //calculating y coordinate
+        } else {
+            x_coord = (router_id-(z_coord*m_num_rows*m_num_cols)) % m_num_cols; //calculating x coordinate
+            y_coord = (router_id-(z_coord*m_num_rows*m_num_cols)) / m_num_cols; //calculating y coordinate
+        }
+        assert(x_coord>-1 && y_coord>-1 && z_coord>-1);
+        coords[0] = z_coord;
+        coords[1] = y_coord;
+        coords[2] = x_coord;
+        // cout<<"getCoords: ("<<coords[0]<<", "<<coords[1]<<", "<<coords[2]<<")"<<endl;
+        return coords;
+    }
+    
+    int getQuad(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
+        // location = id - (GlobalParams::mesh_dim_x * GlobalParams::mesh_dim_y)*(layer_num-1);
+        // subnet_x = (location % GlobalParams::mesh_dim_x) / GlobalParams::subnet_dim_x;
+        // subnet_y = ((location / GlobalParams::mesh_dim_x) % GlobalParams::mesh_dim_y) / GlobalParams::subnet_dim_y;
+        // subnet_id = subnet_x + subnet_y*(GlobalParams::mesh_dim_x/GlobalParams::subnet_dim_x);
+
+        int subnet_dim_x = m_num_rows/num_chiplets_x;
+        int subnet_dim_y = m_num_cols/num_chiplets_y;
+
+        int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
+        int quad_x = (base_id%m_num_rows)/subnet_dim_x;
+        int quad_y = ((base_id/m_num_rows)%m_num_cols)/subnet_dim_y;
+        int quad = quad_x+quad_y*(m_num_rows/subnet_dim_x);
+
+        // cout<<"getQuad: base_id: "<<base_id<<" | quad_x: "<<quad_x<<" | quad_y: "<<quad_y<<" | quad: "<<quad<<endl;
+        
+        assert(quad<num_chiplets_x*num_chiplets_y && quad>=0);
+        return quad;
+    }
+
+    // int getSectorHetero () {
+    //     int sector=0;
+    //     return sector
+    // }
 
     // for network
     uint32_t getNiFlitSize() const { return m_ni_flit_size; }
@@ -146,6 +193,9 @@ class GarnetNetwork : public Network
     // Configuration
     int m_num_rows;
     int m_num_cols;
+    int m_z_depth;
+    int m_num_chiplets_x;
+    int m_num_chiplets_y;
     uint32_t m_ni_flit_size;
     uint32_t m_max_vcs_per_vnet;
     uint32_t m_buffers_per_ctrl_vc;

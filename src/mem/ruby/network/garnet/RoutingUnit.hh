@@ -63,7 +63,24 @@ class RoutingUnit
     int outportComputeXY(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
-
+    int outportComputeXYZ(RouteInfo route,
+                         int inport,
+                         PortDirection inport_dirn);
+    int outportComputeWestFirst(RouteInfo route,
+                         int inport,
+                         PortDirection inport_dirn);
+    int outportComputeNorthLast(RouteInfo route,
+                         int inport,
+                         PortDirection inport_dirn); 
+    int outportComputeXYZChiplets(RouteInfo route,
+                         int inport,
+                         PortDirection inport_dirn);
+    int outportComputeXYZChiplets2(RouteInfo route,
+                         int inport,
+                         PortDirection inport_dirn);
+    int outportComputeChipletHetero(RouteInfo route,
+                         int inport,
+                         PortDirection inport_dirn);
     // Custom Routing Algorithm using Port Directions
     int outportComputeCustom(RouteInfo route,
                              int inport,

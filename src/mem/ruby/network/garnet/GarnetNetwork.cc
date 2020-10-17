@@ -57,6 +57,10 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     : Network(p)
 {
     m_num_rows = p->num_rows;
+      m_num_cols = p->y_depth;
+    m_z_depth = p->z_depth;
+    m_num_chiplets_x = p->num_chiplets_x;
+    m_num_chiplets_y = p->num_chiplets_y;
     m_ni_flit_size = p->ni_flit_size;
     m_max_vcs_per_vnet = 0;
     m_buffers_per_data_vc = p->buffers_per_data_vc;
@@ -113,12 +117,63 @@ GarnetNetwork::init()
     m_topology_ptr->createLinks(this);
 
     // Initialize topology specific parameters
-    if (getNumRows() > 0) {
-        // Only for Mesh topology
-        // m_num_rows and m_num_cols are only used for
-        // implementing XY or custom routing in RoutingUnit.cc
+    if (getNumRows() > 0 && getRoutingAlgorithm() == 2) { //if XYZ algorithm
+        // cout<<"Using XYZ Routing Algorithm (2)"<<endl;
         m_num_rows = getNumRows();
-        m_num_cols = m_routers.size() / m_num_rows;
+        
+        if (getZDepth()>0){
+            m_z_depth = getZDepth();
+        } else {
+            m_z_depth = (m_routers.size() / m_num_rows) / m_num_rows;
+        }
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
+        }
+        
+        //display dimensions of router for user/debug
+        // cout<<"router size: "<<m_routers.size()<<endl;
+        // cout<<"m_num_rows: "<<m_num_rows<<endl;
+        // cout<<"m_num_cols: "<<m_num_cols<<endl;
+        // cout<<"m_z_depth: "<<m_z_depth<<endl;
+        // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
+        assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
+    } else if (getNumRows() > 0 && (getRoutingAlgorithm() == 5 || getRoutingAlgorithm() == 6)) {
+        // cout<<"Using XYZ Routing Algorithm (5)"<<endl;
+        m_num_rows = getNumRows();
+        
+        if (getZDepth()>0){
+            m_z_depth = getZDepth();
+        } else {
+            m_z_depth = (m_routers.size() / m_num_rows) / m_num_rows;
+        }
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
+        }
+        
+        //display dimensions of router for user/debug
+        // cout<<"router size: "<<m_routers.size()<<endl;
+        // cout<<"m_num_rows: "<<m_num_rows<<endl;
+        // cout<<"m_num_cols: "<<m_num_cols<<endl;
+        // cout<<"m_z_depth: "<<m_z_depth<<endl;
+        // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
+        assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
+    } else if (getNumRows() > 0) { //XY algorithm
+        cout<<"Using XY Algorithm (1)"<<endl;
+        m_num_rows = getNumRows();
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = m_routers.size() / m_num_rows;
+        }
+        cout<<"m_num_rows: "<<m_num_rows<<endl;
+        cout<<"m_num_cols: "<<m_num_cols<<endl;
         assert(m_num_rows * m_num_cols == m_routers.size());
     } else {
         m_num_rows = -1;

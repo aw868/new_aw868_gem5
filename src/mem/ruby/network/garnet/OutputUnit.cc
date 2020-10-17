@@ -86,30 +86,114 @@ OutputUnit::has_credit(int out_vc)
 
 // Check if the output port (i.e., input port at next router) has free VCs.
 bool
-OutputUnit::has_free_vc(int vnet)
+OutputUnit::has_free_vc(int vnet, int src_id, int dest_id, int outport)
 {
-    int vc_base = vnet*m_vc_per_vnet;
-    for (int vc = vc_base; vc < vc_base + m_vc_per_vnet; vc++) {
-        if (is_vc_idle(vc, curTick()))
-            return true;
-    }
+    int vcs_per_up = 1;
+    int vcs_per_down = 1;
 
-    return false;
+    // cout<<"OutputUnit::has_free_vc("<<vnet<<")"<<endl;
+    int routing_algorithm = m_router->get_net_ptr()->getRoutingAlgorithm();
+    PortDirection outportDirection = m_router->getOutportDirection(outport);
+
+    if ((routing_algorithm == 3 || routing_algorithm == 4) && m_vc_per_vnet > 2){ 
+        // int src_quad = m_router->get_net_ptr()->getQuad(src_id);
+        // int dest_quad = m_router->get_net_ptr()->getQuad(src_id);
+        if (outportDirection == "Up"){ // if travelling in the Up direction
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base; vc < vc_base + vcs_per_up; vc++) {
+                if (is_vc_idle(vc, curTick())) {
+                    return true;
+                }
+            }
+            return false;
+        } else if (outportDirection == "Down"){ // if travelling in the Down direction
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base + vcs_per_up; vc < vc_base + vcs_per_up + vcs_per_down; vc++) {
+                if (is_vc_idle(vc, curTick())) {
+                    return true;
+                }
+            }
+            return false;
+        } else { // if travelling in the X, Y direction ( = North,  = South,  = West,  = East)
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base+ vcs_per_up + vcs_per_down; vc < vc_base + m_vc_per_vnet; vc++) {
+                if (is_vc_idle(vc, curTick())) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    } else {
+        int vc_base = vnet*m_vc_per_vnet;
+        for (int vc = vc_base; vc < vc_base + m_vc_per_vnet; vc++) {
+            if (is_vc_idle(vc, curTick()))
+                return true;
+        }
+        return false;
+    }  
 }
 
 // Assign a free output VC to the winner of Switch Allocation
 int
-OutputUnit::select_free_vc(int vnet)
-{
-    int vc_base = vnet*m_vc_per_vnet;
-    for (int vc = vc_base; vc < vc_base + m_vc_per_vnet; vc++) {
-        if (is_vc_idle(vc, curTick())) {
-            outVcState[vc].setState(ACTIVE_, curTick());
-            return vc;
-        }
-    }
+OutputUnit::select_free_vc(int vnet, int src_id, int dest_id, int outport)
+{int routing_algorithm = m_router->get_net_ptr()->getRoutingAlgorithm();
+    PortDirection outportDirection = m_router->getOutportDirection(outport);
+    // cout<<"outportDirection: "<<outportDirection<<" | outport: "<<outport<<" | src_id: "<<src_id<<" | dest_id: "<<dest_id<<endl;
 
-    return -1;
+    int vcs_per_up = 1;
+    int vcs_per_down = 1;
+
+    if ((routing_algorithm == 3 || routing_algorithm == 4) && m_vc_per_vnet > 2){
+        // cout<<"OutputUnit::select_free_vc("<<vnet<<","<<src_id<<","<<dest_id<<"): using Chiplet routing algorithm(5)"<<endl;
+        if (outportDirection == "Up"){ 
+            // cout<<"outputunit.cc up 160 | src_id: "<<src_id<<" | dest_id: "<<dest_id<<" cycle "<<m_router->curCycle()<<"\n"<<endl;
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base; vc < vc_base + vcs_per_up; vc++) {
+                if (is_vc_idle(vc, curTick())) {
+                    outVcState[vc].setState(ACTIVE_, curTick());
+                    // cout<<"\t\t\t\t\t\t vnet: "<<vnet<<" | vc: "<<vc<<" set to ACTIVE @ cycle "<<m_router->curCycle()<<endl;
+                    return vc;
+                }
+            }
+            // cout<<"\t\t\t\t\t\t no free vcs in vnet "<<vnet<<", returning -1"<<endl;
+            return -1;
+        } else if (outportDirection == "Down"){ 
+            // cout<<"outputunit.cc down 172 | src_id: "<<src_id<<" | dest_id: "<<dest_id<<" cycle "<<m_router->curCycle()<<"\n"<<endl;
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base+ vcs_per_up; vc < vc_base + vcs_per_up + vcs_per_down; vc++) {
+                if (is_vc_idle(vc, curTick())) {
+                    outVcState[vc].setState(ACTIVE_, curTick());
+                    // cout<<"\t\t\t\t\t\t vnet: "<<vnet<<" | vc: "<<vc<<" set to ACTIVE @ cycle "<<m_router->curCycle()<<endl;
+                    return vc;
+                }
+            }
+            // cout<<"\t\t\t\t\t\t no free vcs in vnet "<<vnet<<", returning -1"<<endl;
+            return -1;
+        } else {
+            // cout<<"outputunit.cc x/y 183 | src_id: "<<src_id<<" | dest_id: "<<dest_id<<" cycle "<<m_router->curCycle()<<"\n"<<endl;
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base+ vcs_per_up + vcs_per_down; vc < vc_base + m_vc_per_vnet; vc++) {
+                if (is_vc_idle(vc, curTick())) {
+                    outVcState[vc].setState(ACTIVE_, curTick());
+                    // cout<<"\t\t\t\t\t\t vnet: "<<vnet<<" | vc: "<<vc<<" set to ACTIVE @ cycle "<<m_router->curCycle()<<endl;
+                    return vc;
+                }
+            }
+            // cout<<"\t\t\t\t\t\t no free vcs in vnet "<<vnet<<", returning -1"<<endl;
+            return -1;
+        }
+    } else {
+            int vc_base = vnet*m_vc_per_vnet;
+            for (int vc = vc_base; vc < vc_base + m_vc_per_vnet; vc++) {
+                if (is_vc_idle(vc,curTick())) {
+                    outVcState[vc].setState(ACTIVE_, curTick());
+                    // cout<<"\t\t\t\t\t\t vnet: "<<vnet<<" | vc: "<<vc<<" set to ACTIVE @ cycle "<<m_router->curCycle()<<endl;  
+                    return vc;
+                }
+            }
+            // cout<<"\t\t\t\t\t\t no free vcs in vnet "<<vnet<<", returning -1"<<endl;
+            return -1;
+        }
 }
 
 /*

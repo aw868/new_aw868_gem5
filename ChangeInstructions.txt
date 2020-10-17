@@ -28,26 +28,28 @@ TO ADD TOPOLOGIES:
 2. 
 
 
-
-Files with errors:
-RoutingUnit.cc
-
 Files reverted to garnet3.0 w/o my changes:
 InputUnit.cc
 InputUnit.hh
-GarnetNetwork.cc
-GarnetNetwork.hh
 NetworkInterface.cc
 NetworkInterface.hh
 Router.cc
 Router.hh
-OutputUnit.cc
 OutputUnit.hh
-RoutingUnit.hh
 Credit.cc
 Credit.hh
-CommonTypes.hh
-GarnetNetwork.py
+
+
 
 Safe Files:
 configs/network/Network.py
+CommonTypes.hh
+RoutingUnit.cc
+RoutingUnit.hh
+GarnetNetwork.cc
+GarnetNetwork.hh
+GarnetNetwork.py
+OutputUnit.cc
+SwitchAllocator.hh
+Flit.hh
+SwitchAllocator.cc

@@ -181,8 +181,12 @@ RoutingUnit::outportCompute(RouteInfo route, int inport,
         case XY_:     outport =
             outportComputeXY(route, inport, inport_dirn); break;
         // any custom algorithm
-        case CUSTOM_: outport =
-            outportComputeCustom(route, inport, inport_dirn); break;
+        case XYZ_:     outport =
+            outportComputeXYZ(route, inport, inport_dirn); break;
+        case XYZ_CHIPLETS: outport =
+            outportComputeXYZChiplets(route, inport, inport_dirn); break;
+        case XYZ_CHIPLETS_HETERO: outport =
+            outportComputeChipletHetero(route, inport, inport_dirn); break;
         default: outport =
             lookupRoutingTable(route.vnet, route.net_dest); break;
     }
@@ -250,12 +254,372 @@ RoutingUnit::outportComputeXY(RouteInfo route,
     return m_outports_dirn2idx[outport_dirn];
 }
 
-// Template for implementing custom routing algorithm
-// using port directions. (Example adaptive)
 int
-RoutingUnit::outportComputeCustom(RouteInfo route,
-                                 int inport,
-                                 PortDirection inport_dirn)
+RoutingUnit::outportComputeXYZ(RouteInfo route,
+                              int inport,
+                              PortDirection inport_dirn)
 {
-    panic("%s placeholder executed", __FUNCTION__);
+    PortDirection outport_dirn = "Unknown";
+    // cout<<"##########################################################################"<<endl;
+    // cout<<"File: RoutingUnit.cc"<<endl;
+    // cout<<"Starting ComputeZYX"<<endl;
+    // cout<<"Came from: "<<inport_dirn<<"\n"<<endl;
+
+    int num_rows = m_router->get_net_ptr()->getNumRows();
+    int num_cols = m_router->get_net_ptr()->getNumCols();
+    int z_depth = m_router->get_net_ptr()->getZDepth();
+    assert(num_rows > 0 && num_cols > 0 && z_depth > 0);
+
+    int my_id = m_router->get_id();
+    int my_z = (my_id/(num_rows*num_cols));
+    int my_x = (my_id-(my_z*num_rows*num_cols)) % num_cols;
+    int my_y = (my_id-(my_z*num_rows*num_cols)) / num_cols;
+    // cout<<"Current Coordinates: ("<<my_z<<","<<my_y<<","<<my_x<<")"<<endl;
+
+    int dest_id = route.dest_router;
+    int dest_z = (dest_id/(num_rows*num_cols));
+    int dest_x = (dest_id-(dest_z*num_rows*num_cols)) % num_cols;
+    int dest_y = (dest_id-(dest_z*num_rows*num_cols)) / num_cols;
+    // cout<<"Destination Coordinates: ("<<dest_z<<","<<dest_y<<","<<dest_x<<")"<<endl;
+
+    int x_hops = abs(dest_x - my_x);
+    int y_hops = abs(dest_y - my_y);
+    int z_hops = abs(dest_z - my_z);
+    // cout<<"NEEDS: "<< z_hops<<" z_hops, "<< y_hops<<" y_hops, "<<x_hops<<" x_hops\n"<<endl;
+
+    bool x_dirn = (dest_x >= my_x); //true if destination is east of current
+    bool y_dirn = (dest_y >= my_y); //true if destination is north of current
+    bool z_dirn = (dest_z >= my_z); //true if destination is above current
+
+    // already checked that in outportCompute() function
+    assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
+
+    if (x_hops > 0) {
+        if (x_dirn) {
+            assert(inport_dirn == "Local" || inport_dirn == "West");
+            outport_dirn = "East";
+        } else {
+            assert(inport_dirn == "Local" || inport_dirn == "East");
+            outport_dirn = "West";
+        }
+    } else if (y_hops > 0) {
+        if (y_dirn) {
+            assert(inport_dirn != "North");
+            outport_dirn = "North";
+        } else {
+            assert(inport_dirn != "South");
+            outport_dirn = "South";
+        }
+    } else if (z_hops > 0) {
+        if (z_dirn) {
+            assert(inport_dirn != "Up");
+            outport_dirn = "Up";
+        } else {
+            assert(inport_dirn != "Down");
+            outport_dirn = "Down";
+        }
+    } else {
+        // x_hops == 0 and y_hops == 0 and z_hops == 0
+        // this is not possible
+        // already checked that in outportCompute() function
+        panic("x_hops == y_hops == z_hops == 0");
+    }
+    // cout<<"Going: "<<outport_dirn<<endl;
+    // cout<<"Finished ComputeZYX"<<endl;
+    // cout<<"##########################################################################"<<endl;
+
+/*     cout<<"TESTING NORTH: "<<m_outports_dirn2idx["North"]<<endl;
+    cout<<"TESTING SOUTH: "<<m_outports_dirn2idx["South"]<<endl;
+    cout<<"TESTING EAST: "<<m_outports_dirn2idx["East"]<<endl;
+    cout<<"TESTING WEST: "<<m_outports_dirn2idx["West"]<<endl;
+    cout<<"TESTING UP: "<<m_outports_dirn2idx["Up"]<<endl;
+    cout<<"TESTING DOWN: "<<m_outports_dirn2idx["Down"]<<endl;
+    cout<<"TESTING LOCAL: "<<m_outports_dirn2idx["Local"]<<endl; */
+
+    return m_outports_dirn2idx[outport_dirn];
+}
+
+int
+RoutingUnit::outportComputeXYZChiplets(RouteInfo route,
+                              int inport,
+                              PortDirection inport_dirn)
+{
+    PortDirection outport_dirn = "Unknown";
+    // cout<<"##########################################################################"<<endl;
+    // cout<<"File: RoutingUnit.cc"<<endl;
+    // cout<<"Starting ComputeZYXChiplet"<<endl;
+    // cout<<"Came from: "<<inport_dirn<<"\n"<<endl;
+    int num_chiplets_x = m_router->get_net_ptr()->getNumChipletsX();
+    int num_chiplets_y = m_router->get_net_ptr()->getNumChipletsY();
+
+
+    int num_rows = m_router->get_net_ptr()->getNumRows();
+    int num_cols = m_router->get_net_ptr()->getNumCols();
+    int z_depth = m_router->get_net_ptr()->getZDepth();
+    assert(num_rows > 0 && num_cols > 0 && z_depth > 0);
+
+    int my_id = m_router->get_id();
+    int my_coords[3];
+    m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
+    // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
+    // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
+    int my_quad = m_router->get_net_ptr()->getQuad(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+
+    // cout<<"Current Quadrant: "<<my_quad<<endl;
+
+    int dest_id = route.dest_router;
+    int dest_coords[3];
+    m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
+    // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
+    // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
+    int dest_quad = m_router->get_net_ptr()->getQuad(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+
+    // cout<<"Destination Quadrant: "<<dest_quad<<endl;
+
+    int x_hops = abs(dest_coords[2] - my_coords[2]);
+    int y_hops = abs(dest_coords[1] - my_coords[1]);
+    int z_hops = abs(dest_coords[0] - my_coords[0]);
+
+    bool x_dirn = (dest_coords[2] >= my_coords[2]); //true if destination is east of current
+    bool y_dirn = (dest_coords[1] >= my_coords[1]); //true if destination is north of current
+    bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
+    bool same_quad = (my_quad == dest_quad); // true if destination and current router are in the same quadrant
+
+    // cout<<" myquad: "<<my_quad<<" destquad: "<<dest_quad<<" same_quad: "<<same_quad;
+
+    // Quadrant Numbering: 
+    // _______________
+    // |      |      |
+    // |  2   |   3  |
+    // |______|______|
+    // |      |      |
+    // |  0   |   1  |
+    // |______|______|
+
+    // already checked that in outportCompute() function
+    assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
+
+    if (same_quad){ // if current node and destination router are in the same quadrant, move normally
+        if (x_hops > 0) {
+            if (x_dirn) {
+                // assert(inport_dirn == "Local" || inport_dirn == "West");
+                outport_dirn = "East";
+            } else {
+                // assert(inport_dirn == "Local" || inport_dirn == "East");
+                outport_dirn = "West";
+            }
+        } else if (y_hops > 0) {
+            if (y_dirn) {
+                // assert(inport_dirn != "North");
+                outport_dirn = "North";
+            } else {
+                // assert(inport_dirn != "South");
+                outport_dirn = "South";
+            }
+        } else if (z_hops > 0) {
+            if (z_dirn) {
+                // assert(inport_dirn != "Up");
+                outport_dirn = "Up";
+            } else {
+                // assert(inport_dirn != "Down");
+                outport_dirn = "Down";
+            }
+        } else {
+            // x_hops == 0 and y_hops == 0 and z_hops == 0
+            // this is not possible
+            // already checked that in outportCompute() function
+            panic("x_hops == y_hops == z_hops == 0");
+        }
+    } else { // if current router and destination router are not in the same quadrant
+        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same quadrant as router
+            if (x_hops > 0) {
+                if (x_dirn) {
+                    outport_dirn = "East";
+                } else {
+                    outport_dirn = "West";
+                }
+            } else if (y_hops > 0) {
+                if (y_dirn) {
+                    assert(inport_dirn != "North");
+                    outport_dirn = "North";
+                } else {
+                    assert(inport_dirn != "South");
+                    outport_dirn = "South";
+                }
+            }
+        } else { // if router not in layer 0, move to layer 0
+            // assert(inport_dirn != "Down");
+            outport_dirn = "Down";
+        }
+    }
+
+    // cout<<" "<<outport_dirn<<endl;
+    // for (int i=0; i<sizeof(m_outports_idx2dirn)/sizeof(m_outports_idx2dirn[0]); i = i + 1) {
+    // for (int i=0; i<8; i = i + 1) {
+    //     cout<<"m_outports_idx2dirn["<<i<<"]: "<<m_outports_idx2dirn[i]<<" | ";             
+    // }
+    // cout<<endl<<"m_outports_dirn2idx["<<outport_dirn<<"]: "<<m_outports_dirn2idx[outport_dirn]<<endl;
+    return m_outports_dirn2idx[outport_dirn];
+    // cout<<"Finished ComputeZYXChiplet"<<endl;
+    // cout<<"##########################################################################"<<endl;
+}
+
+
+// parameters:
+// - num-chiplets
+// - cuts-x 
+// - cuts-y
+// 
+// given number of chiplets to create and the x/y axises for the 'cuts',
+// calculate the number of and location of each intersection. The number of
+// intersections is equal to the number of line segments you must erase
+// ex:  num-chiplets=5
+//      cuts-x = [1,4]
+//      cuts-y = [0,2]   
+// 
+//        o     o  |  o     o     o  |  o    
+//    2 -----------X-----------------X-----  
+//        o     o  |  o     o     o  |  o    
+//    1            |                 |
+//        o     o  |  o     o     o  |  o 
+//    0 -----------X-----------------X-----
+//        o     o  |  o     o     o  |  o 
+//                 |                 |
+//           0     1     2     3     4
+// 
+// **intersections marked with 'X' (4 total = cuts-x.length * cuts-y.length)**
+// for each intersection:
+//      if the intersection is surrounded by other intersections in all 4 cardinal directions:
+//          segments = [all the line segments stemming from this intersection that do not lead to other intersections]
+//      else if the intersection is surrounded by other intersections:
+//          segments = [all the line segments stemming from this intersection]
+//      
+//      randomly 'delete' a line segment from 'segments'
+// 
+//
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+
+
+
+int
+RoutingUnit::outportComputeChipletHetero(RouteInfo route,
+                              int inport,
+                              PortDirection inport_dirn)
+{
+    PortDirection outport_dirn = "Unknown";
+    // cout<<"##########################################################################"<<endl;
+    // cout<<"File: RoutingUnit.cc"<<endl;
+    // cout<<"Starting ComputeChipletHetero"<<endl;
+    // cout<<"Came from: "<<inport_dirn<<"\n"<<endl;
+    int num_chiplets_x = 2;
+    int num_chiplets_y = 2;
+
+    int num_rows = m_router->get_net_ptr()->getNumRows();
+    int num_cols = m_router->get_net_ptr()->getNumCols();
+    int z_depth = m_router->get_net_ptr()->getZDepth();
+    assert(num_rows > 0 && num_cols > 0 && z_depth > 0);
+
+    int my_id = m_router->get_id();
+    int my_coords[3];
+    m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
+    // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
+    // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
+    int my_quad = m_router->get_net_ptr()->getQuad(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+
+    // cout<<"Current Quadrant: "<<my_quad<<endl;
+
+    int dest_id = route.dest_router;
+    int dest_coords[3];
+    m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
+    // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
+    // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
+    int dest_quad = m_router->get_net_ptr()->getQuad(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+
+    // cout<<"Destination Quadrant: "<<dest_quad<<endl;
+
+    int x_hops = abs(dest_coords[2] - my_coords[2]);
+    int y_hops = abs(dest_coords[1] - my_coords[1]);
+    int z_hops = abs(dest_coords[0] - my_coords[0]);
+
+    bool x_dirn = (dest_coords[2] >= my_coords[2]); //true if destination is east of current
+    bool y_dirn = (dest_coords[1] >= my_coords[1]); //true if destination is north of current
+    bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
+    bool same_quad = (my_quad == dest_quad); // true if destination and current router are in the same quadrant
+
+    // cout<<" myquad: "<<my_quad<<" destquad: "<<dest_quad<<" same_quad: "<<same_quad;
+
+    // Quadrant Numbering: 
+    // _______________
+    // |      |      |
+    // |  2   |   3  |
+    // |______|______|
+    // |      |      |
+    // |  0   |   1  |
+    // |______|______|
+
+    // already checked that in outportCompute() function
+    assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
+
+    if (same_quad){ // if current node and destination router are in the same quadrant, move normally
+        if (x_hops > 0) {
+            if (x_dirn) {
+                // assert(inport_dirn == "Local" || inport_dirn == "West");
+                outport_dirn = "East";
+            } else {
+                // assert(inport_dirn == "Local" || inport_dirn == "East");
+                outport_dirn = "West";
+            }
+        } else if (y_hops > 0) {
+            if (y_dirn) {
+                // assert(inport_dirn != "North");
+                outport_dirn = "North";
+            } else {
+                // assert(inport_dirn != "South");
+                outport_dirn = "South";
+            }
+        } else if (z_hops > 0) {
+            if (z_dirn) {
+                // assert(inport_dirn != "Up");
+                outport_dirn = "Up";
+            } else {
+                // assert(inport_dirn != "Down");
+                outport_dirn = "Down";
+            }
+        } else {
+            // x_hops == 0 and y_hops == 0 and z_hops == 0
+            // this is not possible
+            // already checked that in outportCompute() function
+            panic("x_hops == y_hops == z_hops == 0");
+        }
+    } else { // if current router and destination router are not in the same quadrant
+        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same quadrant as router
+            if (x_hops > 0) {
+                if (x_dirn) {
+                    outport_dirn = "East";
+                } else {
+                    outport_dirn = "West";
+                }
+            } else if (y_hops > 0) {
+                if (y_dirn) {
+                    assert(inport_dirn != "North");
+                    outport_dirn = "North";
+                } else {
+                    assert(inport_dirn != "South");
+                    outport_dirn = "South";
+                }
+            }
+        } else { // if router not in layer 0, move to layer 0
+            // assert(inport_dirn != "Down");
+            outport_dirn = "Down";
+        }
+    }
+
+    return m_outports_dirn2idx[outport_dirn];
 }

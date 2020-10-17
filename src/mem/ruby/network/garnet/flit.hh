@@ -60,6 +60,8 @@ class flit
     flit_type get_type() { return m_type; }
     std::pair<flit_stage, Tick> get_stage() { return m_stage; }
     Tick get_src_delay() { return src_delay; }
+    int get_src_router(){ return m_route.src_router; }
+    int get_dest_router(){ return m_route.dest_router; }
 
     void set_outport(int port) { m_outport = port; }
     void set_time(Tick time) { m_time = time; }
