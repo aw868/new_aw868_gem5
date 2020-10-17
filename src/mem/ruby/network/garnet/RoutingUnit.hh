@@ -25,14 +25,11 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Authors: Niket Agarwal
- *          Tushar Krishna
  */
 
 
-#ifndef __MEM_RUBY_NETWORK_GARNET2_0_ROUTINGUNIT_HH__
-#define __MEM_RUBY_NETWORK_GARNET2_0_ROUTINGUNIT_HH__
+#ifndef __MEM_RUBY_NETWORK_GARNET_0_ROUTINGUNIT_HH__
+#define __MEM_RUBY_NETWORK_GARNET_0_ROUTINGUNIT_HH__
 
 #include "mem/ruby/common/Consumer.hh"
 #include "mem/ruby/common/NetDest.hh"
@@ -52,7 +49,7 @@ class RoutingUnit
                       PortDirection inport_dirn);
 
     // Topology-agnostic Routing Table based routing (default)
-    void addRoute(const NetDest& routing_table_entry);
+    void addRoute(std::vector<NetDest>& routing_table_entry);
     void addWeight(int link_weight);
 
     // get output port from routing table
@@ -66,24 +63,22 @@ class RoutingUnit
     int outportComputeXY(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
-    int outportComputeXYZ(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
-    int outportComputeXYZChiplets(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
-    int outportComputeXYZChiplets2(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
-    int outportComputeChipletHetero(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
+
+    // Custom Routing Algorithm using Port Directions
+    int outportComputeCustom(RouteInfo route,
+                             int inport,
+                             PortDirection inport_dirn);
+
+    // Returns true if vnet is present in the vector
+    // of vnets or if the vector supports all vnets.
+    bool supportsVnet(int vnet, std::vector<int> sVnets);
+
 
   private:
     Router *m_router;
 
     // Routing Table
-    std::vector<NetDest> m_routing_table;
+    std::vector<std::vector<NetDest>> m_routing_table;
     std::vector<int> m_weight_table;
 
     // Inport and Outport direction to idx maps
@@ -93,4 +88,4 @@ class RoutingUnit
     std::map<PortDirection, int> m_outports_dirn2idx;
 };
 
-#endif // __MEM_RUBY_NETWORK_GARNET2_0_ROUTINGUNIT_HH__
+#endif // __MEM_RUBY_NETWORK_GARNET_0_ROUTINGUNIT_HH__

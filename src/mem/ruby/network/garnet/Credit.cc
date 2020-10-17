@@ -81,4 +81,3 @@ Credit::print(std::ostream& out) const
 }
 
 
-

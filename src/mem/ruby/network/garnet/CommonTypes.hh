@@ -25,29 +25,32 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Authors: Niket Agarwal
- *          Tushar Krishna
  */
 
 
-#ifndef __MEM_RUBY_NETWORK_GARNET2_0_COMMONTYPES_HH__
-#define __MEM_RUBY_NETWORK_GARNET2_0_COMMONTYPES_HH__
+#ifndef __MEM_RUBY_NETWORK_GARNET_0_COMMONTYPES_HH__
+#define __MEM_RUBY_NETWORK_GARNET_0_COMMONTYPES_HH__
 
 #include "mem/ruby/common/NetDest.hh"
 
 // All common enums and typedefs go here
 
-enum flit_type {HEAD_, BODY_, TAIL_, HEAD_TAIL_, NUM_FLIT_TYPE_};
+enum flit_type {HEAD_, BODY_, TAIL_, HEAD_TAIL_,
+                CREDIT_, NUM_FLIT_TYPE_};
 enum VC_state_type {IDLE_, VC_AB_, ACTIVE_, NUM_VC_STATE_TYPE_};
 enum VNET_type {CTRL_VNET_, DATA_VNET_, NULL_VNET_, NUM_VNET_TYPE_};
 enum flit_stage {I_, VA_, SA_, ST_, LT_, NUM_FLIT_STAGE_};
 enum link_type { EXT_IN_, EXT_OUT_, INT_, NUM_LINK_TYPES_ };
-enum RoutingAlgorithm { TABLE_ = 0, XY_ = 1, XYZ_ = 2, XYZ_CHIPLETS=3, XYZ_CHIPLETS2=4,
+enum RoutingAlgorithm { TABLE_ = 0, XY_ = 1, CUSTOM_ = 2,
                         NUM_ROUTING_ALGORITHM_};
 
 struct RouteInfo
 {
+    RouteInfo()
+        : vnet(0), src_ni(0), src_router(0), dest_ni(0), dest_router(0),
+          hops_traversed(0)
+    {}
+
     // destination format for table-based routing
     int vnet;
     NetDest net_dest;
@@ -62,4 +65,4 @@ struct RouteInfo
 
 #define INFINITE_ 10000
 
-#endif //__MEM_RUBY_NETWORK_GARNET2_0_COMMONTYPES_HH__
+#endif //__MEM_RUBY_NETWORK_GARNET_0_COMMONTYPES_HH__

@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2008 Princeton University
+ * Copyright (c) 2020 Inria
  * Copyright (c) 2016 Georgia Institute of Technology
+ * Copyright (c) 2008 Princeton University
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,23 +26,24 @@
  * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Authors: Niket Agarwal
- *          Tushar Krishna
  */
 
 
-#ifndef __MEM_RUBY_NETWORK_GARNET2_0_ROUTER_HH__
-#define __MEM_RUBY_NETWORK_GARNET2_0_ROUTER_HH__
+#ifndef __MEM_RUBY_NETWORK_GARNET_0_ROUTER_HH__
+#define __MEM_RUBY_NETWORK_GARNET_0_ROUTER_HH__
 
 #include <iostream>
+#include <memory>
 #include <vector>
 
 #include "mem/ruby/common/Consumer.hh"
 #include "mem/ruby/common/NetDest.hh"
 #include "mem/ruby/network/BasicRouter.hh"
 #include "mem/ruby/network/garnet/CommonTypes.hh"
+#include "mem/ruby/network/garnet/CrossbarSwitch.hh"
 #include "mem/ruby/network/garnet/GarnetNetwork.hh"
+#include "mem/ruby/network/garnet/RoutingUnit.hh"
+#include "mem/ruby/network/garnet/SwitchAllocator.hh"
 #include "mem/ruby/network/garnet/flit.hh"
 #include "params/GarnetRouter.hh"
 
@@ -49,9 +51,6 @@ class NetworkLink;
 class CreditLink;
 class InputUnit;
 class OutputUnit;
-class RoutingUnit;
-class SwitchAllocator;
-class CrossbarSwitch;
 class FaultModel;
 
 class Router : public BasicRouter, public Consumer
@@ -60,7 +59,7 @@ class Router : public BasicRouter, public Consumer
     typedef GarnetRouterParams Params;
     Router(const Params *p);
 
-    ~Router();
+    ~Router() = default;
 
     void wakeup();
     void print(std::ostream& out) const {};
@@ -69,13 +68,14 @@ class Router : public BasicRouter, public Consumer
     void addInPort(PortDirection inport_dirn, NetworkLink *link,
                    CreditLink *credit_link);
     void addOutPort(PortDirection outport_dirn, NetworkLink *link,
-                    const NetDest& routing_table_entry,
-                    int link_weight, CreditLink *credit_link);
+                    std::vector<NetDest>& routing_table_entry,
+                    int link_weight, CreditLink *credit_link,
+                    uint32_t consumerVcs);
 
     Cycles get_pipe_stages(){ return m_latency; }
-    int get_num_vcs()       { return m_num_vcs; }
-    int get_num_vnets()     { return m_virtual_networks; }
-    int get_vc_per_vnet()   { return m_vc_per_vnet; }
+    uint32_t get_num_vcs()       { return m_num_vcs; }
+    uint32_t get_num_vnets()     { return m_virtual_networks; }
+    uint32_t get_vc_per_vnet()   { return m_vc_per_vnet; }
     int get_num_inports()   { return m_input_unit.size(); }
     int get_num_outports()  { return m_output_unit.size(); }
     int get_id()            { return m_id; }
@@ -86,8 +86,23 @@ class Router : public BasicRouter, public Consumer
     }
 
     GarnetNetwork* get_net_ptr()                    { return m_network_ptr; }
-    std::vector<InputUnit *>& get_inputUnit_ref()   { return m_input_unit; }
-    std::vector<OutputUnit *>& get_outputUnit_ref() { return m_output_unit; }
+
+    InputUnit*
+    getInputUnit(unsigned port)
+    {
+        assert(port < m_input_unit.size());
+        return m_input_unit[port].get();
+    }
+
+    OutputUnit*
+    getOutputUnit(unsigned port)
+    {
+        assert(port < m_output_unit.size());
+        return m_output_unit[port].get();
+    }
+
+    int getBitWidth() { return m_bit_width; }
+
     PortDirection getOutportDirection(int outport);
     PortDirection getInportDirection(int inport);
 
@@ -118,14 +133,16 @@ class Router : public BasicRouter, public Consumer
 
   private:
     Cycles m_latency;
-    int m_virtual_networks, m_num_vcs, m_vc_per_vnet;
+    uint32_t m_virtual_networks, m_vc_per_vnet, m_num_vcs;
+    uint32_t m_bit_width;
     GarnetNetwork *m_network_ptr;
 
-    std::vector<InputUnit *> m_input_unit;
-    std::vector<OutputUnit *> m_output_unit;
-    RoutingUnit *m_routing_unit;
-    SwitchAllocator *m_sw_alloc;
-    CrossbarSwitch *m_switch;
+    RoutingUnit routingUnit;
+    SwitchAllocator switchAllocator;
+    CrossbarSwitch crossbarSwitch;
+
+    std::vector<std::shared_ptr<InputUnit>> m_input_unit;
+    std::vector<std::shared_ptr<OutputUnit>> m_output_unit;
 
     // Statistical variables required for power computations
     Stats::Scalar m_buffer_reads;
@@ -137,4 +154,4 @@ class Router : public BasicRouter, public Consumer
     Stats::Scalar m_crossbar_activity;
 };
 
-#endif // __MEM_RUBY_NETWORK_GARNET2_0_ROUTER_HH__
+#endif // __MEM_RUBY_NETWORK_GARNET_0_ROUTER_HH__
