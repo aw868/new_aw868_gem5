@@ -14,10 +14,8 @@ Routing Algorithms:
 0. TABLE
 1. XY (for 2D Mesh topologies)
 2. XYZ (for 2D/3D Mesh topologies)
-3. WESTFIRST (for 2D topologies)
-4. NORTHLAST (for 2D topologies)
-5. XYZ_CHIPLETS (for user defined num_chiplet_x, num_chiplet_y configuration)
-6. XYZ_CHIPLETS2 (for standard 2x2 chiplet configuration)
+3. XYZ_CHIPLETS (for user defined num_chiplet_x, num_chiplet_y configuration)
+4. XYZ_CHIPLETS_HETERO (for standard 2x2 chiplet configuration)
 
 Git:
 1. git add .
