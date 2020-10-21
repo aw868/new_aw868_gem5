@@ -1,7 +1,7 @@
 #/home/DREXEL/aw868/research/new_aw868_gem5/condor_simulation
 Executable    = /home/DREXEL/aw868/research/new_aw868_gem5/build/ARM/gem5.opt
-Requirements = (machine != "wyrm.ece.drexel.edu" && machine != "fafnir.ece.drexel.edu" && machine != "hooktail.ece.drexel.edu" && machine != "thorn.ece.drexel.edu")
-#Requirements = (machine == "smaug.ece.drexel.edu")
+#Requirements = (machine != "wyrm.ece.drexel.edu" && machine != "fafnir.ece.drexel.edu" && machine != "hooktail.ece.drexel.edu" && machine != "thorn.ece.drexel.edu")
+Requirements = (machine == "bowser.ece.drexel.edu")
 Universe      = vanilla
 getenv = True
 

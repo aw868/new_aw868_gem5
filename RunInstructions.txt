@@ -24,3 +24,7 @@ Git:
 
 To run more recent GCC version:
 scl enable devtoolset-7 bash
+scl enable rh-python36 bash
+    -enable other version of python with 'six'
+
+*must exit bash window (exit)

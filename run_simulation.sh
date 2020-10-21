@@ -29,7 +29,7 @@
 ./build/ARM/gem5.opt configs/example/garnet_synth_traffic.py  \
 --num-cpus=256 \
 --num-dirs=256 \
---network=garnet2.0 \
+--network=garnet \
 --topology=Mesh_XYZ \
 --mesh-rows=8  \
 --y-depth=8 \
@@ -37,9 +37,9 @@
 --sim-cycles=200000 \
 --synthetic=uniform_random \
 --injectionrate=0.3 \
---routing-algorithm=2 \
---vcs-per-vnet=4 >./sim_results/XYZMesh_XYZRouting;
-
+--routing-algorithm=3 \
+--vcs-per-vnet=4;
+#--vcs-per-vnet=4 >/home/DREXEL/aw868/research/hetero_results/heChiplets_8x8x4_ir0.3_4vcpvnet_bash;
 # ./build/ARM/gem5.opt configs/example/garnet_synth_traffic.py  \
 # --num-cpus=256 \
 # --num-dirs=4 \

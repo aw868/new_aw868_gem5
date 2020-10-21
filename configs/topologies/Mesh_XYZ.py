@@ -236,6 +236,6 @@ class Mesh_XYZ(SimpleTopology):
 
     # Register nodes with filesystem
     def registerTopology(self, options):
-        for i in xrange(options.num_cpus):
+        for i in range(options.num_cpus):
             FileSystemConfig.register_node([i],
                     MemorySize(options.mem_size) / options.num_cpus, i)

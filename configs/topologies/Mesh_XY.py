@@ -24,9 +24,6 @@
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# Authors: Brad Beckmann
-#          Tushar Krishna
 
 from __future__ import print_function
 from __future__ import absolute_import
@@ -36,7 +33,7 @@ from m5.objects import *
 
 from common import FileSystemConfig
 
-from .BaseTopology import SimpleTopology
+from topologies.BaseTopology import SimpleTopology
 
 # Creates a generic Mesh assuming an equal number of cache
 # and directory controllers.
@@ -58,8 +55,6 @@ class Mesh_XY(SimpleTopology):
         num_routers = options.num_cpus
         num_rows = options.mesh_rows
 
-        print("options.y_depth: ", options.y_depth);
-
         # default values for link latency and router latency.
         # Can be over-ridden on a per link/router basis
         link_latency = options.link_latency # used by simple and garnet
@@ -70,11 +65,7 @@ class Mesh_XY(SimpleTopology):
         # Also, obviously the number or rows must be <= the number of routers
         cntrls_per_router, remainder = divmod(len(nodes), num_routers)
         assert(num_rows > 0 and num_rows <= num_routers)
-        if (options.y_depth>0):
-            num_columns=options.y_depth
-        else:
-            num_columns = int(num_routers / num_rows)
-
+        num_columns = int(num_routers / num_rows)
         assert(num_columns * num_rows == num_routers)
 
         # Create the routers in the mesh
@@ -185,6 +176,6 @@ class Mesh_XY(SimpleTopology):
 
     # Register nodes with filesystem
     def registerTopology(self, options):
-        for i in xrange(options.num_cpus):
+        for i in range(options.num_cpus):
             FileSystemConfig.register_node([i],
                     MemorySize(options.mem_size) / options.num_cpus, i)
