@@ -70,6 +70,10 @@ class Mesh_westfirst(SimpleTopology):
         num_columns = int(num_routers / num_rows)
         assert(num_columns * num_rows == num_routers)
 
+        print("Total Number Routers: ", num_routers)
+        print("x_depth: ", num_rows)
+        print("y_depth: ", num_columns)
+        
         # Create the routers in the mesh
         routers = [Router(router_id=i, latency=router_latency) \
             for i in range(num_routers)]
