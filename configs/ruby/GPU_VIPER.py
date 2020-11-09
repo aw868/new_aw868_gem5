@@ -779,10 +779,10 @@ def create_system(options, full_system, system, dma_devices, bootmem,
                                    ruby_system=ruby_system)
         exec('system.dma_cntrl%d = dma_cntrl' % i)
         if dma_device.type == 'MemTest':
-            exec('system.dma_cntrl%d.dma_sequencer.slave = dma_devices.test'
+            exec('system.dma_cntrl%d.dma_sequencer.in_port = dma_devices.test'
                  % i)
         else:
-            exec('system.dma_cntrl%d.dma_sequencer.slave = dma_device.dma' % i)
+            exec('system.dma_cntrl%d.dma_sequencer.in_port = dma_device.dma' % i)
         dma_cntrl.requestToDir = MessageBuffer(buffer_size=0)
         dma_cntrl.requestToDir.master = ruby_system.network.slave
         dma_cntrl.responseFromDir = MessageBuffer(buffer_size=0)

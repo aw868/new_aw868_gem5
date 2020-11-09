@@ -258,7 +258,7 @@ def create_system(options, full_system, system, dma_ports, bootmem,
                                    ruby_system = ruby_system)
 
         exec("ruby_system.dma_cntrl%d = dma_cntrl" % i)
-        exec("ruby_system.dma_cntrl%d.dma_sequencer.slave = dma_port" % i)
+        exec("ruby_system.dma_cntrl%d.dma_sequencer.in_port = dma_port" % i)
         dma_cntrl_nodes.append(dma_cntrl)
 
         # Connect the dma controller to the network
