@@ -57,7 +57,7 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     : Network(p)
 {
     m_num_rows = p->num_rows;
-      m_num_cols = p->y_depth;
+    m_num_cols = p->y_depth;
     m_z_depth = p->z_depth;
     m_num_chiplets_x = p->num_chiplets_x;
     m_num_chiplets_y = p->num_chiplets_y;
@@ -118,7 +118,7 @@ GarnetNetwork::init()
 
     // Initialize topology specific parameters
     if (getNumRows() > 0 && getRoutingAlgorithm() == 2) { //if XYZ algorithm
-        // cout<<"Using XYZ Routing Algorithm (2)"<<endl;
+        cout<<"Using XYZ Routing Algorithm"<<endl;
         m_num_rows = getNumRows();
         
         if (getZDepth()>0){
@@ -140,8 +140,8 @@ GarnetNetwork::init()
         // cout<<"m_z_depth: "<<m_z_depth<<endl;
         // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
-    } else if (getNumRows() > 0 && (getRoutingAlgorithm() == 5 || getRoutingAlgorithm() == 6)) {
-        // cout<<"Using XYZ Routing Algorithm (5)"<<endl;
+    } else if (getNumRows() > 0 && getRoutingAlgorithm() == 3) {
+        cout<<"Using Homogeneous Chiplete Routing Algorithm"<<endl;
         m_num_rows = getNumRows();
         
         if (getZDepth()>0){
@@ -164,7 +164,7 @@ GarnetNetwork::init()
         // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0) { //XY algorithm
-        cout<<"Using XY Algorithm (1)"<<endl;
+        cout<<"Using XY Algorithm"<<endl;
         m_num_rows = getNumRows();
 
         if (getNumCols()>0){
