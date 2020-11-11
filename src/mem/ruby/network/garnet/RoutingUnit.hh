@@ -72,7 +72,7 @@ class RoutingUnit
     int outportComputeNorthLast(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn); 
-    int outportComputeXYZChiplets(RouteInfo route,
+    int outportComputeHoChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
     int outportComputeChipletHetero(RouteInfo route,

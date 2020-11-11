@@ -184,7 +184,7 @@ RoutingUnit::outportCompute(RouteInfo route, int inport,
         case XYZ_:     outport =
             outportComputeXYZ(route, inport, inport_dirn); break;
         case XYZ_CHIPLETS: outport =
-            outportComputeXYZChiplets(route, inport, inport_dirn); break;
+            outportComputeHoChiplets(route, inport, inport_dirn); break;
         case XYZ_CHIPLETS_HETERO: outport =
             outportComputeChipletHetero(route, inport, inport_dirn); break;
         default: outport =
@@ -340,7 +340,7 @@ RoutingUnit::outportComputeXYZ(RouteInfo route,
 }
 
 int
-RoutingUnit::outportComputeXYZChiplets(RouteInfo route,
+RoutingUnit::outportComputeHoChiplets(RouteInfo route,
                               int inport,
                               PortDirection inport_dirn)
 {
