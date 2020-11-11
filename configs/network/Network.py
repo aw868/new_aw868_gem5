@@ -76,8 +76,8 @@ def define_options(parser):
                             0: weight-based table
                             1: XY (for Mesh. see garnet2.0/RoutingUnit.cc)
                             2: XYZ
-                            3: XYZChiplets
-                            4: XYZChiplets2""")
+                            3: XYZChipletsHomo
+                            4: XYZChipletsHetero""")
     parser.add_option("--network-fault-model", action="store_true",
                       default=False,
                       help="""enable network fault model:
