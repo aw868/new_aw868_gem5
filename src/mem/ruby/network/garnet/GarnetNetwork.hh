@@ -34,6 +34,7 @@
 
 #include <iostream>
 #include <vector>
+using namespace std;
 
 #include "mem/ruby/network/Network.hh"
 #include "mem/ruby/network/fault_model/FaultModel.hh"
@@ -96,20 +97,48 @@ class GarnetNetwork : public Network
         int subnet_dim_y = m_num_cols/num_chiplets_y;
 
         int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
-        int quad_x = (base_id%m_num_rows)/subnet_dim_x;
-        int quad_y = ((base_id/m_num_rows)%m_num_cols)/subnet_dim_y;
-        int quad = quad_x+quad_y*(m_num_rows/subnet_dim_x);
+        int sector_x = (base_id%m_num_rows)/subnet_dim_x;
+        int sector_y = ((base_id/m_num_rows)%m_num_cols)/subnet_dim_y;
+        int sector = sector_x+sector_y*(m_num_rows/subnet_dim_x);
 
-        // cout<<"getSectorHo: base_id: "<<base_id<<" | quad_x: "<<quad_x<<" | quad_y: "<<quad_y<<" | quad: "<<quad<<endl;
+        // cout<<"getSectorHo: base_id: "<<base_id<<" | sector_x: "<<sector_x<<" | sector_y: "<<sector_y<<" | sector: "<<sector<<endl;
         
-        assert(quad<num_chiplets_x*num_chiplets_y && quad>=0);
-        return quad;
+        assert(sector<num_chiplets_x*num_chiplets_y && sector>=0);
+        return sector;
     }
 
-    // int getSectorHetero () {
-    //     int sector=0;
-    //     return sector
-    // }
+    int getSectorHe(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
+        // int num_sectors = 5;
+        vector<vector<int>> sector_list;
+
+        vector<int> sector_zero = {0,1,8,9};
+        vector<int> sector_one = {2,3,4,5,10,11,12,13,18,19,20,21,26,27,28,29};
+        vector<int> sector_two = {6,7,14,15};
+        vector<int> sector_three = {16,17,24,25};
+        vector<int> sector_four = {22,23,30,31};
+        // // temp hardcoded
+
+        sector_list.push_back(sector_zero);
+        sector_list.push_back(sector_one);
+        sector_list.push_back(sector_two);
+        sector_list.push_back(sector_three);
+        sector_list.push_back(sector_four);
+        // // int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
+
+        for (int i = 0; i < sector_list.size(); i++) { 
+            for (int j = 0; j < sector_list[i].size(); j++) {
+                cout << sector_list[i][j] << " "; 
+            }
+            cout << endl; 
+        }
+
+        int sector = -1;
+
+        // cout<<"getSectorHe: base_id: "<<base_id<<" | sector_x: "<<sector_x<<" | sector_y: "<<sector_y<<" | sector: "<<sector<<endl;
+        
+        assert(sector<num_chiplets_x*num_chiplets_y && sector>=0);
+        return sector;
+    }
 
     // for network
     uint32_t getNiFlitSize() const { return m_ni_flit_size; }

@@ -363,18 +363,18 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
-    int my_quad = m_router->get_net_ptr()->getSectorHo(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+    int my_sector = m_router->get_net_ptr()->getSectorHo(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
 
-    // cout<<"Current Quadrant: "<<my_quad<<endl;
+    // cout<<"Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
     int dest_coords[3];
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
-    int dest_quad = m_router->get_net_ptr()->getSectorHo(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+    int dest_sector = m_router->get_net_ptr()->getSectorHo(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
 
-    // cout<<"Destination Quadrant: "<<dest_quad<<endl;
+    // cout<<"Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);
     int y_hops = abs(dest_coords[1] - my_coords[1]);
@@ -383,11 +383,11 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
     bool x_dirn = (dest_coords[2] >= my_coords[2]); //true if destination is east of current
     bool y_dirn = (dest_coords[1] >= my_coords[1]); //true if destination is north of current
     bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
-    bool same_quad = (my_quad == dest_quad); // true if destination and current router are in the same quadrant
+    bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sectorrant
 
-    // cout<<" myquad: "<<my_quad<<" destquad: "<<dest_quad<<" same_quad: "<<same_quad;
+    // cout<<" mysector: "<<my_sector<<" destsector: "<<dest_sector<<" same_sector: "<<same_sector;
 
-    // Quadrant Numbering: 
+    // Sector Numbering: 
     // _______________
     // |      |      |
     // |  2   |   3  |
@@ -399,7 +399,7 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
     // already checked that in outportCompute() function
     assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
 
-    if (same_quad){ // if current node and destination router are in the same quadrant, move normally
+    if (same_sector){ // if current node and destination router are in the same sectorrant, move normally
         if (x_hops > 0) {
             if (x_dirn) {
                 // assert(inport_dirn == "Local" || inport_dirn == "West");
@@ -430,8 +430,8 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
             // already checked that in outportCompute() function
             panic("x_hops == y_hops == z_hops == 0");
         }
-    } else { // if current router and destination router are not in the same quadrant
-        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same quadrant as router
+    } else { // if current router and destination router are not in the same sector
+        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same sector as router
             if (x_hops > 0) {
                 if (x_dirn) {
                     outport_dirn = "East";
@@ -529,18 +529,18 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
-    int my_quad = m_router->get_net_ptr()->getSectorHo(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+    int my_sector = m_router->get_net_ptr()->getSectorHe(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
 
-    // cout<<"Current Quadrant: "<<my_quad<<endl;
+    // cout<<"Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
     int dest_coords[3];
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
-    int dest_quad = m_router->get_net_ptr()->getSectorHo(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+    int dest_sector = m_router->get_net_ptr()->getSectorHe(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
 
-    // cout<<"Destination Quadrant: "<<dest_quad<<endl;
+    // cout<<"Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);
     int y_hops = abs(dest_coords[1] - my_coords[1]);
@@ -549,11 +549,11 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     bool x_dirn = (dest_coords[2] >= my_coords[2]); //true if destination is east of current
     bool y_dirn = (dest_coords[1] >= my_coords[1]); //true if destination is north of current
     bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
-    bool same_quad = (my_quad == dest_quad); // true if destination and current router are in the same quadrant
+    bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sector
 
-    // cout<<" myquad: "<<my_quad<<" destquad: "<<dest_quad<<" same_quad: "<<same_quad;
+    // cout<<" mysector: "<<my_sector<<" destsector: "<<dest_sector<<" same_sector: "<<same_sector;
 
-    // Quadrant Numbering: 
+    // Sector Numbering: 
     // _______________
     // |      |      |
     // |  2   |   3  |
@@ -565,7 +565,7 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     // already checked that in outportCompute() function
     assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
 
-    if (same_quad){ // if current node and destination router are in the same quadrant, move normally
+    if (same_sector){ // if current node and destination router are in the same sector, move normally
         if (x_hops > 0) {
             if (x_dirn) {
                 // assert(inport_dirn == "Local" || inport_dirn == "West");
@@ -596,8 +596,8 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
             // already checked that in outportCompute() function
             panic("x_hops == y_hops == z_hops == 0");
         }
-    } else { // if current router and destination router are not in the same quadrant
-        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same quadrant as router
+    } else { // if current router and destination router are not in the same sector
+        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same sector as router
             if (x_hops > 0) {
                 if (x_dirn) {
                     outport_dirn = "East";
