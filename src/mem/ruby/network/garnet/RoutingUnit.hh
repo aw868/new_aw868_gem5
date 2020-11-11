@@ -75,9 +75,6 @@ class RoutingUnit
     int outportComputeXYZChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
-    int outportComputeXYZChiplets2(RouteInfo route,
-                         int inport,
-                         PortDirection inport_dirn);
     int outportComputeChipletHetero(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);

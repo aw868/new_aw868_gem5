@@ -506,8 +506,6 @@ RoutingUnit::outportComputeXYZChiplets(RouteInfo route,
 // 
 // 
 
-
-
 int
 RoutingUnit::outportComputeChipletHetero(RouteInfo route,
                               int inport,
