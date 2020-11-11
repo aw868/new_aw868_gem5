@@ -75,7 +75,7 @@ class RoutingUnit
     int outportComputeHoChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
-    int outportComputeChipletHetero(RouteInfo route,
+    int outportComputeHeChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
     // Custom Routing Algorithm using Port Directions

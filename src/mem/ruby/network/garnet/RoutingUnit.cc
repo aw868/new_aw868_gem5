@@ -183,10 +183,10 @@ RoutingUnit::outportCompute(RouteInfo route, int inport,
         // any custom algorithm
         case XYZ_:     outport =
             outportComputeXYZ(route, inport, inport_dirn); break;
-        case XYZ_CHIPLETS: outport =
+        case HO_CHIPLETS: outport =
             outportComputeHoChiplets(route, inport, inport_dirn); break;
-        case XYZ_CHIPLETS_HETERO: outport =
-            outportComputeChipletHetero(route, inport, inport_dirn); break;
+        case HE_CHIPLETS: outport =
+            outportComputeHeChiplets(route, inport, inport_dirn); break;
         default: outport =
             lookupRoutingTable(route.vnet, route.net_dest); break;
     }
@@ -507,7 +507,7 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
 // 
 
 int
-RoutingUnit::outportComputeChipletHetero(RouteInfo route,
+RoutingUnit::outportComputeHeChiplets(RouteInfo route,
                               int inport,
                               PortDirection inport_dirn)
 {
