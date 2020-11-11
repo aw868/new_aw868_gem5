@@ -512,9 +512,9 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
                               PortDirection inport_dirn)
 {
     PortDirection outport_dirn = "Unknown";
-    // cout<<"##########################################################################"<<endl;
-    // cout<<"File: RoutingUnit.cc"<<endl;
-    // cout<<"Starting ComputeChipletHetero"<<endl;
+    cout<<"##########################################################################"<<endl;
+    cout<<"File: RoutingUnit.cc"<<endl;
+    cout<<"Starting ComputeChipletHetero"<<endl;
     // cout<<"Came from: "<<inport_dirn<<"\n"<<endl;
     int num_sectors = 5;
     int num_rows = m_router->get_net_ptr()->getNumRows();
@@ -527,18 +527,18 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
-    int my_sector = m_router->get_net_ptr()->getSectorHe(my_id, my_coords[0], num_sectors);
 
-    // cout<<"Current Sector: "<<my_sector<<endl;
+    int my_sector = m_router->get_net_ptr()->getSectorHe(my_id, my_coords[0], num_sectors);
+    cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
     int dest_coords[3];
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
-    int dest_sector = m_router->get_net_ptr()->getSectorHe(dest_id, dest_coords[0], num_sectors);
 
-    // cout<<"Destination Sector: "<<dest_sector<<endl;
+    int dest_sector = m_router->get_net_ptr()->getSectorHe(dest_id, dest_coords[0], num_sectors);
+    cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);
     int y_hops = abs(dest_coords[1] - my_coords[1]);
