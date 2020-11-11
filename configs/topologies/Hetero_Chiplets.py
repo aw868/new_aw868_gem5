@@ -43,8 +43,8 @@ from .BaseTopology import SimpleTopology
 # XYZ routing is enforced (using link weights)
 # to guarantee deadlock freedom.
 
-class Mesh_XYZ_Chiplets(SimpleTopology):
-    description='Mesh_XYZ_Chiplets'
+class Homo_Chiplets(SimpleTopology):
+    description='Homo_Chiplets'
 
     def __init__(self, controllers):
         self.nodes = controllers #includes directories and caches
@@ -56,7 +56,7 @@ class Mesh_XYZ_Chiplets(SimpleTopology):
         # layer 0: routers only (not included in num_cpus)
 
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
-        print("File: Mesh_XYZ_Chiplets.py")
+        print("File: Homo_Chiplets.py")
         nodes = self.nodes
         print("len(nodes) (includes caches and directories): ", len(nodes))
 

@@ -2,7 +2,7 @@
 # --num-cpus=8 \
 # --num-dirs=4 \
 # --network=garnet2.0 \
-# --topology=Mesh_XYZ_Chiplets \
+# --topology=Homo_Chiplets \
 # --mesh-rows=2  \
 # --y-depth=2 \
 # --z-depth=2 \
@@ -16,7 +16,7 @@
 # --num-cpus=256 \
 # --num-dirs=4 \
 # --network=garnet2.0 \
-# --topology=Mesh_XYZ_Chiplets \
+# --topology=Homo_Chiplets \
 # --mesh-rows=8  \
 # --y-depth=8 \
 # --z-depth=4 \
