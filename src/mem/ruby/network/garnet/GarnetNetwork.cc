@@ -141,7 +141,30 @@ GarnetNetwork::init()
         // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0 && getRoutingAlgorithm() == 3) {
-        cout<<"Using Homogeneous Chiplete Routing Algorithm"<<endl;
+        cout<<"Using Homogeneous Chiplet Routing Algorithm"<<endl;
+        m_num_rows = getNumRows();
+        
+        if (getZDepth()>0){
+            m_z_depth = getZDepth();
+        } else {
+            m_z_depth = (m_routers.size() / m_num_rows) / m_num_rows;
+        }
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
+        }
+        
+        //display dimensions of router for user/debug
+        // cout<<"router size: "<<m_routers.size()<<endl;
+        // cout<<"m_num_rows: "<<m_num_rows<<endl;
+        // cout<<"m_num_cols: "<<m_num_cols<<endl;
+        // cout<<"m_z_depth: "<<m_z_depth<<endl;
+        // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
+        assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
+    } else if (getNumRows() > 0 && getRoutingAlgorithm() == 4) {
+        cout<<"Using Heterogeneous Chiplet Routing Algorithm"<<endl;
         m_num_rows = getNumRows();
         
         if (getZDepth()>0){
