@@ -107,8 +107,9 @@ class GarnetNetwork : public Network
         return sector;
     }
 
-    int getSectorHe(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
+    int getSectorHe(int router_id, int z_coord, int num_sectors) { 
         // int num_sectors = 5;
+        int sector;
         vector<vector<int>> sector_list;
 
         vector<int> sector_zero = {0,1,8,9};
@@ -127,16 +128,19 @@ class GarnetNetwork : public Network
 
         for (int i = 0; i < sector_list.size(); i++) { 
             for (int j = 0; j < sector_list[i].size(); j++) {
-                cout << sector_list[i][j] << " "; 
+                if (sector_list[i][j] == router_id) {
+                    sector = i;
+                    cout<<"Router "<<router_id<<" in sector "<<sector<<endl;
+                }
             }
             cout << endl; 
         }
 
-        int sector = -1;
+        sector = -1;
 
         // cout<<"getSectorHe: base_id: "<<base_id<<" | sector_x: "<<sector_x<<" | sector_y: "<<sector_y<<" | sector: "<<sector<<endl;
         
-        assert(sector<num_chiplets_x*num_chiplets_y && sector>=0);
+        assert(sector>=0);
         return sector;
     }
 
