@@ -96,8 +96,8 @@ OutputUnit::has_free_vc(int vnet, int src_id, int dest_id, int outport)
     PortDirection outportDirection = m_router->getOutportDirection(outport);
 
     if ((routing_algorithm == 3 || routing_algorithm == 4) && m_vc_per_vnet > 2){ 
-        // int src_quad = m_router->get_net_ptr()->getQuad(src_id);
-        // int dest_quad = m_router->get_net_ptr()->getQuad(src_id);
+        // int src_quad = m_router->get_net_ptr()->getSectorHo(src_id);
+        // int dest_quad = m_router->get_net_ptr()->getSectorHo(src_id);
         if (outportDirection == "Up"){ // if travelling in the Up direction
             int vc_base = vnet*m_vc_per_vnet;
             for (int vc = vc_base; vc < vc_base + vcs_per_up; vc++) {

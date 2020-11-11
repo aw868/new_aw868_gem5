@@ -86,7 +86,7 @@ class GarnetNetwork : public Network
         return coords;
     }
     
-    int getQuad(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
+    int getSectorHo(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
         // location = id - (GlobalParams::mesh_dim_x * GlobalParams::mesh_dim_y)*(layer_num-1);
         // subnet_x = (location % GlobalParams::mesh_dim_x) / GlobalParams::subnet_dim_x;
         // subnet_y = ((location / GlobalParams::mesh_dim_x) % GlobalParams::mesh_dim_y) / GlobalParams::subnet_dim_y;
@@ -100,7 +100,7 @@ class GarnetNetwork : public Network
         int quad_y = ((base_id/m_num_rows)%m_num_cols)/subnet_dim_y;
         int quad = quad_x+quad_y*(m_num_rows/subnet_dim_x);
 
-        // cout<<"getQuad: base_id: "<<base_id<<" | quad_x: "<<quad_x<<" | quad_y: "<<quad_y<<" | quad: "<<quad<<endl;
+        // cout<<"getSectorHo: base_id: "<<base_id<<" | quad_x: "<<quad_x<<" | quad_y: "<<quad_y<<" | quad: "<<quad<<endl;
         
         assert(quad<num_chiplets_x*num_chiplets_y && quad>=0);
         return quad;

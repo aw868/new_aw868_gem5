@@ -363,7 +363,7 @@ RoutingUnit::outportComputeXYZChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
-    int my_quad = m_router->get_net_ptr()->getQuad(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+    int my_quad = m_router->get_net_ptr()->getSectorHo(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
 
     // cout<<"Current Quadrant: "<<my_quad<<endl;
 
@@ -372,7 +372,7 @@ RoutingUnit::outportComputeXYZChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
-    int dest_quad = m_router->get_net_ptr()->getQuad(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+    int dest_quad = m_router->get_net_ptr()->getSectorHo(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
 
     // cout<<"Destination Quadrant: "<<dest_quad<<endl;
 
@@ -516,8 +516,8 @@ RoutingUnit::outportComputeChipletHetero(RouteInfo route,
     // cout<<"File: RoutingUnit.cc"<<endl;
     // cout<<"Starting ComputeChipletHetero"<<endl;
     // cout<<"Came from: "<<inport_dirn<<"\n"<<endl;
-    int num_chiplets_x = 2;
-    int num_chiplets_y = 2;
+    int num_chiplets_x = m_router->get_net_ptr()->getNumChipletsX();
+    int num_chiplets_y = m_router->get_net_ptr()->getNumChipletsY();
 
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
@@ -529,7 +529,7 @@ RoutingUnit::outportComputeChipletHetero(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
-    int my_quad = m_router->get_net_ptr()->getQuad(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+    int my_quad = m_router->get_net_ptr()->getSectorHo(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
 
     // cout<<"Current Quadrant: "<<my_quad<<endl;
 
@@ -538,7 +538,7 @@ RoutingUnit::outportComputeChipletHetero(RouteInfo route,
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
-    int dest_quad = m_router->get_net_ptr()->getQuad(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+    int dest_quad = m_router->get_net_ptr()->getSectorHo(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
 
     // cout<<"Destination Quadrant: "<<dest_quad<<endl;
 
