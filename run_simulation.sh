@@ -26,27 +26,13 @@
 # --routing-algorithm=5 \
 # --vcs-per-vnet=4 >./sim_results/LargeMeshXYZChiplet;
 
-# ./build/ARM/gem5.opt configs/example/garnet_synth_traffic.py  \
-# --num-cpus=256 \
-# --num-dirs=256 \
-# --network=garnet \
-# --topology=Mesh_XYZ \
-# --mesh-rows=8  \
-# --y-depth=8 \
-# --z-depth=4 \
-# --sim-cycles=200000 \
-# --synthetic=uniform_random \
-# --injectionrate=0.3 \
-# --routing-algorithm=3 \
-# --vcs-per-vnet=4;
-
 ./build/ARM/gem5.opt configs/example/garnet_synth_traffic.py  \
---num-cpus=4 \
---num-dirs=4 \
---topology=Mesh_XY \
+--num-cpus=16 \
+--num-dirs=16 \
+--topology=Mesh_XYZ \
 --network=garnet \
---mesh-rows=2  \
---sim-cycles=200000 \
+--mesh-rows=4  \
+--sim-cycles=50000 \
 --synthetic=uniform_random \
 --injectionrate=0.3 \
 --routing-algorithm=1 \

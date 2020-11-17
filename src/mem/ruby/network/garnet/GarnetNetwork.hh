@@ -120,6 +120,10 @@ class GarnetNetwork : public Network
         vector<int> sector_four = {22,23,30,31};
         // // temp hardcoded
 
+        // start row, end row, start col, end col
+        // calculate row, col of base id 
+        // match to chiplets
+
         sector_list.push_back(sector_zero);
         sector_list.push_back(sector_one);
         sector_list.push_back(sector_two);

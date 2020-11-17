@@ -43,7 +43,7 @@ OUTPUT_DIR = $(EXPERIMENT_DIR)
 
 Initialdir = $(EXPERIMENT_DIR)/MeshXY_XY/
 arguments = "-d $(OUTPUT_DIR)/MeshXY_XY/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(MESHXY_ARGS) --injectionrate=0.5"
-#Queue
+Queue
 
 ############################################
 ###### Mesh XYZ Topology, XYZ Routing ######
