@@ -257,6 +257,7 @@ class GarnetNetwork : public Network
     int m_z_depth;
     int m_num_chiplets_x;
     int m_num_chiplets_y;
+    string m_hetero_chiplets;
     uint32_t m_ni_flit_size;
     uint32_t m_max_vcs_per_vnet;
     uint32_t m_buffers_per_ctrl_vc;

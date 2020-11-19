@@ -61,6 +61,7 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     m_z_depth = p->z_depth;
     m_num_chiplets_x = p->num_chiplets_x;
     m_num_chiplets_y = p->num_chiplets_y;
+    m_hetero_chiplets = p->hetero_chiplets;
     m_ni_flit_size = p->ni_flit_size;
     m_max_vcs_per_vnet = 0;
     m_buffers_per_data_vc = p->buffers_per_data_vc;
