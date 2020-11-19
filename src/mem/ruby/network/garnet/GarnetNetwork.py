@@ -42,6 +42,7 @@ class GarnetNetwork(RubyNetwork):
     z_depth = Param.Int(0, "value of z-depth");
     num_chiplets_x = Param.Int(0, "number of chiplets in the x-dimension");
     num_chiplets_y = Param.Int(0, "number of chiplets in the y-dimension");
+    hetero_chiplets = Param.String("", "heterogeneous chiplet designation (start row, end row, start col, end col)");
     ni_flit_size = Param.UInt32(16, "network interface flit size in bytes")
     vcs_per_vnet = Param.UInt32(4, "virtual channels per virtual network");
     buffers_per_data_vc = Param.UInt32(4, "buffers per data virtual channel");

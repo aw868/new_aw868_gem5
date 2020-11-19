@@ -49,6 +49,8 @@ def define_options(parser):
                       help="number of chiplets in the x-dimension")
     parser.add_option("--num-chiplets-y", type="int", default=1,
                       help="number of chiplets in the y-dimension")
+    parser.add_option("--hetero-chiplets", type="string", default="",
+                      help="heterogeneous chiplets designation (start row, end row, start col, end col)")
     parser.add_option("--network", type="choice", default="simple",
                       choices=['simple', 'garnet'],
                       help="""'simple'|'garnet' (garnet2.0 will be
@@ -126,6 +128,7 @@ def init_network(options, network, InterfaceClass):
         network.z_depth = options.z_depth
         network.num_chiplets_x = options.num_chiplets_x
         network.num_chiplets_y = options.num_chiplets_y
+        network.hetero_chiplets = options.hetero_chiplets
         network.vcs_per_vnet = options.vcs_per_vnet
         network.ni_flit_size = options.link_width_bits / 8
         network.routing_algorithm = options.routing_algorithm
