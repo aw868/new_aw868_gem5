@@ -67,6 +67,7 @@ class GarnetNetwork : public Network
     int getZDepth() { return m_z_depth; }
     int getNumChipletsX() { return m_num_chiplets_x;}
     int getNumChipletsY() { return m_num_chiplets_y;}
+    string getHeteroInput() { return m_hetero_chiplets;}
     int* getCoords(int router_id, int coords[]) {
         int z_coord = router_id/(m_num_rows*m_num_cols); //calculating z coordinate
         int x_coord = -1;
@@ -107,11 +108,23 @@ class GarnetNetwork : public Network
         return sector;
     }
 
-    vector<int> calculateBaseRouters(vector<vector<int>> heteroChipletInputs) {
+    vector<vector<int>> stringToMatrix(string stringInput) {
+        vector<vector<int>> hetero_vector = {{0,1,0,1}, 
+                                                {2,5,0,3},
+                                                {6,7,0,1},
+                                                {0,1,2,3},
+                                                {6,7,2,3}};
+        // assert that input is multiple of 4
+        return hetero_vector;
+    }
+
+    vector<int> calculateBaseRouters(string heteroChipletString) {
         cout<<"File: GarnetNetwork.hh"<<endl;
         cout<<"calculateBaseRouters(vector<int> heteroChipletInputs)"<<endl;
         vector<int> base_router_list(m_num_rows*m_num_cols, -1);
     // initialize to -1, errors if value=-1 at the end
+
+        vector<vector<int>> heteroChipletInputs = stringToMatrix(heteroChipletString);
 
         for (int i = 0; i < heteroChipletInputs.size(); i++) { 
             // for each hetero chiplet, set value at index to sector number
@@ -135,38 +148,16 @@ class GarnetNetwork : public Network
         cout<<"getSectorHe(int router_id, int z_coord, int num_sectors)"<<endl;
 
         int sector = -1;
-        // vector<vector<int>> sector_list;
         int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
 
-        // start row/x, end row/x, start col/y, end col/y
-        vector<vector<int>> sector_list_rc = {{0,1,0,1}, 
-                                                {2,5,0,3},
-                                                {6,7,0,1},
-                                                {0,1,2,3},
-                                                {6,7,2,3}};
-        vector<int> router_list = calculateBaseRouters(sector_list_rc);
-        sector = router_list[base_id];
-
-        // vector<int> sector_zero = {0,1,8,9};
-        // vector<int> sector_one = {2,3,4,5,10,11,12,13,18,19,20,21,26,27,28,29};
-        // vector<int> sector_two = {6,7,14,15};
-        // vector<int> sector_three = {16,17,24,25};
-        // vector<int> sector_four = {22,23,30,31};
-        // sector_list.push_back(sector_zero);
-        // sector_list.push_back(sector_one);
-        // sector_list.push_back(sector_two);
-        // sector_list.push_back(sector_three);
-        // sector_list.push_back(sector_four);
-        // // // temp hardcoded
-
-        // for (int i = 0; i < sector_list.size(); i++) { 
-        //     for (int j = 0; j < sector_list[i].size(); j++) {
-        //         if (sector_list[i][j] == base_id) {
-        //             sector = i;
-        //             return sector;
-        //         }
-        //     }
-        // }
+        // // start row/x, end row/x, start col/y, end col/y
+        // vector<vector<int>> sector_list_input = {{0,1,0,1}, 
+        //                                         {2,5,0,3},
+        //                                         {6,7,0,1},
+        //                                         {0,1,2,3},
+        //                                         {6,7,2,3}};
+        // vector<int> sector_list = calculateBaseRouters(sector_list_input);
+        sector = m_sector_list[base_id];
 
         assert(sector>=0);
         return sector;
@@ -177,6 +168,7 @@ class GarnetNetwork : public Network
     uint32_t getBuffersPerDataVC() { return m_buffers_per_data_vc; }
     uint32_t getBuffersPerCtrlVC() { return m_buffers_per_ctrl_vc; }
     int getRoutingAlgorithm() const { return m_routing_algorithm; }
+    
 
     bool isFaultModelEnabled() const { return m_enable_fault_model; }
     FaultModel* fault_model;
@@ -264,6 +256,7 @@ class GarnetNetwork : public Network
     uint32_t m_buffers_per_data_vc;
     int m_routing_algorithm;
     bool m_enable_fault_model;
+    vector<int> m_sector_list; 
 
     // Statistical variables
     Stats::Vector m_packets_received;
