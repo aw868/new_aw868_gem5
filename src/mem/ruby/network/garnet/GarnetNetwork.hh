@@ -108,33 +108,44 @@ class GarnetNetwork : public Network
         return sector;
     }
 
-    vector<vector<int>> stringToMatrix(string stringInput) {
-        vector<vector<int>> hetero_vector = {{0,1,0,1}, 
-                                                {2,5,0,3},
-                                                {6,7,0,1},
-                                                {0,1,2,3},
-                                                {6,7,2,3}};
+    struct not_digit {
+        bool operator()(const char c) {
+            return c != ' ' && !std::isdigit(c);
+        }
+    };
+
+    vector<int> stringToVector(string stringInput) {
+        cout<<"stringToVector(string stringInput)"<<endl;
+        vector<int> base_router_list;
+        not_digit not_a_digit;
+        string::iterator end = std::remove_if(stringInput.begin(), stringInput.end(), not_a_digit);
+        string all_numbers(stringInput.begin(), end);
+        stringstream ss(all_numbers);
+        cout <<"here"<<endl;;
+        for(int i = 0; ss >> i; ) {
+            base_router_list.push_back(i);
+            cout << i << " ";
+        }
         // assert that input is multiple of 4
-        return hetero_vector;
+        return base_router_list;
     }
 
     vector<int> calculateBaseRouters(string heteroChipletString) {
-        cout<<"File: GarnetNetwork.hh"<<endl;
-        cout<<"calculateBaseRouters(vector<int> heteroChipletInputs)"<<endl;
-        vector<int> base_router_list(m_num_rows*m_num_cols, -1);
-    // initialize to -1, errors if value=-1 at the end
+        cout<<"calculateBaseRouters(string heteroChipletInputs)"<<endl;
+        // vector<int> base_router_list(m_num_rows*m_num_cols, -1);
+        // initialize to -1, errors if value=-1 at the end
+        cout<<heteroChipletString<<endl;
+        vector<int> base_router_list = stringToVector(heteroChipletString);
 
-        vector<vector<int>> heteroChipletInputs = stringToMatrix(heteroChipletString);
-
-        for (int i = 0; i < heteroChipletInputs.size(); i++) { 
-            // for each hetero chiplet, set value at index to sector number
-            for (int row=heteroChipletInputs[i][2];row<heteroChipletInputs[i][3];row++){
-                for (int col=heteroChipletInputs[i][0];col<heteroChipletInputs[i][1];col++) {
-                    int router_id = row*m_num_cols+col;
-                    base_router_list[router_id] = i;
-                }
-            }
-        }
+        // for (int i = 0; i < heteroChipletInputs.size(); i++) { 
+        //     // for each hetero chiplet, set value at index to sector number
+        //     for (int row=heteroChipletInputs[i][2];row<heteroChipletInputs[i][3];row++){
+        //         for (int col=heteroChipletInputs[i][0];col<heteroChipletInputs[i][1];col++) {
+        //             int router_id = row*m_num_cols+col;
+        //             heteroChipletInputs[router_id] = i;
+        //         }
+        //     }
+        // }
 
         if(count(base_router_list.begin(), base_router_list.end(), -1)){
             fatal("Hetero Chiplet input does not include all routers");
@@ -150,6 +161,9 @@ class GarnetNetwork : public Network
         int sector = -1;
         int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
 
+        for (int i=0;i<m_sector_list.size();i++) {
+            cout<<m_sector_list[i]<<endl;
+        }
         // // start row/x, end row/x, start col/y, end col/y
         // vector<vector<int>> sector_list_input = {{0,1,0,1}, 
         //                                         {2,5,0,3},
