@@ -27,30 +27,3 @@ TO ADD ROUTING ALGORITHMS:
 TO ADD TOPOLOGIES:
 1. config/topologies
 2. 
-
-
-Files reverted to garnet3.0 w/o my changes:
-InputUnit.cc
-InputUnit.hh
-NetworkInterface.cc
-NetworkInterface.hh
-Router.cc
-Router.hh
-OutputUnit.hh
-Credit.cc
-Credit.hh
-
-
-
-Safe Files:
-configs/network/Network.py
-CommonTypes.hh
-RoutingUnit.cc
-RoutingUnit.hh
-GarnetNetwork.cc
-GarnetNetwork.hh
-GarnetNetwork.py
-OutputUnit.cc
-SwitchAllocator.hh
-Flit.hh
-SwitchAllocator.cc
