@@ -180,7 +180,7 @@ GarnetNetwork::init()
             m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
         }
         // CALL INITIALIZATION OF SECTOR VECTOR HERE
-        m_sector_list = calculateBaseRouters(m_hetero_chiplets_input);
+        m_sector_list = calculateHeChipletVector(m_hetero_chiplets_input);
 
         //display dimensions of router for user/debug
         // cout<<"router size: "<<m_routers.size()<<endl;

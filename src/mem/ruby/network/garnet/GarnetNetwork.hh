@@ -115,39 +115,46 @@ class GarnetNetwork : public Network
     };
 
     vector<int> stringToVector(string stringInput) {
+        // turns input string into vector of ints (should ignore commas in input)
         cout<<"stringToVector(string stringInput)"<<endl;
-        vector<int> base_router_list;
+        vector<int> hetero_chiplet_input_vector;
         not_digit not_a_digit;
         string::iterator end = std::remove_if(stringInput.begin(), stringInput.end(), not_a_digit);
         string all_numbers(stringInput.begin(), end);
         stringstream ss(all_numbers);
         cout <<"here"<<endl;;
         for(int i = 0; ss >> i; ) {
-            base_router_list.push_back(i);
+            hetero_chiplet_input_vector.push_back(i);
             cout << i << " ";
         }
-        // assert that input is multiple of 4
-        return base_router_list;
+        // assert that vector length is multiple of 4 (there is a start and end coordinate for each chiplet)
+        assert(hetero_chiplet_input_vector.size() % 4 == 0);
+        return hetero_chiplet_input_vector;
     }
 
-    vector<int> calculateBaseRouters(string heteroChipletString) {
-        cout<<"calculateBaseRouters(string heteroChipletInputs)"<<endl;
-        // vector<int> base_router_list(m_num_rows*m_num_cols, -1);
-        // initialize to -1, errors if value=-1 at the end
-        cout<<heteroChipletString<<endl;
-        vector<int> base_router_list = stringToVector(heteroChipletString);
+    vector<int> calculateHeChipletVector(string hetero_chiplet_input_string) {
+        cout<<"calculateHeChipletVector(string hetero_chiplet_input_string)"<<endl;
+        cout<<"m_hetero_chiplet_input: "<<hetero_chiplet_input_string<<endl;
+        vector<int> hetero_chiplet_input_vector = stringToVector(hetero_chiplet_input_string);
+        // stringToVector should return the input m_hetero_chiplets_input as a vector<int>
+         
+        vector<int> base_router_list(m_num_rows*m_num_cols, -1);
+        // initialize vector size of row*col with all values =-1
 
-        // for (int i = 0; i < heteroChipletInputs.size(); i++) { 
-        //     // for each hetero chiplet, set value at index to sector number
-        //     for (int row=heteroChipletInputs[i][2];row<heteroChipletInputs[i][3];row++){
-        //         for (int col=heteroChipletInputs[i][0];col<heteroChipletInputs[i][1];col++) {
-        //             int router_id = row*m_num_cols+col;
-        //             heteroChipletInputs[router_id] = i;
-        //         }
-        //     }
-        // }
+        for (int i=0; i<hetero_chiplet_input_vector.size()%4;i++) {
+            // for each chiplet designated by the user
+            for (int row=hetero_chiplet_input_vector[i*4+2];row<=hetero_chiplet_input_vector[i*4+3];row++) {
+                for(int col=hetero_chiplet_input_vector[i*4];col<=hetero_chiplet_input_vector[i*4+1];col++){
+                    int router_id = row*m_num_cols+col;
+                    base_router_list[router_id] = i;
+                    // set value at base_router_id to chiplet number (i)
+                    // creation of this vector only takes place one time, so search/further calculation not needed in future
+                }
+            }
+        }
 
         if(count(base_router_list.begin(), base_router_list.end(), -1)){
+            // if the vector base_router_list includes the value -1, then the input did not include all routers
             fatal("Hetero Chiplet input does not include all routers");
             exit(0);
         }
@@ -164,13 +171,13 @@ class GarnetNetwork : public Network
         for (int i=0;i<m_sector_list.size();i++) {
             cout<<m_sector_list[i]<<endl;
         }
-        // // start row/x, end row/x, start col/y, end col/y
+        // start col/y, end col/y, start row/x, end row/x, 
         // vector<vector<int>> sector_list_input = {{0,1,0,1}, 
         //                                         {2,5,0,3},
         //                                         {6,7,0,1},
         //                                         {0,1,2,3},
         //                                         {6,7,2,3}};
-        // vector<int> sector_list = calculateBaseRouters(sector_list_input);
+        // vector<int> sector_list = calculateHeChipletVector(sector_list_input);
         sector = m_sector_list[base_id];
 
         assert(sector>=0);
