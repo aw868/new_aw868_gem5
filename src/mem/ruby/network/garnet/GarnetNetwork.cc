@@ -61,7 +61,7 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     m_z_depth = p->z_depth;
     m_num_chiplets_x = p->num_chiplets_x;
     m_num_chiplets_y = p->num_chiplets_y;
-    m_hetero_chiplets = p->hetero_chiplets;
+    m_hetero_chiplets_input = p->hetero_chiplets_input;
     m_ni_flit_size = p->ni_flit_size;
     m_max_vcs_per_vnet = 0;
     m_buffers_per_data_vc = p->buffers_per_data_vc;
@@ -180,7 +180,7 @@ GarnetNetwork::init()
             m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
         }
         // CALL INITIALIZATION OF SECTOR VECTOR HERE
-        m_sector_list = calculateBaseRouters(m_hetero_chiplets);
+        m_sector_list = calculateBaseRouters(m_hetero_chiplets_input);
 
         //display dimensions of router for user/debug
         // cout<<"router size: "<<m_routers.size()<<endl;

@@ -67,7 +67,7 @@ class GarnetNetwork : public Network
     int getZDepth() { return m_z_depth; }
     int getNumChipletsX() { return m_num_chiplets_x;}
     int getNumChipletsY() { return m_num_chiplets_y;}
-    string getHeteroInput() { return m_hetero_chiplets;}
+    string getHeteroInput() { return m_hetero_chiplets_input;}
     int* getCoords(int router_id, int coords[]) {
         int z_coord = router_id/(m_num_rows*m_num_cols); //calculating z coordinate
         int x_coord = -1;
@@ -263,7 +263,7 @@ class GarnetNetwork : public Network
     int m_z_depth;
     int m_num_chiplets_x;
     int m_num_chiplets_y;
-    string m_hetero_chiplets;
+    string m_hetero_chiplets_input;
     uint32_t m_ni_flit_size;
     uint32_t m_max_vcs_per_vnet;
     uint32_t m_buffers_per_ctrl_vc;

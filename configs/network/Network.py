@@ -128,7 +128,7 @@ def init_network(options, network, InterfaceClass):
         network.z_depth = options.z_depth
         network.num_chiplets_x = options.num_chiplets_x
         network.num_chiplets_y = options.num_chiplets_y
-        network.hetero_chiplets = options.hetero_chiplets
+        network.hetero_chiplets = options.hetero_chiplets_input
         network.vcs_per_vnet = options.vcs_per_vnet
         network.ni_flit_size = options.link_width_bits / 8
         network.routing_algorithm = options.routing_algorithm

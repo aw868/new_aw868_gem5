@@ -51,7 +51,7 @@ Queue
 
 Initialdir = $(EXPERIMENT_DIR)/MeshXYZ_XYZ/
 arguments = "-d $(OUTPUT_DIR)/MeshXYZ_XYZ/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(MESHXYZ_ARGS) --injectionrate=0.5"
-Queue
+#Queue
 
 #######################################################################
 ###### Chiplet Homogeneous Topology, Chiplet Homogeneous Routing ######
@@ -75,7 +75,7 @@ arguments = "-d $(OUTPUT_DIR)/MeshXYZ_ChipletHo/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(XY
 
 Initialdir = $(EXPERIMENT_DIR)/ChipletHe_ChipletHe/
 arguments = "-d $(OUTPUT_DIR)/ChipletHe_ChipletHe/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(CHIPLET_HETERO_ARGS) --injectionrate=0.5"
-Queue
+#Queue
 
 ##############################################################
 ###### Mesh XYZ Topology, Chiplet Heterogeneous Routing ######
@@ -83,4 +83,4 @@ Queue
 
 Initialdir = $(EXPERIMENT_DIR)/MeshXYZ_ChipletHe/
 arguments = "-d $(OUTPUT_DIR)/MeshXYZ_ChipletHe/ $(SYNTHTRAFFIC_RUN_SCRIPT) $(XYZ_CHIPLET_HETERO_ARGS) --injectionrate=0.5"
-Queue
+#Queue

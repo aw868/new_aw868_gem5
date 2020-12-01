@@ -1,7 +1,7 @@
 TO ADD PARAMETERS:
 1. configs/network/Network.py
     - init_network (line ~116)
-    - define_options (line~38)
+    - define_options (line ~38)
 2. src/mem/ruby/network/garnet2.0/GarnetNetwork.py
     - class GarnetNetwork(RubyNetwork) (line ~37)
 3. src/mem/ruby/network/garnet2.0/GarnetNetwork.hh
