@@ -21,7 +21,8 @@ TO ADD ROUTING ALGORITHMS:
     - enum RoutingAlgorithm (line ~46)
 4. src/mem/ruby/network/garnet2.0/Network.py
     - parser.add_option("--routing-algorithm", action="store", type="int", (line ~74)
-
+5. src/mem/ruby/network/garnet2.0/GarnetNetwork.py
+    - class GarnetNetwork(RubyNetwork) (line ~50)
 
 TO ADD TOPOLOGIES:
 1. config/topologies
