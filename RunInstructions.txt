@@ -3,6 +3,7 @@ condor_submit [name of file]
 
 To check on simulations:
 condor_q
+condor_q -wide
 
 To delete current simulations:
 condor_rm [user]
@@ -28,3 +29,6 @@ scl enable rh-python36 bash
     -enable other version of python with 'six'
 
 *must exit bash window (exit)
+
+To SSH to Job:
+condor_ssh_to_job [job id]
