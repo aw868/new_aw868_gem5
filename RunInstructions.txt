@@ -8,6 +8,13 @@ condor_q -wide
 To delete current simulations:
 condor_rm [user]
 
+To run file if condor not responding:
+condor_submit [name of file]
+condor_q -wide
+Copy command and add './build/ARM' before command and '-d' after gem.opt
+ex: ./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/hetero_results/MeshXY_XY/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=16 --num-dirs=16 --network=garnet --topology=Mesh_XY --mesh-rows=4 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.5
+
+
 To rebuild:
 ./arm_build.sh
 
