@@ -34,6 +34,8 @@
 
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include <string>
 using namespace std;
 
 #include "mem/ruby/network/Network.hh"
@@ -118,17 +120,36 @@ class GarnetNetwork : public Network
         // turns input string into vector of ints (should ignore commas in input)
         cout<<"stringToVector(string stringInput)"<<endl;
         vector<int> hetero_chiplet_input_vector;
-        not_digit not_a_digit;
-        string::iterator end = std::remove_if(stringInput.begin(), stringInput.end(), not_a_digit);
-        string all_numbers(stringInput.begin(), end);
-        stringstream ss(all_numbers);
-        cout <<"here"<<endl;;
-        for(int i = 0; ss >> i; ) {
-            hetero_chiplet_input_vector.push_back(i);
-            cout << i << " ";
+        // not_digit not_a_digit;
+        // string::iterator end = std::remove_if(stringInput.begin(), stringInput.end(), not_a_digit);
+        // string all_numbers(stringInput.begin(), end);
+        // stringstream ss(all_numbers);
+        // for(int i = 0; ss >> i; ) {
+        //     hetero_chiplet_input_vector.push_back(i);
+        //     cout << i << " ";
+        // }
+        // for (int j=0;j<hetero_chiplet_input_vector.size();j++){
+        //     cout<<hetero_chiplet_input_vector[j]<<",";
+        // }
+
+        string my_str = "2,4,6,8,10,125,2,";
+        vector<int> result;
+        stringstream s_stream(my_str); //create string stream from the string
+        while(s_stream.good()) {
+            string substr;
+            getline(s_stream, substr, ','); //get first string delimited by comma
+            stringstream geek(substr); 
+            int x = 0; 
+            geek >> x; 
+            result.push_back(x);
         }
+        for(int i = 0; i<result.size(); i++) {    //print all splitted strings
+            cout << result.at(i) << endl;
+        }
+
         // assert that vector length is multiple of 4 (there is a start and end coordinate for each chiplet)
         assert(hetero_chiplet_input_vector.size() % 4 == 0);
+        cout<<"completed stringToVector"<<endl;
         return hetero_chiplet_input_vector;
     }
 
@@ -141,21 +162,34 @@ class GarnetNetwork : public Network
         vector<int> base_router_list(m_num_rows*m_num_cols, -1);
         // initialize vector size of row*col with all values =-1
 
+        cout<<"HERE"<<endl;
+        for (int j=0;j<hetero_chiplet_input_vector.size();j++){
+            cout<<hetero_chiplet_input_vector[j]<<",";
+        }
+        cout<<"HERE2"<<endl;
+
         for (int i=0; i<hetero_chiplet_input_vector.size()%4;i++) {
             // for each chiplet designated by the user
+            cout<<"\nhere"<<endl;
             for (int row=hetero_chiplet_input_vector[i*4+2];row<=hetero_chiplet_input_vector[i*4+3];row++) {
                 for(int col=hetero_chiplet_input_vector[i*4];col<=hetero_chiplet_input_vector[i*4+1];col++){
                     int router_id = row*m_num_cols+col;
+                    cout<<"router_id: "<<router_id<<endl;
                     base_router_list[router_id] = i;
+                    cout<<"base_router_list[router_id]: "<<base_router_list[router_id]<<endl;
                     // set value at base_router_id to chiplet number (i)
                     // creation of this vector only takes place one time, so search/further calculation not needed in future
                 }
             }
         }
+        cout<<"\n";
+        for(int j=0;j<base_router_list.size();j++){
+            cout<<base_router_list[j]<<",";
+        }
 
         if(count(base_router_list.begin(), base_router_list.end(), -1)){
             // if the vector base_router_list includes the value -1, then the input did not include all routers
-            fatal("Hetero Chiplet input does not include all routers");
+            fatal("\nHetero Chiplet input does not include all routers");
             exit(0);
         }
         return base_router_list;
