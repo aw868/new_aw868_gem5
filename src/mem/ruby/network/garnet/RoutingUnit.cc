@@ -516,7 +516,6 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     cout<<"File: RoutingUnit.cc"<<endl;
     cout<<"Starting ComputeChipletHetero"<<endl;
     // cout<<"Came from: "<<inport_dirn<<"\n"<<endl;
-    int num_sectors = 5;
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
     int z_depth = m_router->get_net_ptr()->getZDepth();
@@ -528,7 +527,7 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
 
-    int my_sector = m_router->get_net_ptr()->getSectorHe(my_id, my_coords[0], num_sectors);
+    int my_sector = m_router->get_net_ptr()->getSectorHe(my_id, my_coords[0]);
     cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
@@ -537,7 +536,7 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
 
-    int dest_sector = m_router->get_net_ptr()->getSectorHe(dest_id, dest_coords[0], num_sectors);
+    int dest_sector = m_router->get_net_ptr()->getSectorHe(dest_id, dest_coords[0]);
     cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);
@@ -616,6 +615,7 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
             outport_dirn = "Down";
         }
     }
+    cout<<"outport_dirn: "<<outport_dirn<<endl;
 
     return m_outports_dirn2idx[outport_dirn];
 }

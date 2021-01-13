@@ -176,9 +176,9 @@ class GarnetNetwork : public Network
         return base_router_list;
     }
 
-    int getSectorHe(int router_id, int z_coord, int num_sectors) { 
+    int getSectorHe(int router_id, int z_coord) { 
         cout<<"File: GarnetNetwork.hh"<<endl;
-        cout<<"getSectorHe(int router_id, int z_coord, int num_sectors)"<<endl;
+        cout<<"getSectorHe(int router_id, int z_coord)"<<endl;
 
         int sector = -1;
         int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
