@@ -226,6 +226,7 @@ NetworkInterface::wakeup()
             assert(t_flit->m_width == iPort->bitWidth());
 
             int vnet = t_flit->get_vnet();
+            cout<<"VNET: "<<vnet<<endl;
             t_flit->set_dequeue_time(curTick());
 
             // If a tail flit is received, enqueue into the protocol buffers
@@ -233,6 +234,9 @@ NetworkInterface::wakeup()
             // credits.
             if (t_flit->get_type() == TAIL_ ||
                 t_flit->get_type() == HEAD_TAIL_) {
+                    cout<<"HERE"<<endl;
+                    // cout<<outNode_ptr<<endl;
+
                 if (!iPort->messageEnqueuedThisCycle &&
                     outNode_ptr[vnet]->areNSlotsAvailable(1, curTime)) {
                     // Space is available. Enqueue to protocol buffer.
