@@ -23,10 +23,14 @@ for i in range(num_layouts):
             for x in range(0, x_length-x_min):
                 if chiplet_array[router+x] == -1:
                     x_max = x+x_min
+                else:
+                    break
 
             for y in range(0, y_length-y_min):
                 if chiplet_array[router+y*y_length] == -1:
                     y_max = y+y_min
+                else:
+                    break
 
             # print("x_min: " , x_min , " | x_max: " , x_max)
             # print("y_min: " , y_min , " | y_max: " , y_max)
@@ -41,12 +45,13 @@ for i in range(num_layouts):
                 for fill_x in range(x_min, rand_x+1):
                     # print("fill_x: " , fill_x , " | fill_y: " , fill_y)
                     # print("router,fill_x,fill_y*y_length: " , router+fill_x+fill_y*y_length)
+                    assert chiplet_array[fill_x+fill_y*y_length] == -1
                     chiplet_array[fill_x+fill_y*y_length] = chiplet_count
 
             chiplet_count+=1
             chiplet_coords.extend([x_min, rand_x, y_min, rand_y])
             
-    print(chiplet_coords)
+    print(chiplet_coords, "\n")
     for o in range(y_length-1, -1, -1):
         # print out current values in chiplet_array
         print(chiplet_array[o*x_length:(o+1)*x_length])
