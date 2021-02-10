@@ -50,7 +50,7 @@ for i in range(num_layouts):
 
             chiplet_count+=1
             chiplet_coords.extend([x_min, rand_x, y_min, rand_y])
-            
+    
     print(chiplet_coords, "\n")
     for o in range(y_length-1, -1, -1):
         # print out current values in chiplet_array
@@ -58,3 +58,7 @@ for i in range(num_layouts):
     print("\n")
 
     assert not -1 in chiplet_array
+
+    f = open("randomHeteroLayouts.txt", "a")
+    f.write(chiplet_coords)
+    f.close()
