@@ -135,6 +135,7 @@ class GarnetNetwork : public Network
         for(int i = 0; i<hetero_chiplet_input_vector.size(); i++) {    //print all splitted strings
             cout << hetero_chiplet_input_vector.at(i)<<",";
         }
+        cout<<endl;
 
         // assert that vector length is multiple of 4 (there is a start and end coordinate for each chiplet)
         assert(hetero_chiplet_input_vector.size() % 4 == 0);
@@ -146,7 +147,7 @@ class GarnetNetwork : public Network
         cout<<"m_hetero_chiplet_input: "<<hetero_chiplet_input_string<<endl;
         vector<int> hetero_chiplet_input_vector = stringToVector(hetero_chiplet_input_string);
         // stringToVector should return the input m_hetero_chiplets_input as a vector<int>
-         
+         cout<<"m_num_rows: "<<m_num_rows<<" | m_num_cols: "<<m_num_cols<<endl;
         vector<int> base_router_list(m_num_rows*m_num_cols, -1);
         // initialize vector size of row*col with all values =-1
 
@@ -154,10 +155,10 @@ class GarnetNetwork : public Network
             // for each chiplet designated by the user
             for (int row=hetero_chiplet_input_vector[i*4+2];row<=hetero_chiplet_input_vector[i*4+3];row++) {
                 for(int col=hetero_chiplet_input_vector[i*4];col<=hetero_chiplet_input_vector[i*4+1];col++){
-                    int router_id = row*m_num_cols+col;
-                    cout<<"router_id: "<<router_id<<endl;
+                    int router_id = row*m_num_rows+col;
+                    // cout<<"router_id: "<<router_id<<endl;
                     base_router_list[router_id] = i;
-                    cout<<"base_router_list[router_id]: "<<base_router_list[router_id]<<endl;
+                    // cout<<"base_router_list[router_id]: "<<base_router_list[router_id]<<endl;
                     // set value at base_router_id to chiplet number (i)
                     // creation of this vector only takes place one time, so search/further calculation not needed in future
                 }
@@ -177,8 +178,8 @@ class GarnetNetwork : public Network
     }
 
     int getSectorHe(int router_id, int z_coord) { 
-        cout<<"File: GarnetNetwork.hh"<<endl;
-        cout<<"getSectorHe(int router_id, int z_coord)"<<endl;
+        // cout<<"File: GarnetNetwork.hh"<<endl;
+        // cout<<"getSectorHe(int router_id, int z_coord)"<<endl;
 
         int sector = -1;
         int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);

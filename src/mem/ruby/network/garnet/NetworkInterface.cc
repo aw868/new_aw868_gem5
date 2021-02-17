@@ -226,7 +226,6 @@ NetworkInterface::wakeup()
             assert(t_flit->m_width == iPort->bitWidth());
 
             int vnet = t_flit->get_vnet();
-            cout<<"VNET: "<<vnet<<endl;
             t_flit->set_dequeue_time(curTick());
 
             // If a tail flit is received, enqueue into the protocol buffers
@@ -234,11 +233,16 @@ NetworkInterface::wakeup()
             // credits.
             if (t_flit->get_type() == TAIL_ ||
                 t_flit->get_type() == HEAD_TAIL_) {
-                    cout<<"HERE"<<endl;
-                    // cout<<outNode_ptr<<endl;
-
+                    cout<<"NetworkInterface.cc: wakeup()"<<endl;
+                    cout<<"vnet: "<<vnet<<endl;
+                    cout<<"outNode_ptr size: "<<outNode_ptr.size()<<endl;
+                    cout<<"test seg fault: "<<outNode_ptr[vnet]<<endl;
+                    int len = sizeof(outNode_ptr)/sizeof(outNode_ptr[0]);
+                    cout<<"length of outNode_ptr: "<<len<<endl;
+                    
                 if (!iPort->messageEnqueuedThisCycle &&
                     outNode_ptr[vnet]->areNSlotsAvailable(1, curTime)) {
+                    cout<<"HERE1"<<endl;
                     // Space is available. Enqueue to protocol buffer.
                     outNode_ptr[vnet]->enqueue(t_flit->get_msg_ptr(), curTime,
                                                cyclesToTicks(Cycles(1)));
@@ -252,6 +256,7 @@ NetworkInterface::wakeup()
                     incrementStats(t_flit);
                     delete t_flit;
                 } else {
+                    cout<<"HERE2"<<endl;
                     // No space available- Place tail flit in stall queue and
                     // set up a callback for when protocol buffer is dequeued.
                     // Stat update and flit pointer deletion will occur upon
