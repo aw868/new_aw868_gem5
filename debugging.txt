@@ -16,7 +16,7 @@
 ./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/hetero_results/ChipletHe_ChipletHe/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=32 --num-dirs=32 --network=garnet --topology=Hetero_Chiplets --mesh-rows=4 --y-depth=8 --z-depth=1 --hetero-chiplets-input=0,1,0,1,2,5,0,3,6,7,0,1,0,1,2,3,6,7,2,3 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
 (not okay)
 
-./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/hetero_results/ChipletHe_ChipletHe/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=8 --num-dirs=8 --network=garnet --topology=Hetero_Chiplets --mesh-rows=4 --y-depth=2 --z-depth=1 --hetero-chiplets-input=0,3,0,1 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
+./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/hetero_results/ChipletHe_ChipletHe/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=8 --num-dirs=8 --network=garnet --topology=Hetero_Chiplets --mesh-rows=2 --y-depth=4 --z-depth=1 --hetero-chiplets-input=0,3,0,1 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
 (not okay)
 
 ./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/hetero_results/ChipletHe_ChipletHe/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=8 --num-dirs=8 --network=garnet --topology=Hetero_Chiplets --mesh-rows=4 --y-depth=2 --z-depth=1 --hetero-chiplets-input=0,1,0,2,2,3,0,1 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
