@@ -57,7 +57,7 @@ class Mesh_XYZ(SimpleTopology):
         nodes = self.nodes
 
         num_routers = options.num_cpus
-        x_depth = options.mesh_rows
+        x_depth = options.mesh_cols
 
         # default values for link latency and router latency.
         # Can be over-ridden on a per link/router basis
@@ -75,8 +75,8 @@ class Mesh_XYZ(SimpleTopology):
         else:
             z_depth = int(num_routers/x_depth/x_depth)
 
-        if (options.y_depth>0):
-            y_depth=options.y_depth
+        if (options.mesh_rows>0):
+            y_depth=options.mesh_rows
         else:
             y_depth = int(num_routers / x_depth /z_depth)
 

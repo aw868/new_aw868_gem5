@@ -65,15 +65,15 @@ class Homo_Chiplets(SimpleTopology):
         link_latency = options.link_latency # used by simple and garnet
         router_latency = options.router_latency # only used by garnet
 
-        x_depth = options.mesh_rows
+        x_depth = options.mesh_cols
 
         if (options.z_depth>0):
             z_depth=options.z_depth
         else:
             z_depth = int(user_routers/x_depth/x_depth)
 
-        if (options.y_depth>0):
-            y_depth=options.y_depth
+        if (options.mesh_rows>0):
+            y_depth=options.mesh_rows
         else:
             y_depth = int(user_routers/x_depth/z_depth)
 
