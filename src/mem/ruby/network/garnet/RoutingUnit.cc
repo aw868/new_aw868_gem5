@@ -471,8 +471,8 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
 {
     PortDirection outport_dirn = "Unknown";
     cout<<"##########################################################################"<<endl;
-    cout<<"File: RoutingUnit.cc"<<endl;
-    cout<<"Starting ComputeChipletHetero"<<endl;
+    // cout<<"File: RoutingUnit.cc"<<endl;
+    cout<<"ComputeChipletHetero()"<<endl;
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
     int z_depth = m_router->get_net_ptr()->getZDepth();
@@ -503,8 +503,8 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
     bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sector
 
-    cout<<" x_hops: "<<x_hops<<" | y_hops: "<<y_hops<<" | z_hops: "<<z_hops<<endl;
-    cout<<" x_dirn: "<<x_dirn<<" | y_dirn: "<<y_dirn<<" | z_dirn: "<<z_dirn<<" | same_sector: "<<same_sector<<endl;
+    // cout<<" x_hops: "<<x_hops<<" | y_hops: "<<y_hops<<" | z_hops: "<<z_hops<<endl;
+    // cout<<" x_dirn: "<<x_dirn<<" | y_dirn: "<<y_dirn<<" | z_dirn: "<<z_dirn<<" | same_sector: "<<same_sector<<endl;
 
     // already checked that in outportCompute() function
     assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));

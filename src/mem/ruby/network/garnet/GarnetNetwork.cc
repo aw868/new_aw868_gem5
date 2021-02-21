@@ -57,7 +57,7 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     : Network(p)
 {
     m_num_rows = p->num_rows;
-    m_num_cols = p->y_depth;
+    m_num_cols = p->num_cols;
     m_z_depth = p->z_depth;
     m_num_chiplets_x = p->num_chiplets_x;
     m_num_chiplets_y = p->num_chiplets_y;

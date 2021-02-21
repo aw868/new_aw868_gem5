@@ -36,6 +36,7 @@
 #include <vector>
 #include <sstream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 #include "mem/ruby/network/Network.hh"
@@ -130,22 +131,26 @@ class GarnetNetwork : public Network
             checkInt >> x; 
             hetero_chiplet_input_vector.push_back(x);
         }
-        
-        cout<<"hetero_chiplet_input_vector: ";
-        for(int i = 0; i<hetero_chiplet_input_vector.size(); i++) {    //print all splitted strings
-            cout << hetero_chiplet_input_vector.at(i)<<",";
-        }
-        cout<<endl;
 
         // assert that vector length is multiple of 4 (there is a start and end coordinate for each chiplet)
         assert(hetero_chiplet_input_vector.size() % 4 == 0);
         return hetero_chiplet_input_vector;
     }
 
-    vector<int> calculateHeChipletVector(string hetero_chiplet_input_string) {
-        cout<<"calculateHeChipletVector(string hetero_chiplet_input_string)"<<endl;
-        cout<<"m_hetero_chiplet_input: "<<hetero_chiplet_input_string<<endl;
-        vector<int> hetero_chiplet_input_vector = stringToVector(hetero_chiplet_input_string);
+    void printVector(vector<int> NUChiplet) {
+        cout<<"\nbase_router_list:"<<endl;;
+        for (int row=m_num_rows-1; row>=0; row--) {
+            for(int col=0; col<m_num_cols; col++){
+                cout<<setw(2)<<NUChiplet[row*m_num_cols+col]<<", ";
+            }
+            cout<<endl;
+        }
+    }
+
+    vector<int> calculateHeChipletVector(string nonuniform_chiplet_input) {
+        cout<<"calculateHeChipletVector(string nonuniform_chiplet_input)"<<endl;
+        cout<<"m_hetero_chiplet_input: "<<nonuniform_chiplet_input<<endl;
+        vector<int> hetero_chiplet_input_vector = stringToVector(nonuniform_chiplet_input);
         // stringToVector should return the input m_hetero_chiplets_input as a vector<int>
          cout<<"m_num_rows: "<<m_num_rows<<" | m_num_cols: "<<m_num_cols<<endl;
         vector<int> base_router_list(m_num_rows*m_num_cols, -1);
@@ -153,25 +158,25 @@ class GarnetNetwork : public Network
 
         for (int i=0; i<hetero_chiplet_input_vector.size()/4;i++) {
             // for each chiplet designated by the user
-            for (int row=hetero_chiplet_input_vector[i*4+2];row<=hetero_chiplet_input_vector[i*4+3];row++) {
-                for(int col=hetero_chiplet_input_vector[i*4];col<=hetero_chiplet_input_vector[i*4+1];col++){
-                    int router_id = row*m_num_rows+col;
-                    // cout<<"router_id: "<<router_id<<endl;
+            for (int row=hetero_chiplet_input_vector[i*4+1];row<=hetero_chiplet_input_vector[i*4+3];row++) {
+                assert(row<m_num_rows);
+                for(int col=hetero_chiplet_input_vector[i*4];col<=hetero_chiplet_input_vector[i*4+2];col++){
+                    assert(row*col < m_num_rows*m_num_cols);
+                    assert(col<m_num_cols);
+                    int router_id = row*m_num_cols+col;
                     base_router_list[router_id] = i;
-                    // cout<<"base_router_list[router_id]: "<<base_router_list[router_id]<<endl;
+
                     // set value at base_router_id to chiplet number (i)
                     // creation of this vector only takes place one time, so search/further calculation not needed in future
                 }
             }
         }
-        cout<<"\nbase_router_list: ";
-        for(int j=0;j<base_router_list.size();j++){
-            cout<<base_router_list[j]<<",";
-        }
-        cout<<"\n";
+
+        printVector(base_router_list);
+
         if(count(base_router_list.begin(), base_router_list.end(), -1)){
             // if the vector base_router_list includes the value -1, then the input did not include all routers
-            fatal("\nHetero Chiplet input does not include all routers");
+            fatal("\nNon-Uniform Chiplet input does not include all routers");
             exit(0);
         }
         return base_router_list;

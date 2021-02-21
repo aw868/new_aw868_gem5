@@ -38,8 +38,8 @@ class GarnetNetwork(RubyNetwork):
     type = 'GarnetNetwork'
     cxx_header = "mem/ruby/network/garnet/GarnetNetwork.hh"
     num_rows = Param.Int(0, "number of rows if 2D (mesh/torus/..) topology");
-    y_depth = Param.Int(0, "number of columns if mesh/torus... topology");
-    z_depth = Param.Int(0, "value of z-depth");
+    num_cols = Param.Int(0, "number of columns if 2D (mesh/torus..) topology");
+    z_depth = Param.Int(0, "length of the z-dimension");
     num_chiplets_x = Param.Int(0, "number of chiplets in the x-dimension");
     num_chiplets_y = Param.Int(0, "number of chiplets in the y-dimension");
     hetero_chiplets_input = Param.String("", "heterogeneous chiplet designation (start row, end row, start col, end col)");
