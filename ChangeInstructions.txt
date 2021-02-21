@@ -19,7 +19,7 @@ TO ADD ROUTING ALGORITHMS:
     - public: (line ~46)
 3. src/mem/ruby/network/garnet2.0/CommonTypes.hh
     - enum RoutingAlgorithm (line ~46)
-4. src/mem/ruby/network/garnet2.0/Network.py
+4. configs/network/Network.py
     - parser.add_option("--routing-algorithm", action="store", type="int", (line ~74)
 5. src/mem/ruby/network/garnet2.0/GarnetNetwork.py
     - class GarnetNetwork(RubyNetwork) (line ~50)

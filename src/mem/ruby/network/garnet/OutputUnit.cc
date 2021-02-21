@@ -91,12 +91,12 @@ OutputUnit::has_free_vc(int vnet, int src_id, int dest_id, int outport)
     int vcs_per_up = 1;
     int vcs_per_down = 1;
 
-    cout<<"OutputUnit::has_free_vc("<<vnet<<")"<<endl;
+    // cout<<"OutputUnit::has_free_vc("<<vnet<<")"<<endl;
     int routing_algorithm = m_router->get_net_ptr()->getRoutingAlgorithm();
     PortDirection outportDirection = m_router->getOutportDirection(outport);
 
     if ((routing_algorithm == 3 || routing_algorithm == 4) && m_vc_per_vnet > 2){ 
-        // if we are using heterogeneous/homogeneous chiplets
+        // if we are using non-uniform/uniform chiplets
 
         // int src_sector = m_router->get_net_ptr()->getSectorHo(src_id);
         // int dest_sector = m_router->get_net_ptr()->getSectorHo(src_id);

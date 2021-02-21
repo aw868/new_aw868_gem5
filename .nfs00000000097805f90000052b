@@ -1,4 +1,4 @@
-# to run: python3 generateHeteroLayout.py
+# to run: python3 generateNonUniformLayout.py
 import random
 
 print("Enter num rows (y-length): ")
@@ -59,6 +59,6 @@ for i in range(num_layouts):
 
     assert not -1 in chiplet_array
 
-    f = open("randomHeteroLayouts.txt", "a")
+    f = open("randomNonUniformLayouts.txt", "a")
     f.write(chiplet_coords)
     f.close()

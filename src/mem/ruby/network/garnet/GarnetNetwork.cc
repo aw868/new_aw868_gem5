@@ -61,7 +61,7 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     m_z_depth = p->z_depth;
     m_num_chiplets_x = p->num_chiplets_x;
     m_num_chiplets_y = p->num_chiplets_y;
-    m_hetero_chiplets_input = p->hetero_chiplets_input;
+    m_nu_chiplets_input = p->nu_chiplets_input;
     m_ni_flit_size = p->ni_flit_size;
     m_max_vcs_per_vnet = 0;
     m_buffers_per_data_vc = p->buffers_per_data_vc;
@@ -142,7 +142,7 @@ GarnetNetwork::init()
         // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0 && getRoutingAlgorithm() == 3) {
-        cout<<"Using Homogeneous Chiplet Routing Algorithm"<<endl;
+        cout<<"Using Uniform Chiplet Routing Algorithm"<<endl;
         m_num_rows = getNumRows();
         
         if (getZDepth()>0){
@@ -165,7 +165,7 @@ GarnetNetwork::init()
         // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0 && getRoutingAlgorithm() == 4) {
-        cout<<"Using Heterogeneous Chiplet Routing Algorithm"<<endl;
+        cout<<"Using Non-Uniform Chiplet Routing Algorithm"<<endl;
         m_num_rows = getNumRows();
         
         if (getZDepth()>0){
@@ -180,7 +180,7 @@ GarnetNetwork::init()
             m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
         }
         // CALL INITIALIZATION OF SECTOR VECTOR HERE
-        m_sector_list = calculateHeChipletVector(m_hetero_chiplets_input);
+        m_sector_list = calculateNUChipletVector(m_nu_chiplets_input);
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0) { //XY algorithm
         cout<<"Using XY Algorithm"<<endl;

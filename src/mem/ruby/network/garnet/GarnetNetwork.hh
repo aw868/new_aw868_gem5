@@ -70,7 +70,7 @@ class GarnetNetwork : public Network
     int getZDepth() { return m_z_depth; }
     int getNumChipletsX() { return m_num_chiplets_x;}
     int getNumChipletsY() { return m_num_chiplets_y;}
-    string getHeteroInput() { return m_hetero_chiplets_input;}
+    string getNUChipletInput() { return m_nu_chiplets_input;}
     int* getCoords(int router_id, int coords[]) {
         int z_coord = router_id/(m_num_rows*m_num_cols); //calculating z coordinate
         int x_coord = -1;
@@ -91,7 +91,7 @@ class GarnetNetwork : public Network
         return coords;
     }
     
-    int getSectorHo(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
+    int getSectorU(int router_id, int z_coord, int num_chiplets_x, int num_chiplets_y) { 
         // location = id - (GlobalParams::mesh_dim_x * GlobalParams::mesh_dim_y)*(layer_num-1);
         // subnet_x = (location % GlobalParams::mesh_dim_x) / GlobalParams::subnet_dim_x;
         // subnet_y = ((location / GlobalParams::mesh_dim_x) % GlobalParams::mesh_dim_y) / GlobalParams::subnet_dim_y;
@@ -105,7 +105,7 @@ class GarnetNetwork : public Network
         int sector_y = ((base_id/m_num_rows)%m_num_cols)/subnet_dim_y;
         int sector = sector_x+sector_y*(m_num_rows/subnet_dim_x);
 
-        // cout<<"getSectorHo: base_id: "<<base_id<<" | sector_x: "<<sector_x<<" | sector_y: "<<sector_y<<" | sector: "<<sector<<endl;
+        // cout<<"getSectorU: base_id: "<<base_id<<" | sector_x: "<<sector_x<<" | sector_y: "<<sector_y<<" | sector: "<<sector<<endl;
         
         assert(sector<num_chiplets_x*num_chiplets_y && sector>=0);
         return sector;
@@ -120,7 +120,7 @@ class GarnetNetwork : public Network
     vector<int> stringToVector(string stringInput) {
         // turns input string into vector of ints (should ignore commas in input)
         cout<<"stringToVector(string stringInput)"<<endl;
-        vector<int> hetero_chiplet_input_vector;
+        vector<int> nu_chiplet_input_vector;
 
         stringstream s_stream(stringInput); //create string stream from the string
         while(s_stream.good()) {
@@ -129,12 +129,12 @@ class GarnetNetwork : public Network
             stringstream checkInt(substr); 
             int x = 0; 
             checkInt >> x; 
-            hetero_chiplet_input_vector.push_back(x);
+            nu_chiplet_input_vector.push_back(x);
         }
 
         // assert that vector length is multiple of 4 (there is a start and end coordinate for each chiplet)
-        assert(hetero_chiplet_input_vector.size() % 4 == 0);
-        return hetero_chiplet_input_vector;
+        assert(nu_chiplet_input_vector.size() % 4 == 0);
+        return nu_chiplet_input_vector;
     }
 
     void printVector(vector<int> NUChiplet) {
@@ -147,20 +147,20 @@ class GarnetNetwork : public Network
         }
     }
 
-    vector<int> calculateHeChipletVector(string nonuniform_chiplet_input) {
-        cout<<"calculateHeChipletVector(string nonuniform_chiplet_input)"<<endl;
-        cout<<"m_hetero_chiplet_input: "<<nonuniform_chiplet_input<<endl;
-        vector<int> hetero_chiplet_input_vector = stringToVector(nonuniform_chiplet_input);
-        // stringToVector should return the input m_hetero_chiplets_input as a vector<int>
+    vector<int> calculateNUChipletVector(string nonuniform_chiplet_input) {
+        cout<<"calculateNUChipletVector(string nonuniform_chiplet_input)"<<endl;
+        cout<<"m_nu_chiplet_input: "<<nonuniform_chiplet_input<<endl;
+        vector<int> nu_chiplet_input_vector = stringToVector(nonuniform_chiplet_input);
+        // stringToVector should return the input m_nu_chiplets_input as a vector<int>
          cout<<"m_num_rows: "<<m_num_rows<<" | m_num_cols: "<<m_num_cols<<endl;
         vector<int> base_router_list(m_num_rows*m_num_cols, -1);
         // initialize vector size of row*col with all values =-1
 
-        for (int i=0; i<hetero_chiplet_input_vector.size()/4;i++) {
+        for (int i=0; i<nu_chiplet_input_vector.size()/4;i++) {
             // for each chiplet designated by the user
-            for (int row=hetero_chiplet_input_vector[i*4+1];row<=hetero_chiplet_input_vector[i*4+3];row++) {
+            for (int row=nu_chiplet_input_vector[i*4+1];row<=nu_chiplet_input_vector[i*4+3];row++) {
                 assert(row<m_num_rows);
-                for(int col=hetero_chiplet_input_vector[i*4];col<=hetero_chiplet_input_vector[i*4+2];col++){
+                for(int col=nu_chiplet_input_vector[i*4];col<=nu_chiplet_input_vector[i*4+2];col++){
                     assert(row*col < m_num_rows*m_num_cols);
                     assert(col<m_num_cols);
                     int router_id = row*m_num_cols+col;
@@ -182,9 +182,9 @@ class GarnetNetwork : public Network
         return base_router_list;
     }
 
-    int getSectorHe(int router_id, int z_coord) { 
+    int getSectorNU(int router_id, int z_coord) { 
         // cout<<"File: GarnetNetwork.hh"<<endl;
-        // cout<<"getSectorHe(int router_id, int z_coord)"<<endl;
+        // cout<<"getSectorNU(int router_id, int z_coord)"<<endl;
 
         int sector = -1;
         int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
@@ -280,7 +280,7 @@ class GarnetNetwork : public Network
     int m_z_depth;
     int m_num_chiplets_x;
     int m_num_chiplets_y;
-    string m_hetero_chiplets_input;
+    string m_nu_chiplets_input;
     uint32_t m_ni_flit_size;
     uint32_t m_max_vcs_per_vnet;
     uint32_t m_buffers_per_ctrl_vc;

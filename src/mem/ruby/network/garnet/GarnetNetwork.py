@@ -42,13 +42,13 @@ class GarnetNetwork(RubyNetwork):
     z_depth = Param.Int(0, "length of the z-dimension");
     num_chiplets_x = Param.Int(0, "number of chiplets in the x-dimension");
     num_chiplets_y = Param.Int(0, "number of chiplets in the y-dimension");
-    hetero_chiplets_input = Param.String("", "heterogeneous chiplet designation (start row, end row, start col, end col)");
+    nu_chiplets_input = Param.String("", "non-uniform chiplet designation (start col, start row, end col, end row)");
     ni_flit_size = Param.UInt32(16, "network interface flit size in bytes")
     vcs_per_vnet = Param.UInt32(4, "virtual channels per virtual network");
     buffers_per_data_vc = Param.UInt32(4, "buffers per data virtual channel");
     buffers_per_ctrl_vc = Param.UInt32(1, "buffers per ctrl virtual channel");
     routing_algorithm = Param.Int(0,
-        "0: Weight-based Table, 1: XY, 2:XYZ, 3:HO_CHIPLETS, 4:HE_CHIPLETS");
+        "0: Weight-based Table, 1: XY, 2:XYZ, 3:U_CHIPLETS, 4:NU_CHIPLETS");
     enable_fault_model = Param.Bool(False, "enable network fault model");
     fault_model = Param.FaultModel(NULL, "network fault model");
     garnet_deadlock_threshold = Param.UInt32(50000,

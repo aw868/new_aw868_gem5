@@ -183,10 +183,10 @@ RoutingUnit::outportCompute(RouteInfo route, int inport,
         // any custom algorithm
         case XYZ_:     outport =
             outportComputeXYZ(route, inport, inport_dirn); break;
-        case HO_CHIPLETS: outport =
-            outportComputeHoChiplets(route, inport, inport_dirn); break;
-        case HE_CHIPLETS: outport =
-            outportComputeHeChiplets(route, inport, inport_dirn); break;
+        case U_CHIPLETS_: outport =
+            outportComputeUChiplets(route, inport, inport_dirn); break;
+        case NU_CHIPLETS_: outport =
+            outportComputeNUChiplets(route, inport, inport_dirn); break;
         default: outport =
             lookupRoutingTable(route.vnet, route.net_dest); break;
     }
@@ -340,7 +340,7 @@ RoutingUnit::outportComputeXYZ(RouteInfo route,
 }
 
 int
-RoutingUnit::outportComputeHoChiplets(RouteInfo route,
+RoutingUnit::outportComputeUChiplets(RouteInfo route,
                               int inport,
                               PortDirection inport_dirn)
 {
@@ -363,7 +363,7 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
     // cout<<"my_id: "<<my_id<<" | z_coord: "<<my_coords[0]<<endl;
-    int my_sector = m_router->get_net_ptr()->getSectorHo(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
+    int my_sector = m_router->get_net_ptr()->getSectorU(my_id, my_coords[0], num_chiplets_x, num_chiplets_y);
 
     // cout<<"Current Sector: "<<my_sector<<endl;
 
@@ -372,7 +372,7 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
     // cout<<"dest_id: "<<dest_id<<" | z_coord: "<<dest_coords[0]<<endl;
-    int dest_sector = m_router->get_net_ptr()->getSectorHo(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
+    int dest_sector = m_router->get_net_ptr()->getSectorU(dest_id, dest_coords[0], num_chiplets_x, num_chiplets_y);
 
     // cout<<"Destination Sector: "<<dest_sector<<endl;
 
@@ -465,14 +465,14 @@ RoutingUnit::outportComputeHoChiplets(RouteInfo route,
 }
 
 int
-RoutingUnit::outportComputeHeChiplets(RouteInfo route,
+RoutingUnit::outportComputeNUChiplets(RouteInfo route,
                               int inport,
                               PortDirection inport_dirn)
 {
     PortDirection outport_dirn = "Unknown";
     cout<<"##########################################################################"<<endl;
     // cout<<"File: RoutingUnit.cc"<<endl;
-    cout<<"ComputeChipletHetero()"<<endl;
+    cout<<"outportComputeNUChiplets()"<<endl;
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
     int z_depth = m_router->get_net_ptr()->getZDepth();
@@ -483,7 +483,7 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
     cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
 
-    int my_sector = m_router->get_net_ptr()->getSectorHe(my_id, my_coords[0]);
+    int my_sector = m_router->get_net_ptr()->getSectorNU(my_id, my_coords[0]);
     cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
@@ -491,7 +491,7 @@ RoutingUnit::outportComputeHeChiplets(RouteInfo route,
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
     cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
 
-    int dest_sector = m_router->get_net_ptr()->getSectorHe(dest_id, dest_coords[0]);
+    int dest_sector = m_router->get_net_ptr()->getSectorNU(dest_id, dest_coords[0]);
     cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);

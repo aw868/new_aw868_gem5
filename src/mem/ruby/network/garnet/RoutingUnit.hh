@@ -72,10 +72,10 @@ class RoutingUnit
     int outportComputeNorthLast(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn); 
-    int outportComputeHoChiplets(RouteInfo route,
+    int outportComputeUChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
-    int outportComputeHeChiplets(RouteInfo route,
+    int outportComputeNUChiplets(RouteInfo route,
                          int inport,
                          PortDirection inport_dirn);
     // Custom Routing Algorithm using Port Directions
