@@ -24,9 +24,6 @@
 # THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# Authors: Brad Beckmann
-#          Tushar Krishna
 
 from __future__ import print_function
 from __future__ import absolute_import
@@ -36,15 +33,15 @@ from m5.objects import *
 
 from common import FileSystemConfig
 
-from .BaseTopology import SimpleTopology
+from topologies.BaseTopology import SimpleTopology
 
 # Creates a generic Mesh assuming an equal number of cache
 # and directory controllers.
 # XY routing is enforced (using link weights)
 # to guarantee deadlock freedom.
 
-class Mesh_XY(SimpleTopology):
-    description='Mesh_XY'
+class VLB_Mesh_XY(SimpleTopology):
+    description='VLB_Mesh_XY'
 
     def __init__(self, controllers):
         self.nodes = controllers
@@ -58,8 +55,6 @@ class Mesh_XY(SimpleTopology):
         num_routers = options.num_cpus
         num_rows = options.mesh_rows
 
-        print("options.y_depth: ", options.y_depth);
-
         # default values for link latency and router latency.
         # Can be over-ridden on a per link/router basis
         link_latency = options.link_latency # used by simple and garnet
@@ -70,26 +65,13 @@ class Mesh_XY(SimpleTopology):
         # Also, obviously the number or rows must be <= the number of routers
         cntrls_per_router, remainder = divmod(len(nodes), num_routers)
         assert(num_rows > 0 and num_rows <= num_routers)
-        if (options.y_depth>0):
-            num_columns=options.y_depth
-        else:
-            num_columns = int(num_routers / num_rows)
-
+        num_columns = int(num_routers / num_rows)
         assert(num_columns * num_rows == num_routers)
 
         # Create the routers in the mesh
-        routers = []
-        for i in range(num_routers):
-            if i<num_rows/2 and i:
-                # quadrant 1
-                routers += [Router(router_id=i, latency = router_latency, width = 4)]
-            
-        
+        routers = [Router(router_id=i, latency = router_latency, width=32) \
+            for i in range(num_routers)]
         network.routers = routers
-
-        # routers = [Router(router_id=i, latency = router_latency) \
-        #     for i in range(num_routers)]
-        # network.routers = routers
 
         # link counter to set unique link ids
         link_count = 0
@@ -159,7 +141,7 @@ class Mesh_XY(SimpleTopology):
                                              weight=1))
                     link_count += 1
 
-        # North output to South input links (weight = 2)
+        # North output to South input links (weight = 1)
         for col in range(num_columns):
             for row in range(num_rows):
                 if (row + 1 < num_rows):
@@ -171,10 +153,10 @@ class Mesh_XY(SimpleTopology):
                                              src_outport="North",
                                              dst_inport="South",
                                              latency = link_latency,
-                                             weight=2))
+                                             weight=1))
                     link_count += 1
 
-        # South output to North input links (weight = 2)
+        # South output to North input links (weight = 1)
         for col in range(num_columns):
             for row in range(num_rows):
                 if (row + 1 < num_rows):
@@ -186,7 +168,7 @@ class Mesh_XY(SimpleTopology):
                                              src_outport="South",
                                              dst_inport="North",
                                              latency = link_latency,
-                                             weight=2))
+                                             weight=1))
                     link_count += 1
 
 
@@ -196,4 +178,4 @@ class Mesh_XY(SimpleTopology):
     def registerTopology(self, options):
         for i in range(options.num_cpus):
             FileSystemConfig.register_node([i],
-                    MemorySize(options.mem_size) / options.num_cpus, i)
+                    MemorySize(options.mem_size) // options.num_cpus, i)

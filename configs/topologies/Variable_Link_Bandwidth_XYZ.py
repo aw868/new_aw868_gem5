@@ -43,104 +43,84 @@ from .BaseTopology import SimpleTopology
 # XYZ routing is enforced (using link weights)
 # to guarantee deadlock freedom.
 
-class Variable_Link_Bandwidth(SimpleTopology):
-    description='Variable_Link_Bandwidth'
+class VLB_Mesh_XYZ(SimpleTopology):
+    description='VLB_Mesh_XYZ'
 
     def __init__(self, controllers):
-        self.nodes = controllers #includes directories and caches
+        self.nodes = controllers
 
-        # test topology for variable link badwidth from garnet3.0
-        # Makes a MeshXYZChiplet topology with the following composition:
-
-        # layer 2: routers and caches(L1)
-        # layer 1: routers, directories(corners only) and caches(L1)
-        # layer 0: routers only (not included in num_cpus)
+    # Makes a generic 3D mesh
+    # assuming an equal number of cache and directory cntrls
 
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
-        print("File: Variable_Link_Bandwidth.py")
+        print("File: VLB_Mesh_XYZ.py")
         nodes = self.nodes
-        print("len(nodes) (includes caches and directories): ", len(nodes))
 
-        user_routers = options.num_cpus # only the user specified number of routers (no layer 0)
+        num_routers = options.num_cpus
+        x_depth = options.mesh_cols
 
+        # default values for link latency and router latency.
+        # Can be over-ridden on a per link/router basis
         link_latency = options.link_latency # used by simple and garnet
         router_latency = options.router_latency # only used by garnet
 
-        x_depth = options.mesh_rows
+
+        # There must be an evenly divisible number of cntrls to routers
+        # Also, obviously the number or rows must be <= the number of routers
+        cntrls_per_router, remainder = divmod(len(nodes), num_routers)
+        assert(x_depth > 0 and x_depth <= num_routers)
 
         if (options.z_depth>0):
             z_depth=options.z_depth
         else:
-            z_depth = int(user_routers/x_depth/x_depth)
+            z_depth = int(num_routers/x_depth/x_depth)
 
-        if (options.y_depth>0):
-            y_depth=options.y_depth
+        if (options.mesh_rows>0):
+            y_depth=options.mesh_rows
         else:
-            y_depth = int(user_routers/x_depth/z_depth)
+            y_depth = int(num_routers / x_depth /z_depth)
 
-        true_z_depth = z_depth+1
-
-        assert(z_depth > 0 and z_depth <= (user_routers))
-        assert(y_depth > 0 and y_depth <= (user_routers))
-        assert(x_depth > 0 and x_depth <= (user_routers))
-
-        num_routers = true_z_depth*x_depth*y_depth # total number of routers in the build (all layers)
-        assert(z_depth * y_depth * x_depth < (num_routers))
-        assert(true_z_depth * y_depth * x_depth == num_routers)
-
-        print("number of user specified routers: ", (user_routers))
-        print("number of routers in layer 0: ", (x_depth*y_depth))
-        print("total number of routers: ", num_routers)
+        assert(z_depth * y_depth * x_depth == num_routers)
+        print("Total Number Routers: ", num_routers)
         print("x_depth: ", x_depth)
         print("y_depth: ", y_depth)
         print("z_depth: ", z_depth)
-        print("true_z_depth", true_z_depth)
-        print("\n")
 
-        # Create the routers in the mesh (all layers including layer 0)
-        routers = [Router(router_id=i, latency = router_latency, width=4) \
+        # Create the routers in the mesh
+        routers = [Router(router_id=i, latency = router_latency) \
             for i in range(num_routers)]
         network.routers = routers
-        print("total routers created: ", len(routers))
-
-        assert(len(routers)==num_routers)
 
         # link counter to set unique link ids
         link_count = 0
 
-        # Determine which nodes are cache cntrls vs. dirs
-        cache_nodes = []
-        dir_nodes = []
-        for node in nodes:
-            # print("node.type: ", node.type)
-            if node.type == 'L1Cache_Controller':
-                cache_nodes.append(node)
-            elif node.type == 'Directory_Controller':
-                dir_nodes.append(node)
+        # Add all but the remainder nodes to the list of nodes to be uniformly
+        # distributed across the network.
+        network_nodes = []
+        remainder_nodes = []
+        for node_index in range(len(nodes)):
+            if node_index < (len(nodes) - remainder):
+                network_nodes.append(nodes[node_index])
+            else:
+                remainder_nodes.append(nodes[node_index])
 
-        print("\ncache_nodes: ", len(cache_nodes))
-        print("dir_nodes: ", len(dir_nodes))
-        assert(len(cache_nodes) == user_routers)
-
-        # Connect each cache controller to the appropriate router
+        # Connect each node to the appropriate router
         ext_links = []
-        for (i, n) in enumerate(dir_nodes):
-            cntrl_level, router_id = divmod(i, user_routers)
-            # print("router_id: ", router_id)
-            # assert(cntrl_level < caches_per_router)
+        for (i, n) in enumerate(network_nodes):
+            cntrl_level, router_id = divmod(i, num_routers)
+            assert(cntrl_level < cntrls_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
-                                    int_node=routers[router_id+x_depth*y_depth],
-                                    # int_node=routers[router_id],
+                                    int_node=routers[router_id],
                                     latency = link_latency))
             link_count += 1
 
-        for (i, n) in enumerate(cache_nodes):
-            cntrl_level, router_id = divmod(i, user_routers)
-            # print("router_id: ", router_id)
-            # assert(cntrl_level < caches_per_router)
-            ext_links.append(ExtLink(link_id=link_count, ext_node=n,
-                                    int_node=routers[router_id+x_depth*y_depth],
-                                    # int_node=routers[router_id],
+        # Connect the remaining nodes to router 0.  These should only be
+        # DMA nodes.
+        for (i, node) in enumerate(remainder_nodes):
+            assert(node.type == 'DMA_Controller')
+            assert(i < remainder)
+            ext_links.append(ExtLink(link_id=link_count, ext_node=node,
+                                    int_node=routers[0],
                                     latency = link_latency))
             link_count += 1
 
@@ -150,12 +130,12 @@ class Variable_Link_Bandwidth(SimpleTopology):
         int_links = []
         total=link_count
         # East output to West input links (weight = 1)
-        for z in range(true_z_depth):
+        for z in range(z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
-                    if (x + 1 < x_depth):
-                        east_out = x + (y * x_depth) + (z * y_depth * x_depth)
-                        west_in = (x + 1) + (y * x_depth) + (z * y_depth * x_depth)
+                    if (y + 1 < y_depth):
+                        east_out = y + (x * y_depth) + (z * y_depth * x_depth)
+                        west_in=(y+1)+(x*y_depth)+(z*y_depth*x_depth)
                         int_links.append(IntLink(link_id=link_count,
                                                 src_node=routers[east_out],
                                                 dst_node=routers[west_in],
@@ -167,12 +147,12 @@ class Variable_Link_Bandwidth(SimpleTopology):
         print("\nNUM EAST-WEST LINKS = ", link_count-total)
         total=link_count
         # West output to East input links (weight = 1)
-        for z in range(true_z_depth):
+        for z in range(z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
-                    if (x + 1 < x_depth):
-                        east_in = x + (y * x_depth) + (z * y_depth * x_depth)
-                        west_out = (x + 1) + (y * x_depth) + (z * y_depth * x_depth)
+                    if (y + 1 < y_depth):
+                        east_in = y + (x * y_depth) + (z * y_depth * x_depth)
+                        west_out = (y + 1) + (x * y_depth) + (z * y_depth * x_depth)
                         int_links.append(IntLink(link_id=link_count,
                                                 src_node=routers[west_out],
                                                 dst_node=routers[east_in],
@@ -184,44 +164,44 @@ class Variable_Link_Bandwidth(SimpleTopology):
         print("NUM WEST-EAST LINKS = ", link_count-total)
         total=link_count
         # North output to South input links (weight = 2)
-        for z in range(true_z_depth):
+        for z in range(z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
-                    if (y + 1 < y_depth):
-                        north_out = x + (y * x_depth) + (z * y_depth * x_depth)
-                        south_in = x + ((y + 1) * x_depth) + (z * y_depth * x_depth)
+                    if (x + 1 < x_depth):
+                        north_out = y + (x * y_depth) + (z * y_depth * x_depth)
+                        south_in = y + ((x + 1) * y_depth) + (z * y_depth * x_depth)
                         int_links.append(IntLink(link_id=link_count,
                                                 src_node=routers[north_out],
                                                 dst_node=routers[south_in],
                                                 src_outport="North",
                                                 dst_inport="South",
                                                 latency = link_latency,
-                                                weight=1))
+                                                weight=2))
                         link_count += 1
         print("NUM NORTH-SOUTH LINKS = ", link_count-total)
         total=link_count
         # South output to North input links (weight = 2)
-        for z in range(true_z_depth):
+        for z in range(z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
-                    if (y + 1 < y_depth):
-                        north_in = x + (y * x_depth) + (z * y_depth * x_depth)
-                        south_out = x + ((y + 1) * x_depth) + (z * y_depth * x_depth)
+                    if (x + 1 < x_depth):
+                        north_in = y + (x * y_depth) + (z * y_depth * x_depth)
+                        south_out = y + ((x + 1) * y_depth) + (z * y_depth * x_depth)
                         int_links.append(IntLink(link_id=link_count,
                                                 src_node=routers[south_out],
                                                 dst_node=routers[north_in],
                                                 src_outport="South",
                                                 dst_inport="North",
                                                 latency = link_latency,
-                                                weight=1))
+                                                weight=2))
                         link_count += 1
         print("NUM SOUTH-NORTH LINKS = ", link_count-total)
         total=link_count
         # Up output to Down input links (weight = 3)
-        for z in range(true_z_depth):
+        for z in range(z_depth):
             for y in range(y_depth):
                 for x in range(x_depth):
-                    if (z + 1 < true_z_depth):
+                    if (z + 1 < z_depth):
                         up_out = x + (y * x_depth) + (z * y_depth * x_depth)
                         down_in = x + (y * x_depth) + ((z + 1) * y_depth * x_depth)
                         int_links.append(IntLink(link_id=link_count,
@@ -230,15 +210,15 @@ class Variable_Link_Bandwidth(SimpleTopology):
                                                 src_outport="Up",
                                                 dst_inport="Down",
                                                 latency = link_latency,
-                                                weight=1))
+                                                weight=3))
                         link_count += 1
         print("NUM UP-DOWN LINKS = ", link_count-total)
         total=link_count
         # Down output to Up input links (weight = 3)
-        for z in range(true_z_depth):
+        for z in range(z_depth):
             for y in range(y_depth):
                 for x in range(x_depth):
-                    if (z + 1 < true_z_depth):
+                    if (z + 1 < z_depth):
                         up_in = x + (y * x_depth) + (z * y_depth * x_depth)
                         down_out = x + (y * x_depth) + ((z + 1) * y_depth * x_depth)
                         int_links.append(IntLink(link_id=link_count,
@@ -247,7 +227,7 @@ class Variable_Link_Bandwidth(SimpleTopology):
                                                 src_outport="Down",
                                                 dst_inport="Up",
                                                 latency = link_latency,
-                                                weight=1))
+                                                weight=3))
                         link_count += 1
         print("NUM DOWN-UP LINKS = ", link_count-total)
         total=link_count
@@ -258,4 +238,4 @@ class Variable_Link_Bandwidth(SimpleTopology):
     def registerTopology(self, options):
         for i in range(options.num_cpus):
             FileSystemConfig.register_node([i],
-                    MemorySize(options.mem_size) / options.num_cpus, i)
+                    MemorySize(options.mem_size) // options.num_cpus, i)
