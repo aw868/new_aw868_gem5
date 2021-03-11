@@ -233,7 +233,7 @@ NetworkInterface::wakeup()
             // credits.
             if (t_flit->get_type() == TAIL_ ||
                 t_flit->get_type() == HEAD_TAIL_) {
-                    cout<<"NetworkInterface.cc: wakeup()"<<endl;
+                    // cout<<"NetworkInterface.cc: wakeup()"<<endl;
                     // cout<<"vnet: "<<vnet<<endl;
                     // cout<<"outNode_ptr size: "<<outNode_ptr.size()<<endl;
                     // cout<<"test seg fault: "<<outNode_ptr[vnet]<<endl;

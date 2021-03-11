@@ -87,6 +87,8 @@ class Wireless_NUChiplets(SimpleTopology):
         assert(z_depth * y_depth * x_depth < (num_routers))
         assert(true_z_depth * y_depth * x_depth == num_routers)
 
+        wirelessDistribution = options.wireless
+
         print("number of user specified routers: ", (user_routers))
         print("number of routers in layer 0: ", (x_depth*y_depth))
         print("total number of routers: ", num_routers)

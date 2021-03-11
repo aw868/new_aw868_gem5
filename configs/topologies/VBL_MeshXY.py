@@ -40,8 +40,8 @@ from topologies.BaseTopology import SimpleTopology
 # XY routing is enforced (using link weights)
 # to guarantee deadlock freedom.
 
-class VLB_Mesh_XY(SimpleTopology):
-    description='VLB_Mesh_XY'
+class VBL_MeshXY(SimpleTopology):
+    description='VBL_MeshXY'
 
     def __init__(self, controllers):
         self.nodes = controllers
@@ -73,6 +73,10 @@ class VLB_Mesh_XY(SimpleTopology):
             for i in range(num_routers)]
         network.routers = routers
 
+        print("router widths: ")
+        for router in routers:
+            print(router.router_id, router.width)
+
         # link counter to set unique link ids
         link_count = 0
 
@@ -93,7 +97,8 @@ class VLB_Mesh_XY(SimpleTopology):
             assert(cntrl_level < cntrls_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
                                     int_node=routers[router_id],
-                                    latency = link_latency))
+                                    width=32,
+                                    latency = link_latency,))
             link_count += 1
 
         # Connect the remainding nodes to router 0.  These should only be
@@ -103,6 +108,7 @@ class VLB_Mesh_XY(SimpleTopology):
             assert(i < remainder)
             ext_links.append(ExtLink(link_id=link_count, ext_node=node,
                                     int_node=routers[0],
+                                    width=32,
                                     latency = link_latency))
             link_count += 1
 
@@ -123,6 +129,7 @@ class VLB_Mesh_XY(SimpleTopology):
                                              src_outport="East",
                                              dst_inport="West",
                                              latency = link_latency,
+                                             width=32,
                                              weight=1))
                     link_count += 1
 
@@ -138,6 +145,7 @@ class VLB_Mesh_XY(SimpleTopology):
                                              src_outport="West",
                                              dst_inport="East",
                                              latency = link_latency,
+                                             width=32,
                                              weight=1))
                     link_count += 1
 
@@ -153,6 +161,7 @@ class VLB_Mesh_XY(SimpleTopology):
                                              src_outport="North",
                                              dst_inport="South",
                                              latency = link_latency,
+                                             width=32,
                                              weight=1))
                     link_count += 1
 
@@ -168,6 +177,7 @@ class VLB_Mesh_XY(SimpleTopology):
                                              src_outport="South",
                                              dst_inport="North",
                                              latency = link_latency,
+                                             width=32,
                                              weight=1))
                     link_count += 1
 

@@ -43,8 +43,8 @@ from .BaseTopology import SimpleTopology
 # XYZ routing is enforced (using link weights)
 # to guarantee deadlock freedom.
 
-class VLB_Mesh_XYZ(SimpleTopology):
-    description='VLB_Mesh_XYZ'
+class VBL_MeshXYZ(SimpleTopology):
+    description='VBL_MeshXYZ'
 
     def __init__(self, controllers):
         self.nodes = controllers
@@ -53,7 +53,7 @@ class VLB_Mesh_XYZ(SimpleTopology):
     # assuming an equal number of cache and directory cntrls
 
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
-        print("File: VLB_Mesh_XYZ.py")
+        print("File: VBL_MeshXYZ.py")
         nodes = self.nodes
 
         num_routers = options.num_cpus
