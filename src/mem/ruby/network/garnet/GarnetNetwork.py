@@ -43,6 +43,8 @@ class GarnetNetwork(RubyNetwork):
     num_chiplets_x = Param.Int(0, "number of chiplets in the x-dimension");
     num_chiplets_y = Param.Int(0, "number of chiplets in the y-dimension");
     nu_chiplets_input = Param.String("", "non-uniform chiplet designation (start col, start row, end col, end row)");
+    wireless_input = Param.String("", "wireless router designation (if random, then string will define number of wireless antennas to be placed per layer, if user-defined, then string will define exact routers the antennas will be placed on x,y,z,x,y,z...");
+    wireless_input_pattern = Param.String("", "wireless antenna placement pattern (r=random, u=user-defined)");
     ni_flit_size = Param.UInt32(16, "network interface flit size in bytes")
     vcs_per_vnet = Param.UInt32(4, "virtual channels per virtual network");
     buffers_per_data_vc = Param.UInt32(4, "buffers per data virtual channel");

@@ -62,6 +62,8 @@ GarnetNetwork::GarnetNetwork(const Params *p)
     m_num_chiplets_x = p->num_chiplets_x;
     m_num_chiplets_y = p->num_chiplets_y;
     m_nu_chiplets_input = p->nu_chiplets_input;
+    m_wireless_input = p->wireless_input;
+    m_wireless_input_pattern = p->wireless_input_pattern;
     m_ni_flit_size = p->ni_flit_size;
     m_max_vcs_per_vnet = 0;
     m_buffers_per_data_vc = p->buffers_per_data_vc;

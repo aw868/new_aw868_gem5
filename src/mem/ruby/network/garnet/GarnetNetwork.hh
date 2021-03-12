@@ -71,6 +71,8 @@ class GarnetNetwork : public Network
     int getNumChipletsX() { return m_num_chiplets_x;}
     int getNumChipletsY() { return m_num_chiplets_y;}
     string getNUChipletInput() { return m_nu_chiplets_input;}
+    string getWirelessInput() { return m_wireless_input;}
+    string getWirelessInputPattern() { return m_wireless_input_pattern;}
     int* getCoords(int router_id, int coords[]) {
         int z_coord = router_id/(m_num_rows*m_num_cols); //calculating z coordinate
         int x_coord = -1;
@@ -281,6 +283,8 @@ class GarnetNetwork : public Network
     int m_num_chiplets_x;
     int m_num_chiplets_y;
     string m_nu_chiplets_input;
+    string m_wireless_input;
+    string m_wireless_input_pattern;
     uint32_t m_ni_flit_size;
     uint32_t m_max_vcs_per_vnet;
     uint32_t m_buffers_per_ctrl_vc;
