@@ -5,7 +5,7 @@ TO ADD PARAMETERS:
 2. src/mem/ruby/network/garnet/GarnetNetwork.py
     - class GarnetNetwork(RubyNetwork) (line ~37)
 3. src/mem/ruby/network/garnet/GarnetNetwork.hh
-    - protected: (line ~253)
+    - protected: (line ~280)
     - public: (line ~55)
 4. src/mem/ruby/network/garnet/GarnetNetwork.cc
     - GarnetNetwork::GarnetNetwork(const Params *p) (line ~59)
