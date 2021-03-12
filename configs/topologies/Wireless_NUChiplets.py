@@ -37,6 +37,7 @@ from m5.objects import *
 from common import FileSystemConfig
 
 from .BaseTopology import SimpleTopology
+import random
 
 # Creates a generic 3D Mesh assuming an equal number of cache
 # and directory controllers.
@@ -86,8 +87,31 @@ class Wireless_NUChiplets(SimpleTopology):
         num_routers = true_z_depth*x_depth*y_depth # total number of routers in the build (all layers)
         assert(z_depth * y_depth * x_depth < (num_routers))
         assert(true_z_depth * y_depth * x_depth == num_routers)
+        assert(options.nu_chiplets_input)
+        assert(options.wireless_input)
+        assert(options.wireless_input_pattern)
 
-        wirelessDistribution = options.wireless
+        wirelessInputPattern = options.wireless_input_pattern
+        wirelessInput = [int(x) for x in options.wireless_input.split(',') if x.strip().isdigit()]
+        wirelessRouters = []
+        print("wirelessInput: ", wirelessInput)
+
+        if (wirelessInputPattern == 'r'):
+            print("randomly placed wireless")
+            for i in range(len(wirelessInput)):
+                for x in range(wirelessInput[i]):
+                    router = random.randint(i*x_depth*y_depth, (i+1)*x_depth*y_depth-1)
+                    wirelessRouters.append(router)
+        elif (wirelessInputPattern == 'u'):
+            print("user-designated wireless")
+            for i in range(0, len(wirelessInput), 3):
+                router = wirelessInput[i]*x_depth+wirelessInput[i+1]+wirelessInput[i+2]*x_depth*y_depth+x_depth*y_depth
+                # add an additional layer to the router value to account for addition of layer 0
+                print(router)
+                wirelessRouters.append(router)
+
+        print("\nwirelessInputPattern: ", wirelessInputPattern)
+        print("wirelessRouters: ", wirelessRouters)
 
         print("number of user specified routers: ", (user_routers))
         print("number of routers in layer 0: ", (x_depth*y_depth))
