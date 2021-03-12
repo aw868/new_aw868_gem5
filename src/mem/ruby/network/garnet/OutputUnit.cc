@@ -147,7 +147,7 @@ OutputUnit::select_free_vc(int vnet, int src_id, int dest_id, int outport)
     int vcs_per_down = 1;
 
     if ((routing_algorithm == 3 || routing_algorithm == 4) && m_vc_per_vnet > 2){
-        cout<<"OutputUnit::select_free_vc("<<vnet<<","<<src_id<<","<<dest_id<<"): using Chiplet routing algorithm(3 or 4)"<<endl;
+        // cout<<"OutputUnit::select_free_vc("<<vnet<<","<<src_id<<","<<dest_id<<"): using Chiplet routing algorithm(3 or 4)"<<endl;
         if (outportDirection == "Up"){ 
             // cout<<"outputunit.cc up 160 | src_id: "<<src_id<<" | dest_id: "<<dest_id<<" cycle "<<m_router->curCycle()<<"\n"<<endl;
             int vc_base = vnet*m_vc_per_vnet;
