@@ -97,11 +97,19 @@ class Wireless_NUChiplets(SimpleTopology):
         print("wirelessInput: ", wirelessInput)
 
         if (wirelessInputPattern == 'r'):
+            assert(all(x < x_depth*y_depth for x in options.wireless_input_pattern))
+            # check to make sure # of antenna per layer is less than x_depth*y_depth
             print("randomly placed wireless")
             for i in range(len(wirelessInput)):
                 for x in range(wirelessInput[i]):
-                    router = random.randint(i*x_depth*y_depth, (i+1)*x_depth*y_depth-1)
-                    wirelessRouters.append(router)
+                    repeat = True
+                    while(repeat):
+                        router = random.randint(i*x_depth*y_depth, (i+1)*x_depth*y_depth-1)
+                        if(router not in wirelessRouters):
+                            # only add to the array if it does not already exist in array
+                            wirelessRouters.append(router+x_depth*y_depth)
+                            # add an additional layer to the router value to account for addition of layer 0
+                            repeat = False
         elif (wirelessInputPattern == 'u'):
             print("user-designated wireless")
             for i in range(0, len(wirelessInput), 3):
@@ -109,6 +117,19 @@ class Wireless_NUChiplets(SimpleTopology):
                 # add an additional layer to the router value to account for addition of layer 0
                 print(router)
                 wirelessRouters.append(router)
+
+        widthArr = []
+        serDesArr = []
+        wirelessWidth = 32
+        regularWidth = 4
+        for router in range(num_routers):
+            if router in wirelessRouters:
+                widthArr.append(wirelessWidth)
+                serDesArr.append(True)
+            else:
+                widthArr.append(regularWidth)
+                serDesArr.append(False)
+        # when building links, dest_serdes = src & ser_serdes = dest
 
         print("\nwirelessInputPattern: ", wirelessInputPattern)
         print("wirelessRouters: ", wirelessRouters)
