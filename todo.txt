@@ -4,18 +4,18 @@
 	- user defined
 		- add parameter similar to non uniform chiplet to routers with wireless links
 
-- add new port in topology file
+- add new port in topology file (not completed)
 	- wireless should be connected to all other wireless ones (fully-connected)
 	- link must be variable bandwidth (new in garnet3.0)
 		- set all variable bandwidth links to the same number (32)
 	- routers with wireless should be different from other routers 
-	- test variable bandwidt links
+	- test variable bandwidth links
 		- in 2D 3x3 topology, have some links be 32, others 4
 		- what happens when the packet goes from 32 -> 4? Is the serdes used?
+	- routers with wireless capabilities cannot be adjacent/have existing internal links (top, down, left, right, north, south)
+	- closest wireless routers must be diagonal (checkerboard pattern)
 
-- routing algorithm must change to incorporate wireless routing
-- must place restrictions
-	- ex: only packets originating from 1,2,3,4 can go to antenna on router one
+- routing algorithm must change to incorporate wireless routing (in progress)
 - compare number of hops between current and destination (wired VS wireless)
 	- z value of current + z value of destination + difference in x + difference in y
 	- distance to closest antenna from current + distance to closest antenna from dest

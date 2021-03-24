@@ -83,7 +83,8 @@ def define_options(parser):
                             1: XY (for Mesh. see garnet2.0/RoutingUnit.cc)
                             2: XYZ
                             3: U_CHIPLETS
-                            4: NU_CHIPLETS""")
+                            4: NU_CHIPLETS
+                            5: WIRELESS""")
     parser.add_option("--network-fault-model", action="store_true",
                       default=False,
                       help="""enable network fault model:

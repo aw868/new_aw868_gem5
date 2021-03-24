@@ -184,6 +184,24 @@ GarnetNetwork::init()
         // CALL INITIALIZATION OF SECTOR VECTOR HERE
         m_sector_list = calculateNUChipletVector(m_nu_chiplets_input);
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
+    } else if (getNumRows() > 0 && getRoutingAlgorithm() == 5) {
+        cout<<"Using Wireless Routing Algorithm"<<endl;
+        m_num_rows = getNumRows();
+        
+        if (getZDepth()>0){
+            m_z_depth = getZDepth();
+        } else {
+            m_z_depth = (m_routers.size() / m_num_rows) / m_num_rows;
+        }
+
+        if (getNumCols()>0){
+            m_num_cols = getNumCols();
+        } else {
+            m_num_cols = (m_routers.size() / m_num_rows) / m_z_depth;
+        }
+        // CALL INITIALIZATION OF SECTOR VECTOR HERE
+        m_sector_list = calculateNUChipletVector(m_nu_chiplets_input);
+        assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0) { //XY algorithm
         cout<<"Using XY Algorithm"<<endl;
         m_num_rows = getNumRows();

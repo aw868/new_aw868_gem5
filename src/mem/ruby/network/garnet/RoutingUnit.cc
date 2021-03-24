@@ -187,6 +187,8 @@ RoutingUnit::outportCompute(RouteInfo route, int inport,
             outportComputeUChiplets(route, inport, inport_dirn); break;
         case NU_CHIPLETS_: outport =
             outportComputeNUChiplets(route, inport, inport_dirn); break;
+        case WIRELESS_: outport =
+            outportComputeWireless(route, inport, inport_dirn); break;
         default: outport =
             lookupRoutingTable(route.vnet, route.net_dest); break;
     }
@@ -473,6 +475,109 @@ RoutingUnit::outportComputeNUChiplets(RouteInfo route,
     cout<<"##########################################################################"<<endl;
     // cout<<"File: RoutingUnit.cc"<<endl;
     cout<<"outportComputeNUChiplets()"<<endl;
+    int num_rows = m_router->get_net_ptr()->getNumRows();
+    int num_cols = m_router->get_net_ptr()->getNumCols();
+    int z_depth = m_router->get_net_ptr()->getZDepth();
+    assert(num_rows > 0 && num_cols > 0 && z_depth > 0);
+
+    int my_id = m_router->get_id();
+    int my_coords[3];
+    m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
+    cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
+
+    int my_sector = m_router->get_net_ptr()->getSectorNU(my_id, my_coords[0]);
+    cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
+
+    int dest_id = route.dest_router;
+    int dest_coords[3];
+    m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
+    cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
+
+    int dest_sector = m_router->get_net_ptr()->getSectorNU(dest_id, dest_coords[0]);
+    cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
+
+    int x_hops = abs(dest_coords[2] - my_coords[2]);
+    int y_hops = abs(dest_coords[1] - my_coords[1]);
+    int z_hops = abs(dest_coords[0] - my_coords[0]);
+
+    bool x_dirn = (dest_coords[2] >= my_coords[2]); //true if destination is east of current
+    bool y_dirn = (dest_coords[1] >= my_coords[1]); //true if destination is north of current
+    bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
+    bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sector
+
+    // cout<<" x_hops: "<<x_hops<<" | y_hops: "<<y_hops<<" | z_hops: "<<z_hops<<endl;
+    // cout<<" x_dirn: "<<x_dirn<<" | y_dirn: "<<y_dirn<<" | z_dirn: "<<z_dirn<<" | same_sector: "<<same_sector<<endl;
+
+    // already checked that in outportCompute() function
+    assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
+
+    if (same_sector){ // if current node and destination router are in the same sector, move normally
+        if (x_hops > 0) {
+            if (x_dirn) {
+                // assert(inport_dirn == "Local" || inport_dirn == "West");
+                outport_dirn = "East";
+            } else {
+                // assert(inport_dirn == "Local" || inport_dirn == "East");
+                outport_dirn = "West";
+            }
+        } else if (y_hops > 0) {
+            if (y_dirn) {
+                // assert(inport_dirn != "North");
+                outport_dirn = "North";
+            } else {
+                // assert(inport_dirn != "South");
+                outport_dirn = "South";
+            }
+        } else if (z_hops > 0) {
+            if (z_dirn) {
+                // assert(inport_dirn != "Up");
+                outport_dirn = "Up";
+            } else {
+                // assert(inport_dirn != "Down");
+                outport_dirn = "Down";
+            }
+        } else {
+            // x_hops == 0 and y_hops == 0 and z_hops == 0
+            // this is not possible
+            // already checked that in outportCompute() function
+            panic("x_hops == y_hops == z_hops == 0");
+        }
+    } else { // if current router and destination router are not in the same sector
+        if (my_coords[0] == 0) { //if router in layer 0, move in xy direction to same sector as router
+            if (x_hops > 0) {
+                if (x_dirn) {
+                    outport_dirn = "East";
+                } else {
+                    outport_dirn = "West";
+                }
+            } else if (y_hops > 0) {
+                if (y_dirn) {
+                    assert(inport_dirn != "North");
+                    outport_dirn = "North";
+                } else {
+                    assert(inport_dirn != "South");
+                    outport_dirn = "South";
+                }
+            }
+        } else { // if router not in layer 0, move to layer 0
+            // assert(inport_dirn != "Down");
+            outport_dirn = "Down";
+        }
+    }
+    cout<<"outport_dirn: "<<outport_dirn<<endl;
+
+    return m_outports_dirn2idx[outport_dirn];
+}
+
+int
+RoutingUnit::outportComputeWireless(RouteInfo route,
+                              int inport,
+                              PortDirection inport_dirn)
+{
+    PortDirection outport_dirn = "Unknown";
+    cout<<"##########################################################################"<<endl;
+    // cout<<"File: RoutingUnit.cc"<<endl;
+    cout<<"outportComputeWireless()"<<endl;
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
     int z_depth = m_router->get_net_ptr()->getZDepth();
