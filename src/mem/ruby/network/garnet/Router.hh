@@ -79,6 +79,7 @@ class Router : public BasicRouter, public Consumer
     int get_num_inports()   { return m_input_unit.size(); }
     int get_num_outports()  { return m_output_unit.size(); }
     int get_id()            { return m_id; }
+    uint32_t get_width()            { return m_bit_width; }
 
     void init_net_ptr(GarnetNetwork* net_ptr)
     {

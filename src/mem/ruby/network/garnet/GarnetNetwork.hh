@@ -61,10 +61,13 @@ class GarnetNetwork : public Network
     void init();
 
     const char *garnetVersion = "3.0";
+    
+    struct not_digit {
+        bool operator()(const char c) {
+            return c != ' ' && !std::isdigit(c);
+        }
+    };
 
-    // Configuration (set externally)
-
-    // for 2D topology
     int getNumRows() const { return m_num_rows; }
     int getNumCols() { return m_num_cols; }
     int getZDepth() { return m_z_depth; }
@@ -113,11 +116,21 @@ class GarnetNetwork : public Network
         return sector;
     }
 
-    struct not_digit {
-        bool operator()(const char c) {
-            return c != ' ' && !std::isdigit(c);
-        }
-    };
+    int getSectorNU(int router_id, int z_coord) { 
+        // cout<<"File: GarnetNetwork.hh"<<endl;
+        // cout<<"getSectorNU(int router_id, int z_coord)"<<endl;
+
+        int sector = -1;
+        int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
+        sector = m_sector_list[base_id];
+
+        assert(sector>=0);
+        return sector;
+    }
+
+    bool getRouterType(int router_id) {
+        return false;
+    }
 
     vector<int> stringToVector(string stringInput) {
         // turns input string into vector of ints (should ignore commas in input)
@@ -162,7 +175,7 @@ class GarnetNetwork : public Network
             // for each chiplet designated by the user
             for (int row=nu_chiplet_input_vector[i*4+1];row<=nu_chiplet_input_vector[i*4+3];row++) {
                 assert(row<m_num_rows);
-                for(int col=nu_chiplet_input_vector[i*4];col<=nu_chiplet_input_vector[i*4+2];col++){
+                for (int col=nu_chiplet_input_vector[i*4];col<=nu_chiplet_input_vector[i*4+2];col++){
                     assert(row*col < m_num_rows*m_num_cols);
                     assert(col<m_num_cols);
                     int router_id = row*m_num_cols+col;
@@ -184,16 +197,22 @@ class GarnetNetwork : public Network
         return base_router_list;
     }
 
-    int getSectorNU(int router_id, int z_coord) { 
-        // cout<<"File: GarnetNetwork.hh"<<endl;
-        // cout<<"getSectorNU(int router_id, int z_coord)"<<endl;
+    vector<int> calculateWirelessRouters(string wireless_input, string wireless_input_pattern) {
+        vector<int> wireless_router_list;
+        vector<int> wireless_input_vector = stringToVector(wireless_input);
+        if (wireless_input_pattern == "r") {
+            // to be fixed
+        } else if (wireless_input_pattern == "u") {
 
-        int sector = -1;
-        int base_id = router_id-(m_num_rows*m_num_cols)*(z_coord);
-        sector = m_sector_list[base_id];
+        }
+        // cout<<"HERE"<<endl;
+        // for (vector<Router*>::const_iterator i= m_routers.begin(); i != m_routers.end(); ++i) {
+        //     Router* router = safe_cast<Router*>(*i);
+        //     uint32_t width = router->get_width();
+        //     cout<<width<<endl;
+        // }
 
-        assert(sector>=0);
-        return sector;
+        return wireless_router_list;
     }
 
     // for network
@@ -292,6 +311,7 @@ class GarnetNetwork : public Network
     int m_routing_algorithm;
     bool m_enable_fault_model;
     vector<int> m_sector_list; 
+    vector<int> m_wireless_list; 
 
     // Statistical variables
     Stats::Vector m_packets_received;

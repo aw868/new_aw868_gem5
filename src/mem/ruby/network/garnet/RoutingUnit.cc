@@ -607,6 +607,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     bool y_dirn = (dest_coords[1] >= my_coords[1]); //true if destination is north of current
     bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
     bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sector
+    // bool wirelessCapability = m_router->get_net_ptr()->getRouterType(my_id);
 
     // cout<<" x_hops: "<<x_hops<<" | y_hops: "<<y_hops<<" | z_hops: "<<z_hops<<endl;
     // cout<<" x_dirn: "<<x_dirn<<" | y_dirn: "<<y_dirn<<" | z_dirn: "<<z_dirn<<" | same_sector: "<<same_sector<<endl;
