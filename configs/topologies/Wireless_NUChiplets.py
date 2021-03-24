@@ -209,7 +209,7 @@ class Wireless_NUChiplets(SimpleTopology):
         # Create the mesh links.
         int_links = []
         total=link_count
-        # East output to West input links (weight = 1)
+        # East output to West input links 
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -229,7 +229,7 @@ class Wireless_NUChiplets(SimpleTopology):
                         link_count += 1
         print("\nNUM EAST-WEST LINKS = ", link_count-total)
         total=link_count
-        # West output to East input links (weight = 1)
+        # West output to East input links 
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -249,7 +249,7 @@ class Wireless_NUChiplets(SimpleTopology):
                         link_count += 1
         print("NUM WEST-EAST LINKS = ", link_count-total)
         total=link_count
-        # North output to South input links (weight = 2)
+        # North output to South input links 
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -269,7 +269,7 @@ class Wireless_NUChiplets(SimpleTopology):
                         link_count += 1
         print("NUM NORTH-SOUTH LINKS = ", link_count-total)
         total=link_count
-        # South output to North input links (weight = 2)
+        # South output to North input links 
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -289,7 +289,7 @@ class Wireless_NUChiplets(SimpleTopology):
                         link_count += 1
         print("NUM SOUTH-NORTH LINKS = ", link_count-total)
         total=link_count
-        # Up output to Down input links (weight = 3)
+        # Up output to Down input links
         for z in range(true_z_depth):
             for y in range(y_depth):
                 for x in range(x_depth):
@@ -309,7 +309,7 @@ class Wireless_NUChiplets(SimpleTopology):
                         link_count += 1
         print("NUM UP-DOWN LINKS = ", link_count-total)
         total=link_count
-        # Down output to Up input links (weight = 3)
+        # Down output to Up input links
         for z in range(true_z_depth):
             for y in range(y_depth):
                 for x in range(x_depth):
@@ -329,6 +329,23 @@ class Wireless_NUChiplets(SimpleTopology):
                         link_count += 1
         print("NUM DOWN-UP LINKS = ", link_count-total)
         total=link_count
+        # All wireless input/output links
+        for src in range(len(wirelessRouters)):
+            for dest in range(len(wirelessRouters)):
+                if (src != dest):
+                    print("src: %d, dest: %d" % (src, dest))
+                    int_links.append(IntLink(link_id=link_count,
+                                            src_node=routers[wirelessRouters[src]],
+                                            dst_node=routers[wirelessRouters[dest]],
+                                            src_outport="Transmit",
+                                            dst_inport="Receive",
+                                            width = wirelessWidth,                                                
+                                            latency = link_latency,
+                                            weight=1))
+                    link_count += 1
+        print("WIRELESS LINKS = ", link_count-total)
+        total=link_count
+
         print("TOTAL NUM LINKS = ", len(int_links), "\n")
         network.int_links = int_links
 
