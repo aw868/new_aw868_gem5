@@ -56,6 +56,35 @@ class Wireless_NUChiplets(SimpleTopology):
         # layer 1: routers, directories(corners only) and caches(L1)
         # layer 0: routers only (not included in num_cpus)
 
+    def adjacentRouters(self, router, num_col, num_row, z_depth):
+        adjacentRouters = []
+        base_router = router%(num_col*num_row)
+
+        if (base_router%num_col != 0):
+            # left
+            adjacentRouters.append(router-1)
+
+        if (base_router%num_col != num_col-1):
+            # right
+            adjacentRouters.append(router+1)
+
+        if (base_router < num_col*(num_row-1)):
+            # north
+            adjacentRouters.append(router+num_col)
+
+        if (base_router >= num_col):
+            # south
+            adjacentRouters.append(router-num_col)
+
+        if (router < num_col*num_row*(z_depth-1)):
+            # top
+            adjacentRouters.append(router+(num_col*num_row))
+
+        if (router >= num_col*num_row):
+            # down
+            adjacentRouters.append(router-(num_col*num_row))
+        return adjacentRouters
+
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
         print("File: Wireless_NUChiplets.py")
         nodes = self.nodes
@@ -99,7 +128,7 @@ class Wireless_NUChiplets(SimpleTopology):
 
         if (wirelessInputPattern == 'r'):
             print("randomly placed wireless")
-            assert(all(router < x_depth*y_depth for router in wirelessInput))
+            assert(all(router < x_depth*y_depth/2 for router in wirelessInput))
             # check to make sure # of antenna per layer is less than x_depth*y_depth
             for i in range(len(wirelessInput)):
                 for x in range(wirelessInput[i]):
@@ -113,12 +142,13 @@ class Wireless_NUChiplets(SimpleTopology):
                             repeat = False
         elif (wirelessInputPattern == 'u'):
             print("user-designated wireless")
+            assert(all(router < x_depth*y_depth for router in wirelessRouters))
             for i in range(0, len(wirelessInput), 3):
                 router = wirelessInput[i]*x_depth+wirelessInput[i+1]+wirelessInput[i+2]*x_depth*y_depth+x_depth*y_depth
                 # add an additional layer to the router value to account for addition of layer 0
                 print(router)
                 wirelessRouters.append(router)
-            assert(all(router < x_depth*y_depth for router in wirelessRouters))
+            
 
         print("wirelessRouters: ", wirelessRouters)
 
@@ -135,8 +165,7 @@ class Wireless_NUChiplets(SimpleTopology):
             else:
                 widthArr.append(regularWidth)
                 serDesArr.append(False)
-        # when building links, dest_serdes = src & ser_serdes = dest
-
+        
         # print("wirelessInputPattern: ", wirelessInputPattern)
         # print("widthArr", widthArr)
         # print("serDesArr", serDesArr)
@@ -144,7 +173,6 @@ class Wireless_NUChiplets(SimpleTopology):
         for layer in range(z_depth, -1, -1):
             for row in range(y_depth-1, -1, -1):
                 for col in range(x_depth):
-                    # print(row*x_depth+col+layer*y_depth*x_depth)
                     print ("%3d" % (widthArr[row*x_depth+col+layer*y_depth*x_depth]), end=' ') 
                 print("")
             print("")
@@ -154,7 +182,6 @@ class Wireless_NUChiplets(SimpleTopology):
         print("total number of routers: ", num_routers)
         print("x_depth: ", x_depth)
         print("y_depth: ", y_depth)
-        # print("z_depth: ", z_depth)
         print("true_z_depth", true_z_depth)  
 
         # Create the routers in the mesh (all layers including layer 0)
@@ -172,7 +199,6 @@ class Wireless_NUChiplets(SimpleTopology):
         cache_nodes = []
         dir_nodes = []
         for node in nodes:
-            # print("node.type: ", node.type)
             if node.type == 'L1Cache_Controller':
                 cache_nodes.append(node)
             elif node.type == 'Directory_Controller':
@@ -333,7 +359,7 @@ class Wireless_NUChiplets(SimpleTopology):
         for src in range(len(wirelessRouters)):
             for dest in range(len(wirelessRouters)):
                 if (src != dest):
-                    print("src: %d, dest: %d" % (src, dest))
+                    # print("src: %d, dest: %d" % (src, dest))
                     int_links.append(IntLink(link_id=link_count,
                                             src_node=routers[wirelessRouters[src]],
                                             dst_node=routers[wirelessRouters[dest]],
