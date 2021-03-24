@@ -95,11 +95,12 @@ class Wireless_NUChiplets(SimpleTopology):
         wirelessInput = [int(x) for x in options.wireless_input.split(',') if x.strip().isdigit()]
         wirelessRouters = []
         print("wirelessInput: ", wirelessInput)
+        assert(all(i >= 0 for i in wirelessInput))
 
         if (wirelessInputPattern == 'r'):
-            assert(all(x < x_depth*y_depth for x in options.wireless_input_pattern))
-            # check to make sure # of antenna per layer is less than x_depth*y_depth
             print("randomly placed wireless")
+            assert(all(router < x_depth*y_depth for router in wirelessInput))
+            # check to make sure # of antenna per layer is less than x_depth*y_depth
             for i in range(len(wirelessInput)):
                 for x in range(wirelessInput[i]):
                     repeat = True
@@ -117,11 +118,16 @@ class Wireless_NUChiplets(SimpleTopology):
                 # add an additional layer to the router value to account for addition of layer 0
                 print(router)
                 wirelessRouters.append(router)
+            assert(all(router < x_depth*y_depth for router in wirelessRouters))
+
+        print("wirelessRouters: ", wirelessRouters)
 
         widthArr = []
         serDesArr = []
-        wirelessWidth = 32
-        regularWidth = 4
+
+        wirelessWidth = 4
+        regularWidth = 32
+
         for router in range(num_routers):
             if router in wirelessRouters:
                 widthArr.append(wirelessWidth)
@@ -131,20 +137,28 @@ class Wireless_NUChiplets(SimpleTopology):
                 serDesArr.append(False)
         # when building links, dest_serdes = src & ser_serdes = dest
 
-        print("\nwirelessInputPattern: ", wirelessInputPattern)
-        print("wirelessRouters: ", wirelessRouters)
+        # print("wirelessInputPattern: ", wirelessInputPattern)
+        # print("widthArr", widthArr)
+        # print("serDesArr", serDesArr)
+
+        for layer in range(z_depth, -1, -1):
+            for row in range(y_depth-1, -1, -1):
+                for col in range(x_depth):
+                    # print(row*x_depth+col+layer*y_depth*x_depth)
+                    print ("%3d" % (widthArr[row*x_depth+col+layer*y_depth*x_depth]), end=' ') 
+                print("")
+            print("")
 
         print("number of user specified routers: ", (user_routers))
         print("number of routers in layer 0: ", (x_depth*y_depth))
         print("total number of routers: ", num_routers)
         print("x_depth: ", x_depth)
         print("y_depth: ", y_depth)
-        print("z_depth: ", z_depth)
-        print("true_z_depth", true_z_depth)
-        print("\n")
+        # print("z_depth: ", z_depth)
+        print("true_z_depth", true_z_depth)  
 
         # Create the routers in the mesh (all layers including layer 0)
-        routers = [Router(router_id=i, latency = router_latency) \
+        routers = [Router(router_id=i, latency = router_latency, width = widthArr[i]) \
             for i in range(num_routers)]
         network.routers = routers
         print("total routers created: ", len(routers))
@@ -164,7 +178,7 @@ class Wireless_NUChiplets(SimpleTopology):
             elif node.type == 'Directory_Controller':
                 dir_nodes.append(node)
 
-        print("\ncache_nodes: ", len(cache_nodes))
+        print("cache_nodes: ", len(cache_nodes))
         print("dir_nodes: ", len(dir_nodes))
         assert(len(cache_nodes) == user_routers)
 
@@ -176,7 +190,7 @@ class Wireless_NUChiplets(SimpleTopology):
             # assert(cntrl_level < caches_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
                                     int_node=routers[router_id+x_depth*y_depth],
-                                    # int_node=routers[router_id],
+                                    width = widthArr[router_id+x_depth*y_depth],
                                     latency = link_latency))
             link_count += 1
 
@@ -186,7 +200,7 @@ class Wireless_NUChiplets(SimpleTopology):
             # assert(cntrl_level < caches_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
                                     int_node=routers[router_id+x_depth*y_depth],
-                                    # int_node=routers[router_id],
+                                    width = widthArr[router_id+x_depth*y_depth],
                                     latency = link_latency))
             link_count += 1
 
@@ -207,6 +221,9 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[west_in],
                                                 src_outport="East",
                                                 dst_inport="West",
+                                                width = regularWidth,
+                                                src_serdes = serDesArr[east_out],
+                                                dst_serdes = serDesArr[west_in],                                                
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
@@ -224,6 +241,9 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[east_in],
                                                 src_outport="West",
                                                 dst_inport="East",
+                                                width = regularWidth,                                                
+                                                src_serdes = serDesArr[west_out],
+                                                dst_serdes = serDesArr[east_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
@@ -241,6 +261,9 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[south_in],
                                                 src_outport="North",
                                                 dst_inport="South",
+                                                width = regularWidth,                                                
+                                                src_serdes = serDesArr[north_out],
+                                                dst_serdes = serDesArr[south_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
@@ -258,6 +281,9 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[north_in],
                                                 src_outport="South",
                                                 dst_inport="North",
+                                                width = regularWidth,                                                
+                                                src_serdes = serDesArr[south_out],
+                                                dst_serdes = serDesArr[north_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
@@ -275,6 +301,9 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[down_in],
                                                 src_outport="Up",
                                                 dst_inport="Down",
+                                                width = regularWidth,                                                
+                                                src_serdes = serDesArr[up_out],
+                                                dst_serdes = serDesArr[down_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
@@ -292,6 +321,9 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[up_in],
                                                 src_outport="Down",
                                                 dst_inport="Up",
+                                                width = regularWidth,                                                
+                                                src_serdes = serDesArr[down_out],
+                                                dst_serdes = serDesArr[up_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1

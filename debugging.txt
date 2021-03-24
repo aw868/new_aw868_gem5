@@ -27,6 +27,14 @@ Wireless Input (user-designated)
 ./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/NU_Chiplet_results/Wireless_Input/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Wireless_NUChiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,3,3 --sim-cycles=1000000 --synthetic=uniform_random --wireless-input-pattern=u --wireless-input=0,0,0,3,3,3,1,2,1,2,2,3,0,3,0 --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
 ()
 
+Wireless Input (user-designated - should error)
+./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/NU_Chiplet_results/Wireless_Input/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Wireless_NUChiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,3,3 --sim-cycles=1000000 --synthetic=uniform_random --wireless-input-pattern=u --wireless-input=0,0,0,3,4,3,1,2,1,2,2,3,0,3,0 --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
+()
+
 Wireless Input (random placement)
 ./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/NU_Chiplet_results/Wireless_Input/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Wireless_NUChiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,3,3 --sim-cycles=1000000 --synthetic=uniform_random --wireless-input-pattern=r --wireless-input=2,1,4,1 --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
+()
+
+Wireless Input (random placement - should error)
+./build/ARM/gem5.opt -d /home/DREXEL/aw868/research/NU_Chiplet_results/Wireless_Input/ /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Wireless_NUChiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,3,3 --sim-cycles=1000000 --synthetic=uniform_random --wireless-input-pattern=r --wireless-input=2,1,17,1 --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
 ()
