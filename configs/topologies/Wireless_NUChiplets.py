@@ -56,35 +56,6 @@ class Wireless_NUChiplets(SimpleTopology):
         # layer 1: routers, directories(corners only) and caches(L1)
         # layer 0: routers only (not included in num_cpus)
 
-    def adjacentRouters(self, router, num_col, num_row, z_depth):
-        adjacentRouters = []
-        base_router = router%(num_col*num_row)
-
-        if (base_router%num_col != 0):
-            # left
-            adjacentRouters.append(router-1)
-
-        if (base_router%num_col != num_col-1):
-            # right
-            adjacentRouters.append(router+1)
-
-        if (base_router < num_col*(num_row-1)):
-            # north
-            adjacentRouters.append(router+num_col)
-
-        if (base_router >= num_col):
-            # south
-            adjacentRouters.append(router-num_col)
-
-        if (router < num_col*num_row*(z_depth-1)):
-            # top
-            adjacentRouters.append(router+(num_col*num_row))
-
-        if (router >= num_col*num_row):
-            # down
-            adjacentRouters.append(router-(num_col*num_row))
-        return adjacentRouters
-
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
         print("File: Wireless_NUChiplets.py")
         nodes = self.nodes
@@ -123,32 +94,60 @@ class Wireless_NUChiplets(SimpleTopology):
         wirelessInputPattern = options.wireless_input_pattern
         wirelessInput = [int(x) for x in options.wireless_input.split(',') if x.strip().isdigit()]
         wirelessRouters = []
+        availableRouters = [x for x in range(num_routers)]
         print("wirelessInput: ", wirelessInput)
         assert(all(i >= 0 for i in wirelessInput))
 
+        
         if (wirelessInputPattern == 'r'):
             print("randomly placed wireless")
-            assert(all(router < x_depth*y_depth/2 for router in wirelessInput))
-            # check to make sure # of antenna per layer is less than x_depth*y_depth
             for i in range(len(wirelessInput)):
                 for x in range(wirelessInput[i]):
                     repeat = True
                     while(repeat):
-                        router = random.randint(i*x_depth*y_depth, (i+1)*x_depth*y_depth-1)
+                        router = random.randint(i*x_depth*y_depth, (i+1)*x_depth*y_depth-1)+x_depth*y_depth
                         if(router not in wirelessRouters):
+                            assert(router in availableRouters)
                             # only add to the array if it does not already exist in array
-                            wirelessRouters.append(router+x_depth*y_depth)
+                            wirelessRouters.append(router)
                             # add an additional layer to the router value to account for addition of layer 0
+                            # remove wireless router and its adjacent routers from availableRouters list
+                            availableRouters.remove(router)
+                            if (router+1 in availableRouters):
+                                availableRouters.remove(router+1)
+                            if (router-1 in availableRouters):
+                                availableRouters.remove(router-1)
+                            if (router+x_depth in availableRouters):
+                                availableRouters.remove(router+x_depth)
+                            if (router-x_depth in availableRouters):
+                                availableRouters.remove(router-x_depth)
+                            if (router+x_depth*y_depth in availableRouters):
+                                availableRouters.remove(router+x_depth*y_depth)
+                            if (router-x_depth*y_depth in availableRouters):
+                                availableRouters.remove(router-x_depth*y_depth)
                             repeat = False
         elif (wirelessInputPattern == 'u'):
             print("user-designated wireless")
-            assert(all(router < x_depth*y_depth for router in wirelessRouters))
             for i in range(0, len(wirelessInput), 3):
-                router = wirelessInput[i]*x_depth+wirelessInput[i+1]+wirelessInput[i+2]*x_depth*y_depth+x_depth*y_depth
-                # add an additional layer to the router value to account for addition of layer 0
+                router = wirelessInput[i]*x_depth+wirelessInput[i+1]+wirelessInput[i+2]*x_depth*y_depth+(x_depth*y_depth)
+
+                assert(router in availableRouters)
                 print(router)
+
                 wirelessRouters.append(router)
-            
+                availableRouters.remove(router)
+                if (router+1 in availableRouters):
+                    availableRouters.remove(router+1)
+                if (router-1 in availableRouters):
+                    availableRouters.remove(router-1)
+                if (router+x_depth in availableRouters):
+                    availableRouters.remove(router+x_depth)
+                if (router-x_depth in availableRouters):
+                    availableRouters.remove(router-x_depth)
+                if (router+x_depth*y_depth in availableRouters):
+                    availableRouters.remove(router+x_depth*y_depth)
+                if (router-x_depth*y_depth in availableRouters):
+                    availableRouters.remove(router-x_depth*y_depth)
 
         print("wirelessRouters: ", wirelessRouters)
 
@@ -363,8 +362,8 @@ class Wireless_NUChiplets(SimpleTopology):
                     int_links.append(IntLink(link_id=link_count,
                                             src_node=routers[wirelessRouters[src]],
                                             dst_node=routers[wirelessRouters[dest]],
-                                            src_outport="Transmit",
-                                            dst_inport="Receive",
+                                            src_outport="Transmit_" + str(dest),
+                                            dst_inport="Receive_" + str(dest),
                                             width = wirelessWidth,                                                
                                             latency = link_latency,
                                             weight=1))

@@ -37,7 +37,6 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
-#include <limits>
 using namespace std;
 
 #include "mem/ruby/network/Network.hh"
@@ -138,17 +137,41 @@ class GarnetNetwork : public Network
     }
 
     int getBestWirelessRouter(int current_router, int dest_router) {
-        int best_router = -1;
-        int dist = std::numeric_limits<int>::max();
-        int my_coords[3];
+        int best_router = current_router;
+        int dist;
+        int best_dist;
+        int current_coords[3];
         int dest_coords[3];
-        int best_coords[3];
+        int temp_coords[3];
+        getCoords(current_router,current_coords);
+        getCoords(dest_router,dest_coords);
+
+        //set best_dist to the number of hops between current router and destination router
+        if(getSectorNU(current_router, current_coords[0]) == getSectorNU(dest_router, dest_coords[0])) {
+            best_dist = abs(dest_coords[2] - current_coords[2]) + abs(dest_coords[1] - current_coords[1]) + abs(dest_coords[0] - current_coords[0]);
+        } else {
+            best_dist = abs(dest_coords[2] + current_coords[2]) + abs(dest_coords[1] - current_coords[1]) + dest_coords[0] - current_coords[0];
+        }
 
         for (int i=0; i<m_wireless_list.size(); i++) {
             if (m_wireless_list[i] != current_router) {
+                getCoords(m_wireless_list[i],temp_coords);
+
+                // calculate number of hops between receiver router and destination router
+                if(getSectorNU(m_wireless_list[i] , temp_coords[0]) == getSectorNU(dest_router, dest_coords[0])) {
+                    dist = abs(dest_coords[2] - temp_coords[2]) + abs(dest_coords[1] - temp_coords[1]) + abs(dest_coords[0] - temp_coords[0]);
+                } else {
+                    dist = abs(dest_coords[2] + temp_coords[2]) + abs(dest_coords[1] - temp_coords[1]) + dest_coords[0] + temp_coords[0];
+                }
                 
+                // if number of hops for wireless route is less than wired route, then trasmit
+                if (dist<best_dist) {
+                    best_dist = dist;
+                    best_router = m_wireless_list[i];
+                }
             }
         }
+
         return best_router;
     }
 

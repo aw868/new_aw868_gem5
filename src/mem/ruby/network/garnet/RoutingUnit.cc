@@ -614,15 +614,11 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
 
     // already checked that in outportCompute() function
     assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
-    if(wirelessCapability) {
-        int best_router = getBestWirelessRouter(my_id, dest_id);
-        if (best_router == -1) {
-            // route as normal 
-        } else {
+    int best_router = m_router->get_net_ptr()->getBestWirelessRouter(my_id, dest_id);
 
-        }
-    }
-    if (same_sector){ // if current node and destination router are in the same sector, move normally
+    if(wirelessCapability && best_router != my_id) {
+        outport_dirn = "Transmit_" + to_string(best_router);
+    } else if (same_sector){ // if current node and destination router are in the same sector, move normally
         if (x_hops > 0) {
             if (x_dirn) {
                 // assert(inport_dirn == "Local" || inport_dirn == "West");
