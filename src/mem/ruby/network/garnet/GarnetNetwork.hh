@@ -37,6 +37,7 @@
 #include <sstream>
 #include <string>
 #include <iomanip>
+#include <limits>
 using namespace std;
 
 #include "mem/ruby/network/Network.hh"
@@ -129,7 +130,26 @@ class GarnetNetwork : public Network
     }
 
     bool getRouterType(int router_id) {
-        return false;
+        if (std::find(m_wireless_list.begin(), m_wireless_list.end(), router_id) != m_wireless_list.end()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    int getBestWirelessRouter(int current_router, int dest_router) {
+        int best_router = -1;
+        int dist = std::numeric_limits<int>::max();
+        int my_coords[3];
+        int dest_coords[3];
+        int best_coords[3];
+
+        for (int i=0; i<m_wireless_list.size(); i++) {
+            if (m_wireless_list[i] != current_router) {
+                
+            }
+        }
+        return best_router;
     }
 
     vector<int> stringToVector(string stringInput) {
@@ -195,24 +215,6 @@ class GarnetNetwork : public Network
             exit(0);
         }
         return base_router_list;
-    }
-
-    vector<int> calculateWirelessRouters(string wireless_input, string wireless_input_pattern) {
-        vector<int> wireless_router_list;
-        vector<int> wireless_input_vector = stringToVector(wireless_input);
-        if (wireless_input_pattern == "r") {
-            // to be fixed
-        } else if (wireless_input_pattern == "u") {
-
-        }
-        // cout<<"HERE"<<endl;
-        // for (vector<Router*>::const_iterator i= m_routers.begin(); i != m_routers.end(); ++i) {
-        //     Router* router = safe_cast<Router*>(*i);
-        //     uint32_t width = router->get_width();
-        //     cout<<width<<endl;
-        // }
-
-        return wireless_router_list;
     }
 
     // for network
