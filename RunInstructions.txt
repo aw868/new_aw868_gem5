@@ -36,7 +36,6 @@ scl enable devtoolset-7 bash
 scl enable rh-python36 bash
     -enable other version of python with 'six'
 
-
 ssh aw868@grid42
 
 gridcli node launch vp93/synchrotrace-condor grid42
