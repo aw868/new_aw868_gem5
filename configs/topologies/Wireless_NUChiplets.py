@@ -108,11 +108,9 @@ class Wireless_NUChiplets(SimpleTopology):
                 for x in range(wirelessInput[i]):
                     repeat = True
                     while(repeat):
-                        print("availableRouters: ", availableRouters)
-                        print("layer_set: ", layer_set)
                         # make sure there are enough routers in the layer that can be designated as wireless
                         assert(len(layer_set.intersection(set(availableRouters))) >= wirelessInput[i]-x)
-                        router = random.randint(i*x_depth*y_depth, (i+1)*x_depth*y_depth-1)+x_depth*y_depth
+                        router = random.randint((i+1)*x_depth*y_depth, (i+2)*x_depth*y_depth-1)
                         if(router not in wirelessRouters and router in availableRouters):
                             # only add to the array if it does not already exist in array
                             wirelessRouters.append(router)
@@ -368,8 +366,8 @@ class Wireless_NUChiplets(SimpleTopology):
                     int_links.append(IntLink(link_id=link_count,
                                             src_node=routers[wirelessRouters[src]],
                                             dst_node=routers[wirelessRouters[dest]],
-                                            src_outport="Transmit_" + str(dest),
-                                            dst_inport="Receive_" + str(dest),
+                                            src_outport="Transmit_" + str(wirelessRouters[dest]),
+                                            dst_inport="Receive_" + str(wirelessRouters[src]),
                                             width = wirelessWidth,                                                
                                             latency = link_latency,
                                             weight=1))
