@@ -164,7 +164,6 @@ GarnetNetwork::init()
         // cout<<"m_num_rows: "<<m_num_rows<<endl;
         // cout<<"m_num_cols: "<<m_num_cols<<endl;
         // cout<<"m_z_depth: "<<m_z_depth<<endl;
-        // cout<<"\nATTENTION: coordinate format is now (z,y,x)\n"<<endl;
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0 && getRoutingAlgorithm() == 4) {
         cout<<"Using Non-Uniform Chiplet Routing Algorithm"<<endl;
@@ -205,14 +204,16 @@ GarnetNetwork::init()
         for (vector<Router*>::const_iterator i= m_routers.begin(); i != m_routers.end(); ++i) {
             Router* router = safe_cast<Router*>(*i);
             if (router->get_width() == 4) {
+                // iterate through all routers and put wireless ones (width=4) into m_wireless_list
                 m_wireless_list.push_back(router->get_id());
             }
         }
-        cout<<"m_wireless_list: "<<endl;
+        cout<<"m_wireless_list: ";
         for (int i=0; i<m_wireless_list.size(); i++) {
             cout<<m_wireless_list[i]<<", ";
         }
-        
+        cout<<endl;
+
         assert(m_num_rows * m_num_cols * m_z_depth <= m_routers.size());
     } else if (getNumRows() > 0) { //XY algorithm
         cout<<"Using XY Algorithm"<<endl;

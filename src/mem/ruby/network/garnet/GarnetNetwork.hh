@@ -138,7 +138,7 @@ class GarnetNetwork : public Network
 
     int getBestWirelessRouter(int current_router, int dest_router) {
         int best_router = current_router;
-        int dist;
+        int temp_dist;
         int best_dist;
         int current_coords[3];
         int dest_coords[3];
@@ -150,23 +150,24 @@ class GarnetNetwork : public Network
         if(getSectorNU(current_router, current_coords[0]) == getSectorNU(dest_router, dest_coords[0])) {
             best_dist = abs(dest_coords[2] - current_coords[2]) + abs(dest_coords[1] - current_coords[1]) + abs(dest_coords[0] - current_coords[0]);
         } else {
-            best_dist = abs(dest_coords[2] + current_coords[2]) + abs(dest_coords[1] - current_coords[1]) + dest_coords[0] - current_coords[0];
+            best_dist = abs(dest_coords[2] - current_coords[2]) + abs(dest_coords[1] - current_coords[1]) + dest_coords[0] + current_coords[0];
         }
 
         for (int i=0; i<m_wireless_list.size(); i++) {
             if (m_wireless_list[i] != current_router) {
-                getCoords(m_wireless_list[i],temp_coords);
+                getCoords(m_wireless_list[i], temp_coords);
 
                 // calculate number of hops between receiver router and destination router
+                // add 1 to account for wireless hop
                 if(getSectorNU(m_wireless_list[i] , temp_coords[0]) == getSectorNU(dest_router, dest_coords[0])) {
-                    dist = abs(dest_coords[2] - temp_coords[2]) + abs(dest_coords[1] - temp_coords[1]) + abs(dest_coords[0] - temp_coords[0]);
+                    temp_dist = abs(dest_coords[2] - temp_coords[2]) + abs(dest_coords[1] - temp_coords[1]) + abs(dest_coords[0] - temp_coords[0]) + 1;
                 } else {
-                    dist = abs(dest_coords[2] + temp_coords[2]) + abs(dest_coords[1] - temp_coords[1]) + dest_coords[0] + temp_coords[0];
+                    temp_dist = abs(dest_coords[2] - temp_coords[2]) + abs(dest_coords[1] - temp_coords[1]) + dest_coords[0] + temp_coords[0] + 1;
                 }
                 
                 // if number of hops for wireless route is less than wired route, then trasmit
-                if (dist<best_dist) {
-                    best_dist = dist;
+                if (temp_dist<best_dist) {
+                    best_dist = temp_dist;
                     best_router = m_wireless_list[i];
                 }
             }
@@ -177,7 +178,7 @@ class GarnetNetwork : public Network
 
     vector<int> stringToVector(string stringInput) {
         // turns input string into vector of ints (should ignore commas in input)
-        cout<<"stringToVector(string stringInput)"<<endl;
+        // cout<<"stringToVector(string stringInput)"<<endl;
         vector<int> nu_chiplet_input_vector;
 
         stringstream s_stream(stringInput); //create string stream from the string
@@ -207,10 +208,10 @@ class GarnetNetwork : public Network
 
     vector<int> calculateNUChipletVector(string nonuniform_chiplet_input) {
         cout<<"calculateNUChipletVector(string nonuniform_chiplet_input)"<<endl;
-        cout<<"m_nu_chiplet_input: "<<nonuniform_chiplet_input<<endl;
+        // cout<<"m_nu_chiplet_input: "<<nonuniform_chiplet_input<<endl;
         vector<int> nu_chiplet_input_vector = stringToVector(nonuniform_chiplet_input);
         // stringToVector should return the input m_nu_chiplets_input as a vector<int>
-         cout<<"m_num_rows: "<<m_num_rows<<" | m_num_cols: "<<m_num_cols<<endl;
+        //  cout<<"m_num_rows: "<<m_num_rows<<" | m_num_cols: "<<m_num_cols<<endl;
         vector<int> base_router_list(m_num_rows*m_num_cols, -1);
         // initialize vector size of row*col with all values =-1
 

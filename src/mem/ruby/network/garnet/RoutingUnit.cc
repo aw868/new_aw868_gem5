@@ -36,6 +36,10 @@
 #include "mem/ruby/network/garnet/Router.hh"
 #include "mem/ruby/slicc_interface/Message.hh"
 
+bool wireless_free = true;
+// wireless_cout is used for testing purposes only
+int wireless_count = 0;
+
 RoutingUnit::RoutingUnit(Router *router)
 {
     m_router = router;
@@ -576,8 +580,14 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
 {
     PortDirection outport_dirn = "Unknown";
     cout<<"##########################################################################"<<endl;
-    // cout<<"File: RoutingUnit.cc"<<endl;
-    cout<<"outportComputeWireless()"<<endl;
+    // cout<<"outportComputeWireless()"<<endl;
+    assert(wireless_count < 2);
+    if (inport_dirn.find("Receive_") == 0) {
+        // free token if packet comes from wireless transmission
+        wireless_free = true;
+        wireless_count--;
+    }
+
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
     int z_depth = m_router->get_net_ptr()->getZDepth();
@@ -586,7 +596,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     int my_id = m_router->get_id();
     int my_coords[3];
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
-    cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
+    cout<<"Current Coordinates: ("<<my_coords[2]<<","<<my_coords[1]<<","<<my_coords[0]<<")"<<endl;
 
     int my_sector = m_router->get_net_ptr()->getSectorNU(my_id, my_coords[0]);
     cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
@@ -594,7 +604,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     int dest_id = route.dest_router;
     int dest_coords[3];
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
-    cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
+    cout<<"Dest Coordinates: ("<<dest_coords[2]<<","<<dest_coords[1]<<","<<dest_coords[0]<<")"<<endl;
 
     int dest_sector = m_router->get_net_ptr()->getSectorNU(dest_id, dest_coords[0]);
     cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
@@ -608,6 +618,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
     bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sector
     bool wirelessCapability = m_router->get_net_ptr()->getRouterType(my_id);
+    cout<<"wirelessCapability: "<<wirelessCapability<<endl;
 
     // cout<<" x_hops: "<<x_hops<<" | y_hops: "<<y_hops<<" | z_hops: "<<z_hops<<endl;
     // cout<<" x_dirn: "<<x_dirn<<" | y_dirn: "<<y_dirn<<" | z_dirn: "<<z_dirn<<" | same_sector: "<<same_sector<<endl;
@@ -616,8 +627,11 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     assert(!(x_hops == 0 && y_hops == 0 && z_hops == 0));
     int best_router = m_router->get_net_ptr()->getBestWirelessRouter(my_id, dest_id);
 
-    if(wirelessCapability && best_router != my_id) {
+    if(wirelessCapability && best_router != my_id && wireless_free) {
+        // if best route is wireless and the token is free, transmit using wireless and take token
         outport_dirn = "Transmit_" + to_string(best_router);
+        wireless_free = false;
+        wireless_count++;
     } else if (same_sector){ // if current node and destination router are in the same sector, move normally
         if (x_hops > 0) {
             if (x_dirn) {
@@ -666,8 +680,8 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
                     outport_dirn = "South";
                 }
             }
-        } else { // if router not in layer 0, move to layer 0
-            // assert(inport_dirn != "Down");
+        } else { 
+            // if router not in layer 0, move to layer 0
             outport_dirn = "Down";
         }
     }
