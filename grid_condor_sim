@@ -1,0 +1,27 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
+Error = condortest.err.$(Process)
+Output = condortest.out.$(Process)
+Log = condortest.log.$(Process)
+
+SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results
+CONFIG_SCRIPT = /home/vp93/die_mapping/SynchroTrace-gem5-v20/configs/example/synchrotrace_ruby.py
+SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py
+
+#TABLE_ = 0, XY_ = 1, XYZ_ = 2, U_CHIPLETS=3, NU_CHIPLETS=4, WIRELESS=5
+
+VARIABLE_ARGS1 = --l1d_size=64kB --l1d_assoc=2 --l1i_size=64kB --l1i_assoc=2 --l2_size=16kB --l2_assoc=8
+VARIABLE_ARGS2 = --l1d_size=64kB --l1d_assoc=2 --l1i_size=64kB --l1i_assoc=2 --l2_size=32kB --l2_assoc=8
+VARIABLE_ARGS3 = --l1d_size=64kB --l1d_assoc=2 --l1i_size=64kB --l1i_assoc=2 --l2_size=64kB --l2_assoc=8
+
+## Mesh XY topology, XY routing ##
+MESHXY_XY_ARGS = --num-cpus=16 --num-dirs=16 --network=garnet --topology=Mesh_XY --mesh-rows=4 --sim-cycles=50000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4
+
+
+##########################################
+###### Mesh XY Topology, XY Routing ######
+##########################################
+
+Initialdir = $(SYNCHRO_DIR)/$(Process)
+arguments =  "$(CONFIG_SCRIPT) $(SYNTHTRAFFIC_RUN_SCRIPT) $(MESHXY_XY_ARGS) --injectionrate=0.5"
+Queue

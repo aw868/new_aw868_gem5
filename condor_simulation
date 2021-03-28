@@ -1,14 +1,17 @@
-#/home/DREXEL/aw868/research/new_aw868_gem5/condor_simulation
-Executable    = /home/DREXEL/aw868/research/new_aw868_gem5/build/ARM/gem5.opt
-#Requirements = (machine != "wyrm.ece.drexel.edu" && machine != "fafnir.ece.drexel.edu" && machine != "hooktail.ece.drexel.edu" && machine != "thorn.ece.drexel.edu")
-Requirements = (machine == "bowser.ece.drexel.edu")
 Universe      = vanilla
-getenv = True
+Executable    = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
+Error = condortest.err.$(Process)
+Output = condortest.out.$(Process)
+Log = condortest.log.$(Process)
+
+#Requirements = (machine != "wyrm.ece.drexel.edu" && machine != "fafnir.ece.drexel.edu" && machine != "hooktail.ece.drexel.edu" && machine != "thorn.ece.drexel.edu")
+#Requirements = (machine == "bowser.ece.drexel.edu")
+#getenv = True
 
 #### REPLAY SETTINGS####
-Error   = synthtraffic.err
-Output  = synthtraffic.out
-Log     = synthtraffic.log
+#Error   = synthtraffic.err
+#Output  = synthtraffic.out
+#Log     = synthtraffic.log
 
 SYNTHTRAFFIC_RUN_SCRIPT =  /home/DREXEL/aw868/research/new_aw868_gem5/configs/example/garnet_synth_traffic.py
 
