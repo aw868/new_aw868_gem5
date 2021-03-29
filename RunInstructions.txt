@@ -36,8 +36,14 @@ scl enable devtoolset-7 bash
 scl enable rh-python36 bash
     -enable other version of python with 'six'
 
+To launch grid42:
+gridcli node launch vp93/synchrotrace-condor grid42
+
+To see statuses of grids:
+gridcli nodes
+
+To ssh into grid:
 ssh aw868@grid42
 
-gridcli node launch vp93/synchrotrace-condor grid42
-gridcli nodes
+To exit out of grid:
 gridcli node stop grid42
