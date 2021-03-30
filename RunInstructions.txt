@@ -47,3 +47,5 @@ ssh aw868@grid42
 
 To exit out of grid:
 gridcli node stop grid42
+
+python ./util/on-chip-network-power-area.py . results/0/m5out ext/dsent/configs/router.cfg ext/dsent/configs/electrical-link.cfg > out.txt
