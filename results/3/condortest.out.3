@@ -5,33 +5,23 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version [DEVELOP-FOR-V20.2]
 gem5 compiled Mar 29 2021 00:51:50
-gem5 started Mar 29 2021 00:59:24
-gem5 executing on grid42, pid 74722
-command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Uniform_Chiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --num-chiplets-x=2 --num-chiplets-y=2 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=3 --vcs-per-vnet=4 --injectionrate=0.5
+gem5 started Mar 30 2021 19:54:24
+gem5 executing on grid42, pid 1119318
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Mesh_XYZ --mesh-rows=4 --mesh-cols=4 --z-depth=4 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=3 --vcs-per-vnet=4 --injectionrate=0.5
 
 info: Standard input is not a terminal, disabling listeners.
-File: Uniform_Chiplets.py
-len(nodes) (includes caches and directories):  128
-number of user specified routers:  64
-number of routers in layer 0:  16
-total number of routers:  80
+File: Mesh_XYZ.py
+Total Number Routers:  64
 x_depth:  4
 y_depth:  4
 z_depth:  4
-true_z_depth 5
 
-
-total routers created:  80
-
-cache_nodes:  64
-dir_nodes:  64
-
-NUM EAST-WEST LINKS =  60
-NUM WEST-EAST LINKS =  60
-NUM NORTH-SOUTH LINKS =  60
-NUM SOUTH-NORTH LINKS =  60
-NUM UP-DOWN LINKS =  64
-NUM DOWN-UP LINKS =  64
-TOTAL NUM LINKS =  368 
+NUM EAST-WEST LINKS =  48
+NUM WEST-EAST LINKS =  48
+NUM NORTH-SOUTH LINKS =  48
+NUM SOUTH-NORTH LINKS =  48
+NUM UP-DOWN LINKS =  48
+NUM DOWN-UP LINKS =  48
+TOTAL NUM LINKS =  288 
 
 Exiting @ tick 1000000 because Network Tester completed simCycles

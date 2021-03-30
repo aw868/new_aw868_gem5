@@ -7,9 +7,9 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version [DEVELOP-FOR-V20.2]
 gem5 compiled Mar 29 2021 00:51:50
-gem5 started Mar 29 2021 00:59:24
-gem5 executing on grid42, pid 74727
-command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Mesh_XY --mesh-rows=8 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.5
+gem5 started Mar 30 2021 19:54:24
+gem5 executing on grid42, pid 1119322
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=Mesh_XY --mesh-rows=8 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=0 --vcs-per-vnet=4 --injectionrate=0.5
 
 info: Standard input is not a terminal, disabling listeners.
 Exiting @ tick 1000000 because Network Tester completed simCycles

@@ -67,7 +67,7 @@ def parseConfig(config_file):
         print("ERROR: Ruby network not found in '", config_file)
         sys.exit(1)
 
-    if config.get("system.ruby.network", "type") != "GarnetNetwork_d" :
+    if config.get("system.ruby.network", "type") != "GarnetNetwork" :
         print("ERROR: Garnet network not used in '", config_file)
         sys.exit(1)
 
@@ -114,8 +114,8 @@ def computeRouterPowerAndArea(router, stats_file, config, int_links, ext_links,
     num_ports = 0
 
     for int_link in int_links:
-        if config.get(int_link, "node_a") == router or \
-           config.get(int_link, "node_b") == router:
+        if config.get(int_link, "dst_node") == router or \
+           config.get(int_link, "src_node") == router:
            num_ports += 1
 
     for ext_link in ext_links:
@@ -130,15 +130,25 @@ def computeRouterPowerAndArea(router, stats_file, config, int_links, ext_links,
     print("%s Power: " % router, power)
 
 
-## Compute the power consumed by the given link
-def computeLinkPower(link, stats_file, config, sim_seconds):
-    frequency = getClock(link + ".nls0", config)
+## Compute the power consumed by the given link (internal)
+def computeLinkPowerInt(link, stats_file, config, sim_seconds):
+    frequency = getClock(link + ".network_link", config)
     power = dsent.computeLinkPower(frequency)
-    print("%s.nls0 Power: " % link, power)
+    print("%s.network_link Power: " % link, power)
+    
+    frequency = getClock(link + ".network_link", config)
+    power = dsent.computeLinkPower(frequency)
+    print("%s.network_link Power: " % link, power)
 
-    frequency = getClock(link + ".nls1", config)
+## Compute the power consumed by the given link (external)
+def computeLinkPowerExt(link, stats_file, config, sim_seconds):
+    frequency = getClock(link + ".network_links0", config)
     power = dsent.computeLinkPower(frequency)
-    print("%s.nls1 Power: " % link, power)
+    print("%s.network_links0 Power: " % link, power)
+
+    frequency = getClock(link + ".network_links1", config)
+    power = dsent.computeLinkPower(frequency)
+    print("%s.network_links1 Power: " % link, power)
 
 
 def parseStats(stats_file, config, router_config_file, link_config_file,
@@ -184,10 +194,10 @@ def parseStats(stats_file, config, router_config_file, link_config_file,
 
     # Compute the power consumed by the links
     for link in int_links:
-        computeLinkPower(link, stats_file, config,
+        computeLinkPowerInt(link, stats_file, config,
                          simulation_length_in_seconds)
     for link in ext_links:
-        computeLinkPower(link, stats_file, config,
+        computeLinkPowerExt(link, stats_file, config,
                          simulation_length_in_seconds)
 
     # Finalize DSENT

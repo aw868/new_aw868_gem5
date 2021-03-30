@@ -11,6 +11,8 @@ SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_syn
 
 #TOPOLOGY_ROUTING_ARGS
 
+MESHXY_TABLE_ARGS = --num-cpus=64 --num-dirs=64 --network=garnet --topology=Mesh_XY --mesh-rows=8 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=0 --vcs-per-vnet=4
+
 MESHXY_XY_ARGS = --num-cpus=64 --num-dirs=64 --network=garnet --topology=Mesh_XY --mesh-rows=8 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4
 
 MeshXYZ_XYZ_ARGS = --num-cpus=64 --num-dirs=64 --network=garnet --topology=Mesh_XYZ --mesh-rows=4 --mesh-cols=4 --z-depth=4 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=2 --vcs-per-vnet=4 
@@ -28,6 +30,14 @@ NUChiplet_NUChiplet_ARGS3 = --num-cpus=8 --num-dirs=8 --network=garnet --topolog
 UWireless_Wireless_ARGS = --num-cpus=64 --num-dirs=64 --network=garnet --topology=Wireless_NUChiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,3,3 --sim-cycles=1000000 --synthetic=uniform_random --wireless-input-pattern=u --wireless-input=0,0,0,3,4,3,1,2,1,2,2,3,0,3,0 --routing-algorithm=5 --vcs-per-vnet=4
 
 RWireless_Wireless_ARGS = --num-cpus=64 --num-dirs=64 --network=garnet --topology=Wireless_NUChiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,3,3 --sim-cycles=1000000 --synthetic=uniform_random --wireless-input-pattern=r --wireless-input=2,1,4,1 --routing-algorithm=5 --vcs-per-vnet=4
+
+#############################################
+###### Mesh XY Topology, TABLE Routing ######
+#############################################
+
+Initialdir = $(SYNCHRO_DIR)/$(Process)
+arguments =  "$(SYNTHTRAFFIC_RUN_SCRIPT) $(MESHXY_TABLE_ARGS) --injectionrate=0.5"
+Queue
 
 ##########################################
 ###### Mesh XY Topology, XY Routing ######
