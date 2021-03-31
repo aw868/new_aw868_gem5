@@ -1,11 +1,11 @@
 TO ADD PARAMETERS:
 1. configs/network/Network.py
-    - init_network (line ~116)
+    - init_network (line ~136)
     - define_options (line ~38)
 2. src/mem/ruby/network/garnet/GarnetNetwork.py
     - class GarnetNetwork(RubyNetwork) (line ~37)
 3. src/mem/ruby/network/garnet/GarnetNetwork.hh
-    - protected: (line ~280)
+    - protected: (line ~330)
     - public: (line ~55)
 4. src/mem/ruby/network/garnet/GarnetNetwork.cc
     - GarnetNetwork::GarnetNetwork(const Params *p) (line ~59)
