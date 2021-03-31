@@ -91,6 +91,15 @@ class Wireless_NUChiplets(SimpleTopology):
         assert(options.wireless_input)
         assert(options.wireless_input_pattern)
 
+        if (options.wireless_width):
+            wirelessWidth = options.wireless_width
+        else:
+            wirelessWidth = 4
+        if (options.wired_width):
+            regularWidth = options.wired_width
+        else:
+            regularWidth = 32
+
         wirelessInputPattern = options.wireless_input_pattern
         wirelessInput = [int(x) for x in options.wireless_input.split(',') if x.strip().isdigit()]
         wirelessRouters = []
@@ -98,7 +107,6 @@ class Wireless_NUChiplets(SimpleTopology):
         print("wirelessInput: ", wirelessInput)
         assert(all(i >= 0 for i in wirelessInput))
 
-        
         if (wirelessInputPattern == 'r'):
             print("randomly placed wireless")
             assert(all(router < x_depth*y_depth/2 for router in wirelessInput))
@@ -157,9 +165,6 @@ class Wireless_NUChiplets(SimpleTopology):
 
         widthArr = []
         serDesArr = []
-
-        wirelessWidth = 4
-        regularWidth = 32
 
         for router in range(num_routers):
             if router in wirelessRouters:

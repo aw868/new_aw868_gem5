@@ -55,6 +55,10 @@ def define_options(parser):
                       help="wireless router designation (if random, then string will define number of wireless antennas to be placed per layer, if user-defined, then string will define exact routers the antennas will be placed on x,y,z,x,y,z...")
     parser.add_option("--wireless-input-pattern", type="string", default="",
                       help="wireless antenna placement pattern (r=random, u=user-defined)")
+    parser.add_option("--wireless-width", type="int", default=4,
+                      help="width for the wireless routers")
+    parser.add_option("--wired-width", type="int", default=32,
+                      help="width for the wired routers")
     parser.add_option("--network", type="choice", default="simple",
                       choices=['simple', 'garnet'],
                       help="""'simple'|'garnet' (garnet2.0 will be
@@ -135,6 +139,8 @@ def init_network(options, network, InterfaceClass):
         network.num_chiplets_y = options.num_chiplets_y
         network.nu_chiplets_input = options.nu_chiplets_input
         network.wireless_input = options.wireless_input
+        network.wired_width = options.wired_width
+        network.wireless_width = options.wireless_width
         network.wireless_input_pattern = options.wireless_input_pattern
         network.vcs_per_vnet = options.vcs_per_vnet
         network.ni_flit_size = options.link_width_bits / 8

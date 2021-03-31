@@ -330,6 +330,8 @@ class GarnetNetwork : public Network
     string m_nu_chiplets_input;
     string m_wireless_input;
     string m_wireless_input_pattern;
+    int m_wireless_width;
+    int m_wired_width;
     uint32_t m_ni_flit_size;
     uint32_t m_max_vcs_per_vnet;
     uint32_t m_buffers_per_ctrl_vc;
