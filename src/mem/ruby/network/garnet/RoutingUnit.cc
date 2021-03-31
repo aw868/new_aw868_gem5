@@ -634,6 +634,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
         wireless_free = false;
         wireless_count++;
         transmission_count++;
+        cout<<"transmission_count: "<<transmission_count<<endl;
     } else if (same_sector){ // if current node and destination router are in the same sector, move normally
         if (x_hops > 0) {
             if (x_dirn) {
