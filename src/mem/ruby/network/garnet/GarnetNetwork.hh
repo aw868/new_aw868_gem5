@@ -197,13 +197,40 @@ class GarnetNetwork : public Network
     }
 
     void printVector(vector<int> NUChiplet) {
-        cout<<"\nbase_router_list:"<<endl;;
+        cout<<"\nbase_router_list:"<<endl;
         for (int row=m_num_rows-1; row>=0; row--) {
             for(int col=0; col<m_num_cols; col++){
                 cout<<setw(2)<<NUChiplet[row*m_num_cols+col]<<", ";
             }
             cout<<endl;
         }
+    }
+
+    int countUnusedLinks(vector<int> chiplet_list) {
+        int count = 0;
+        int last = chiplet_list[0];
+
+        for (int row=0; row<m_num_rows; row++) {
+            last = chiplet_list[row*m_num_cols];
+            for (int col=0; col<m_num_cols; col++) {
+                if(chiplet_list[row*m_num_cols+col] != last) {
+                    count++;
+                }
+                last = chiplet_list[row*m_num_cols+col];
+            }
+        }
+
+        last = chiplet_list[0];
+        for (int col=0; col<m_num_cols; col++) {
+            last = chiplet_list[col];
+            for (int row=0; row<m_num_rows; row++) {
+                if(chiplet_list[row*m_num_cols+col] != last) {
+                    count++;
+                }
+                last = chiplet_list[row*m_num_cols+col];
+            }
+        }
+        return count;
     }
 
     vector<int> calculateNUChipletVector(string nonuniform_chiplet_input) {
@@ -338,8 +365,9 @@ class GarnetNetwork : public Network
     uint32_t m_buffers_per_data_vc;
     int m_routing_algorithm;
     bool m_enable_fault_model;
-    vector<int> m_sector_list; 
+    vector<int> m_sector_list;
     vector<int> m_wireless_list; 
+    int m_num_unused_links; 
 
     // Statistical variables
     Stats::Vector m_packets_received;

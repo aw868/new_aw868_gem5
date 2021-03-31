@@ -202,6 +202,8 @@ GarnetNetwork::init()
         }
         // CALL INITIALIZATION OF SECTOR VECTOR HERE
         m_sector_list = calculateNUChipletVector(m_nu_chiplets_input);
+        m_num_unused_links = countUnusedLinks(m_sector_list);
+        cout<<"m_num_unused_links: "<<m_num_unused_links<<endl;
         
         for (vector<Router*>::const_iterator i= m_routers.begin(); i != m_routers.end(); ++i) {
             Router* router = safe_cast<Router*>(*i);
