@@ -12,7 +12,7 @@ print("Enter number of layouts to generate: ")
 num_layouts = int(input())
 
 with open('random_layout_instructions', 'w') as f:
-    sys.stdout = f # Change the standard output to the file we created.
+    sys.stdout = f 
     print("""Universe = vanilla
 Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
 Error = condortest.err.$(Process)
