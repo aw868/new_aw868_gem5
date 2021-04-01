@@ -234,7 +234,7 @@ class GarnetNetwork : public Network
     }
 
     vector<int> calculateNUChipletVector(string nonuniform_chiplet_input) {
-        cout<<"calculateNUChipletVector(string nonuniform_chiplet_input)"<<endl;
+        // cout<<"calculateNUChipletVector(string nonuniform_chiplet_input)"<<endl;
         // cout<<"m_nu_chiplet_input: "<<nonuniform_chiplet_input<<endl;
         vector<int> nu_chiplet_input_vector = stringToVector(nonuniform_chiplet_input);
         // stringToVector should return the input m_nu_chiplets_input as a vector<int>

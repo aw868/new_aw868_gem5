@@ -477,9 +477,9 @@ RoutingUnit::outportComputeNUChiplets(RouteInfo route,
                               PortDirection inport_dirn)
 {
     PortDirection outport_dirn = "Unknown";
-    cout<<"##########################################################################"<<endl;
+    // cout<<"##########################################################################"<<endl;
     // cout<<"File: RoutingUnit.cc"<<endl;
-    cout<<"outportComputeNUChiplets()"<<endl;
+    // cout<<"outportComputeNUChiplets()"<<endl;
     int num_rows = m_router->get_net_ptr()->getNumRows();
     int num_cols = m_router->get_net_ptr()->getNumCols();
     int z_depth = m_router->get_net_ptr()->getZDepth();
@@ -488,18 +488,18 @@ RoutingUnit::outportComputeNUChiplets(RouteInfo route,
     int my_id = m_router->get_id();
     int my_coords[3];
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
-    cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
+    // cout<<"Current Coordinates: ("<<my_coords[0]<<","<<my_coords[1]<<","<<my_coords[2]<<")"<<endl;
 
     int my_sector = m_router->get_net_ptr()->getSectorNU(my_id, my_coords[0]);
-    cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
+    // cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
     int dest_coords[3];
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
-    cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
+    // cout<<"Dest Coordinates: ("<<dest_coords[0]<<","<<dest_coords[1]<<","<<dest_coords[2]<<")"<<endl;
 
     int dest_sector = m_router->get_net_ptr()->getSectorNU(dest_id, dest_coords[0]);
-    cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
+    // cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);
     int y_hops = abs(dest_coords[1] - my_coords[1]);
@@ -569,7 +569,7 @@ RoutingUnit::outportComputeNUChiplets(RouteInfo route,
             outport_dirn = "Down";
         }
     }
-    cout<<"outport_dirn: "<<outport_dirn<<endl;
+    // cout<<"outport_dirn: "<<outport_dirn<<endl;
 
     return m_outports_dirn2idx[outport_dirn];
 }
@@ -580,7 +580,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
                               PortDirection inport_dirn)
 {
     PortDirection outport_dirn = "Unknown";
-    cout<<"##########################################################################"<<endl;
+    // cout<<"##########################################################################"<<endl;
     // cout<<"outportComputeWireless()"<<endl;
     assert(wireless_count < 2);
     if (inport_dirn.find("Receive_") == 0) {
@@ -597,18 +597,18 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     int my_id = m_router->get_id();
     int my_coords[3];
     m_router->get_net_ptr()->getCoords(my_id,my_coords); //(z,y,x) = a[0],a[1],a[2]
-    cout<<"Current Coordinates: ("<<my_coords[2]<<","<<my_coords[1]<<","<<my_coords[0]<<")"<<endl;
+    // cout<<"Current Coordinates: ("<<my_coords[2]<<","<<my_coords[1]<<","<<my_coords[0]<<")"<<endl;
 
     int my_sector = m_router->get_net_ptr()->getSectorNU(my_id, my_coords[0]);
-    cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
+    // cout<<"Current ID: "<<my_id<<" | Current Sector: "<<my_sector<<endl;
 
     int dest_id = route.dest_router;
     int dest_coords[3];
     m_router->get_net_ptr()->getCoords(dest_id,dest_coords); //(z,y,x) = a[0],a[1],a[2]
-    cout<<"Dest Coordinates: ("<<dest_coords[2]<<","<<dest_coords[1]<<","<<dest_coords[0]<<")"<<endl;
+    // cout<<"Dest Coordinates: ("<<dest_coords[2]<<","<<dest_coords[1]<<","<<dest_coords[0]<<")"<<endl;
 
     int dest_sector = m_router->get_net_ptr()->getSectorNU(dest_id, dest_coords[0]);
-    cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
+    // cout<<"Dest ID: "<<dest_id<<" | Destination Sector: "<<dest_sector<<endl;
 
     int x_hops = abs(dest_coords[2] - my_coords[2]);
     int y_hops = abs(dest_coords[1] - my_coords[1]);
@@ -619,7 +619,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
     bool z_dirn = (dest_coords[0] >= my_coords[0]); //true if destination is above current
     bool same_sector = (my_sector == dest_sector); // true if destination and current router are in the same sector
     bool wirelessCapability = m_router->get_net_ptr()->getRouterType(my_id);
-    cout<<"wirelessCapability: "<<wirelessCapability<<endl;
+    // cout<<"wirelessCapability: "<<wirelessCapability<<endl;
 
     // cout<<" x_hops: "<<x_hops<<" | y_hops: "<<y_hops<<" | z_hops: "<<z_hops<<endl;
     // cout<<" x_dirn: "<<x_dirn<<" | y_dirn: "<<y_dirn<<" | z_dirn: "<<z_dirn<<" | same_sector: "<<same_sector<<endl;
@@ -688,7 +688,7 @@ RoutingUnit::outportComputeWireless(RouteInfo route,
             outport_dirn = "Down";
         }
     }
-    cout<<"outport_dirn: "<<outport_dirn<<endl;
+    // cout<<"outport_dirn: "<<outport_dirn<<endl;
 
     return m_outports_dirn2idx[outport_dirn];
 }
