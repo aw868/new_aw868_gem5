@@ -4,8 +4,8 @@ gem5 is copyrighted software; use the --copyright option for details.
 gem5 version [DEVELOP-FOR-V20.2]
 gem5 compiled Apr  1 2021 02:21:54
 gem5 started Apr  1 2021 02:52:52
-gem5 executing on grid42, pid 23637
-command line: condor_exec.exe ''"'"'/home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py' --num-cpus=64 --num-dirs=64 --network=garnet --topology=NonUniform_Chiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0 2 0 0 3 3 0 1 0 1 1 3 2 2 1 1 2 3 2 2 2 3 3 3 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 '--injectionrate=0.5'"'"''
+gem5 executing on grid42, pid 23638
+command line: condor_exec.exe ''"'"'/home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py' --num-cpus=64 --num-dirs=64 --network=garnet --topology=NonUniform_Chiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0 0 0 1 1 1 0 3 2 2 0 1 3 3 0 1 0 0 2 3 2 3 2 3 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 '--injectionrate=0.5'"'"''
 
 Script '/home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py not found
 Usage
