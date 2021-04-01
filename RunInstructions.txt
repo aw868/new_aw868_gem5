@@ -36,6 +36,10 @@ scl enable devtoolset-7 bash
 scl enable rh-python36 bash
     -enable other version of python with 'six'
 
+To run random layout generator:
+python generateNonUniformLayout.py
+condor_submit random_layout_instructions
+
 To launch grid42:
 gridcli node launch vp93/synchrotrace-condor grid42
 
