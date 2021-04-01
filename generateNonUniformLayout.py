@@ -56,12 +56,12 @@ SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_syn
                         chiplet_array[fill_x+fill_y*y_length] = chiplet_count
 
                 chiplet_count+=1
-                chiplet_coords.extend([x_min, rand_x, y_min, rand_y])
+                chiplet_coords.extend([x_min, y_min, rand_x, rand_y])
         
-        chiplet_coords_string = ' '.join([str(elem) for elem in chiplet_coords])
+        chiplet_coords_string = ','.join([str(elem) for elem in chiplet_coords])
         print("ARGS_%s = --num-cpus=%s --num-dirs=%s --network=garnet --topology=NonUniform_Chiplets --mesh-rows=%s --mesh-cols=%s --z-depth=%s --nu-chiplets-input=%s --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4" %(i, y_length*x_length*z_length, y_length*x_length*z_length, y_length, x_length, z_length, chiplet_coords_string))
         print("Initialdir = $(SYNCHRO_DIR)/$(Process)")
-        print("arguments = '$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_%s) --injectionrate=0.5'" %(i))
+        print("arguments = \"$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_%s) --injectionrate=0.5\"" %(i))
         print("Queue\n")
         # print(chiplet_coords)
         # for o in range(y_length-1, -1, -1):
