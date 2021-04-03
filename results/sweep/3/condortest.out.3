@@ -1,0 +1,44 @@
+Global frequency set at 1000000000000 ticks per second
+Using Non-Uniform Chiplet Routing Algorithm
+
+base_router_list:
+ 0,  5,  5,  6, 
+ 0,  2,  2,  4, 
+ 0,  2,  2,  3, 
+ 0,  1,  1,  1, 
+m_num_unused_links: 56
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-V20.2]
+gem5 compiled Apr  3 2021 15:54:55
+gem5 started Apr  3 2021 16:17:01
+gem5 executing on grid42, pid 13580
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=NonUniform_Chiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,0,3,1,0,3,0,1,1,2,2,3,1,3,1,3,2,3,2,1,3,2,3,3,3,3,3 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5 --sim-cycles=4000000
+
+info: Standard input is not a terminal, disabling listeners.
+File: NonUniform_Chiplets.py
+len(nodes) (includes caches and directories):  128
+number of user specified routers:  64
+number of routers in layer 0:  16
+total number of routers:  80
+x_depth:  4
+y_depth:  4
+z_depth:  4
+true_z_depth 5
+
+
+total routers created:  80
+
+cache_nodes:  64
+dir_nodes:  64
+
+NUM EAST-WEST LINKS =  60
+NUM WEST-EAST LINKS =  60
+NUM NORTH-SOUTH LINKS =  60
+NUM SOUTH-NORTH LINKS =  60
+NUM UP-DOWN LINKS =  64
+NUM DOWN-UP LINKS =  64
+TOTAL NUM LINKS =  368 
+
+Exiting @ tick 4000000 because Network Tester completed simCycles
