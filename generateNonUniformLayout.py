@@ -11,7 +11,7 @@ z_length = int(input())
 print("Enter number of layouts to generate: ")
 num_layouts = int(input())
 
-with open('random_layout_instructions', 'w') as f:
+with open('condor_random_nu', 'w') as f:
     sys.stdout = f 
     print("""Universe = vanilla
 Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
