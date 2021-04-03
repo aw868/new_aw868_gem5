@@ -50,6 +50,10 @@ To ssh into grid:
 ssh aw868@grid42
 
 To exit out of grid:
+exit
 gridcli node stop grid42
 
 python ./util/on-chip-network-power-area.py . results/0/m5out ext/dsent/configs/router.cfg ext/dsent/configs/electrical-link.cfg > out.txt
+
+To make multiple directories:
+mkdir {1..50}
