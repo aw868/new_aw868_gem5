@@ -29,3 +29,6 @@ TO ADD TOPOLOGIES:
 
 TO ADD PORTS:
 1. config/topologies/[topology file]
+
+TO INCREASE NUMBER_BITS_PER_SET (default=64):
+1. In /SConstruct, change 'NUMBER_BITS_PER_SET' to 128, 256 etc.
