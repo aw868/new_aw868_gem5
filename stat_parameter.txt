@@ -1,0 +1,185 @@
+Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
+- 16x16x2 random NU
+- 10,000,000 simcycles
+- PIR: 0.1-0.9 in increments of 0.1
+- traffic: uniform-random
+- command file: condor_MC1
+- results location: /home/aw868/new_aw868_gem5/results/MC1
+
+Monte Carlo 2 (Run 1000 random NU topologies)
+- 16x16x2 random NU
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: uniform-random
+- command file: condor_MC2
+- results location: /home/aw868/new_aw868_gem5/results/MC2
+
+Traffic Pattern (1 chiplet)
+- 16x16x2 (0,0,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T1
+- results location: /home/aw868/new_aw868_gem5/results/T1
+
+Traffic Pattern (2 chiplets)
+- 16x16x2 (0,0,15,7,0,8,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T2
+- results location: /home/aw868/new_aw868_gem5/results/T2
+
+Traffic Pattern (4 chiplets)
+- 16x16x2 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T4
+- results location: /home/aw868/new_aw868_gem5/results/T4
+
+Traffic Pattern (8 chiplets)
+- 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T8
+- results location: /home/aw868/new_aw868_gem5/results/T8
+
+Traffic Pattern (16 chiplets)
+- 16x16x2 (0,0,3,3,4,0,7,3,8,0,11,3,12,0,15,3,0,4,3,7,4,4,7,7,8,4,11,7,12,4,15,7,0,8,3,11,4,8,7,11,8,8,11,11,12,8,15,11,0,12,3,15,4,12,7,15,8,12,11,15,12,12,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T16
+- results location: /home/aw868/new_aw868_gem5/results/T16
+
+Traffic Pattern (4 chiplets, z-depth=1)
+- 16x16x1 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T4_Z1
+- results location: /home/aw868/new_aw868_gem5/results/T4_Z1
+
+Traffic Pattern (4 chiplets, z-depth=2)
+- 16x16x2 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T4_Z2
+- results location: /home/aw868/new_aw868_gem5/results/T4_Z2
+
+Traffic Pattern (4 chiplets, z-depth=4)
+- 16x16x4 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T4_Z4
+- results location: /home/aw868/new_aw868_gem5/results/T4_Z4
+
+Traffic Pattern (4 chiplets, z-depth=8)
+- 16x16x8 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T4_Z8
+- results location: /home/aw868/new_aw868_gem5/results/T4_Z8
+
+Traffic Pattern (5 topologies with median latency from Monte Carlo simulation)
+- 16x16x8
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_T4_MC
+- results location: /home/aw868/new_aw868_gem5/results/T4_MC
+
+Wireless Traffic Pattern (1 chiplet, antennas=0)
+- 16x16x2 (0,0,15,15)
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT1_A0
+- results location: /home/aw868/new_aw868_gem5/results/WT1_A0
+
+Wireless Traffic Pattern (1 chiplet, antennas=8 evenly spread out in layer 1)
+- 16x16x2 (0,0,15,15)
+- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT1_A8
+- results location: /home/aw868/new_aw868_gem5/results/WT1_A8
+
+Wireless Traffic Pattern (2 chiplets, antennas=8 evenly spread out in layer 1)
+- 16x16x2 (0,0,15,7,0,8,15,15)
+- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT2_A8
+- results location: /home/aw868/new_aw868_gem5/results/WT2_A8
+
+Wireless Traffic Pattern (4 chiplets, antennas=8 evenly spread out in layer 1)
+- 16x16x2 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
+- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT4_A8
+- results location: /home/aw868/new_aw868_gem5/results/WT4_A8
+
+Wireless Traffic Pattern (8 chiplets, antennas=8 evenly spread out in layer 1)
+- 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
+- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT8_A8
+- results location: /home/aw868/new_aw868_gem5/results/WT8_A8
+
+Wireless Traffic Pattern (16 chiplets, antennas=8 evenly spread out in layer 1)
+- 16x16x2 (0,0,3,3,4,0,7,3,8,0,11,3,12,0,15,3,0,4,3,7,4,4,7,7,8,4,11,7,12,4,15,7,0,8,3,11,4,8,7,11,8,8,11,11,12,8,15,11,0,12,3,15,4,12,7,15,8,12,11,15,12,12,15,15)
+- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT16_A8
+- results location: /home/aw868/new_aw868_gem5/results/WT16_A8
+
+Wireless Traffic Pattern (8 chiplets, antennas=16 evenly spread out in layer 1)
+- 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
+- wireless: 2,1,1,5,1,1,10,1,1,13,1,1,1,6,1,6,6,1,9,6,1,14,6,1,2,9,1,5,9,1,10,9,1,13,9,1,1,14,1,6,14,1,9,14,1,14,14,1
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT8_A16
+- results location: /home/aw868/new_aw868_gem5/results/WT8_A16
+
+Wireless Traffic Pattern (8 chiplets, antennas=32 evenly spread out in layer 1)
+- 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
+- wireless:
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT8_A32
+- results location: /home/aw868/new_aw868_gem5/results/WT8_A32
+
+Wireless Traffic Pattern (8 chiplets, antennas=64 evenly spread out in layer 1)
+- 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
+- wireless:
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WT8_A64
+- results location: /home/aw868/new_aw868_gem5/results/WT8_A64
+
+Monte Carlo Wireless (8 chiplets, antennas=32 randomly spread out in layer 1 and 2)
+- 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
+- wireless: 16,16
+- 10,000,000 simcycles
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- traffic: sweep all 
+- command file: condor_WMC_A32
+- results location: /home/aw868/new_aw868_gem5/results/WMC_A32
+
