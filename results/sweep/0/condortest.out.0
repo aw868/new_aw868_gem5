@@ -11,9 +11,9 @@ gem5 Simulator System.  http://gem5.org
 gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version [DEVELOP-FOR-V20.2]
-gem5 compiled Apr  3 2021 15:54:55
-gem5 started Apr  3 2021 16:17:01
-gem5 executing on grid42, pid 13573
+gem5 compiled Apr  4 2021 21:01:03
+gem5 started Apr  6 2021 18:32:05
+gem5 executing on grid42, pid 9267
 command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=64 --num-dirs=64 --network=garnet --topology=NonUniform_Chiplets --mesh-rows=4 --mesh-cols=4 --z-depth=4 --nu-chiplets-input=0,0,0,3,1,0,3,0,1,1,2,2,3,1,3,1,3,2,3,2,1,3,2,3,3,3,3,3 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5 --sim-cycles=1000000
 
 info: Standard input is not a terminal, disabling listeners.

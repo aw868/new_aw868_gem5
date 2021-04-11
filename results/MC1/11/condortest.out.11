@@ -1,0 +1,35 @@
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-V20.2]
+gem5 compiled Apr  6 2021 19:27:55
+gem5 started Apr  7 2021 03:55:45
+gem5 executing on grid42, pid 15275
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=512 --network=garnet --topology=NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,9,0,10,0,13,2,14,0,15,0,0,1,0,4,1,1,8,9,9,1,9,14,14,1,14,12,15,1,15,6,10,3,10,7,11,3,12,15,13,3,13,12,0,5,0,9,15,7,15,8,10,8,10,12,15,9,15,11,0,10,6,13,7,10,7,10,8,10,8,12,7,11,7,11,7,12,7,13,15,12,15,12,8,13,8,15,10,13,10,14,13,13,13,14,14,13,14,13,15,13,15,15,0,14,0,15,1,14,2,14,3,14,3,15,4,14,7,14,14,14,14,14,1,15,2,15,4,15,6,15,7,15,7,15,9,15,10,15,13,15,14,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.3
+
+info: Standard input is not a terminal, disabling listeners.
+File: NonUniform_Chiplets.py
+len(nodes) (includes caches and directories):  1024
+number of user specified routers:  512
+number of routers in layer 0:  256
+total number of routers:  768
+x_depth:  16
+y_depth:  16
+z_depth:  2
+true_z_depth 3
+
+
+total routers created:  768
+
+cache_nodes:  512
+dir_nodes:  512
+
+NUM EAST-WEST LINKS =  720
+NUM WEST-EAST LINKS =  720
+NUM NORTH-SOUTH LINKS =  720
+NUM SOUTH-NORTH LINKS =  720
+NUM UP-DOWN LINKS =  512
+NUM DOWN-UP LINKS =  512
+TOTAL NUM LINKS =  3904 
+

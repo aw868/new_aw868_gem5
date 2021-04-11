@@ -3,7 +3,7 @@ ARGS_0 = --num-cpus=64 --num-dirs=64 --network=garnet --topology=NonUniform_Chip
 
 
 Cycles: 1,000,000
-system.ruby.network.average_packet_latency: 497756.984875   
+system.ruby.network.average_packet_network_latency: 53543.675848  
 system.ruby.network.packets_received::total        14413    
 
 Cycles: 2,000,000
