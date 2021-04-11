@@ -31,3 +31,8 @@ m5out
 configs/example/memcheck.cfg
 configs/dram/lowp_sweep.cfg
 /results/MeshXY_XY/fs/*
+*.err.*
+*.log.*
+*.out.*
+*.ini
+/results/*/m5out/fs/*
