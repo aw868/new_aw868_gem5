@@ -12,18 +12,18 @@ print("Enter number of layouts to generate: ")
 num_layouts = int(input())
 print("Enter injection rate: ")
 injection_rate = float(input())
-print("Enter if wireless (0=wired only, 1=wireless): ")
-wireless = float(input())
+# print("Enter if wireless (0=wired only, 1=wireless): ")
+# wireless = float(input())
 
-with open('condor_MC2', 'w') as f:
+with open('condor_MC1', 'w') as f:
     sys.stdout = f 
     print("""Universe = vanilla
 Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
-Error = condortest.err.$(Process)
-Output = condortest.out.$(Process)
-Log = condortest.log.$(Process)
+Error = condortest.err
+Output = condortest.out
+Log = condortest.log
 
-SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/MC2
+SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/MC1
 SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py\n""")
 
     for i in range(num_layouts):
@@ -65,15 +65,16 @@ SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_syn
         chiplet_coords_string = ','.join([str(elem) for elem in chiplet_coords])
         if (injection_rate == -1):
             for ir in range(1,10):
-                print("ARGS_%s_%s = --num-cpus=%s --num-dirs=%s --network=garnet --topology=NonUniform_Chiplets --mesh-rows=%s --mesh-cols=%s --z-depth=%s --nu-chiplets-input=%s --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=%s" %(i, ir, y_length*x_length*z_length, y_length*x_length*z_length, y_length, x_length, z_length, chiplet_coords_string, float(ir/10.0)))
-                print("Initialdir = $(SYNCHRO_DIR)/$(Process)")
+                print("ARGS_%s_%s = --num-cpus=%s --num-dirs=%s --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=%s --mesh-cols=%s --z-depth=%s --nu-chiplets-input=%s --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=%s" %(i, ir, y_length*x_length*z_length, y_length*x_length*z_length/2, y_length, x_length, z_length, chiplet_coords_string, float(ir/10.0)))
+                print("Initialdir = $(SYNCHRO_DIR)/ARGS_%s_%s" %(i, ir))
                 print("arguments = \"$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_%s_%s)\"" %(i, ir))
                 print("Queue\n")
         else:
-            print("ARGS_%s = --num-cpus=%s --num-dirs=%s --network=garnet --topology=NonUniform_Chiplets --mesh-rows=%s --mesh-cols=%s --z-depth=%s --nu-chiplets-input=%s --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=%s" %(i, y_length*x_length*z_length, y_length*x_length*z_length, y_length, x_length, z_length, chiplet_coords_string, injection_rate))
-            print("Initialdir = $(SYNCHRO_DIR)/$(Process)")
-            print("arguments = \"$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_%s)\"" %(i))
-            print("Queue\n")
+            for ir in range(-30,15,5):
+                print("ARGS_%s_%s = --num-cpus=%s --num-dirs=%s --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=%s --mesh-cols=%s --z-depth=%s --nu-chiplets-input=%s --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=%s" %(i, ir+30, y_length*x_length*z_length, y_length*x_length*z_length/2, y_length, x_length, z_length, chiplet_coords_string, injection_rate+float(ir/100.0)))
+                print("Initialdir = $(SYNCHRO_DIR)/ARGS_%s_%s" %(i, ir))
+                print("arguments = \"$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_%s_%s)\"" %(i, ir+30))
+                print("Queue\n")
         # print(chiplet_coords)
         # for o in range(y_length-1, -1, -1):
         #     # print out current values in chiplet_array
