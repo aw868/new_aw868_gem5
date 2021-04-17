@@ -37,4 +37,12 @@ Wireless Input (random placement - should error)
 
 128 Core Test
 ./build/ARM/gem5.opt -d /home/aw868/new_aw868_gem5/results/MeshXY_XY /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=128 --num-dirs=128 --network=garnet --topology=Mesh_XY --mesh-rows=8 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.5
+(okay)
+
+512 Core Test (w/ mem)
+./build/ARM/gem5.opt -d /home/aw868/new_aw868_gem5/results/MeshXY_XY /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=512 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=1000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.5 --mem-size=8192MB
 ()
+
+Sparse 512 Core Test
+./build/ARM/gem5.opt -d /home/aw868/new_aw868_gem5/results/NUChiplet_NUChiplet3/ /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=100 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
+(okay)
