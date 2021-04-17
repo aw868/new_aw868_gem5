@@ -61,6 +61,10 @@ class NonUniform_Chiplets(SimpleTopology):
         print("len(nodes) (includes caches and directories): ", len(nodes))
 
         user_routers = options.num_cpus # only the user specified number of routers (no layer 0)
+        user_dirs = options.num_dirs
+
+        print("number of user specified routers: ", (user_routers))
+        print("number of user specified directories: ", (user_dirs))
 
         link_latency = options.link_latency # used by simple and garnet
         router_latency = options.router_latency # only used by garnet

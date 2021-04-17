@@ -63,8 +63,8 @@ class MeshXY_Corners(SimpleTopology):
         # Also, obviously the number or rows must be <= the number of routers
         cntrls_per_router, remainder = divmod(len(nodes), num_routers)
         assert(num_rows > 0 and num_rows <= num_routers)
-        if (options.y_depth>0):
-            num_columns=options.y_depth
+        if (options.mesh_cols>0):
+            num_columns=options.mesh_cols
         else:
             num_columns = int(num_routers / num_rows)
 
@@ -192,6 +192,6 @@ class MeshXY_Corners(SimpleTopology):
 
     # Register nodes with filesystem
     def registerTopology(self, options):
-        for i in xrange(options.num_cpus):
+        for i in range(options.num_cpus):
             FileSystemConfig.register_node([i],
                     MemorySize(options.mem_size) // options.num_cpus, i)
