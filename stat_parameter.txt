@@ -1,3 +1,6 @@
+grep -nir "average_packet_network_latency" | sort > latency.txt
+grep -nir "packets_received::total" | sort > throughput.txt
+
 Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
 - 16x16x2 random NU
 - 10,000,000 simcycles
