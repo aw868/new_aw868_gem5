@@ -1,0 +1,103 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
+Error = condortest.err
+Output = condortest.out
+Log = condortest.log
+
+SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/MeshXY_sanity
+SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py
+
+ARGS_0_1 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.001
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_1)"
+Queue
+
+ARGS_0_2 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.002
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_2)"
+Queue
+
+ARGS_0_3 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.003
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_3)"
+Queue
+
+ARGS_0_4 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.004
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_4)"
+Queue
+
+ARGS_0_5 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.005
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_5)"
+Queue
+
+ARGS_0_6 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.006
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_6)"
+Queue
+
+ARGS_0_7 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.007
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_7)"
+Queue
+
+ARGS_0_8 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.008
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_8)"
+Queue
+
+ARGS_0_9 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.009
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_9)"
+Queue
+
+ARGS_0_10 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.01
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_10)"
+Queue
+
+ARGS_1_1 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.02
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_1)"
+Queue
+
+ARGS_1_2 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_2)"
+Queue
+
+ARGS_1_3 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_3)"
+Queue
+
+ARGS_1_4 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_4)"
+Queue
+
+ARGS_1_5 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_5)"
+Queue
+
+ARGS_1_6 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_6)"
+Queue
+
+ARGS_1_7 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_7)"
+Queue
+
+ARGS_1_8 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_8)"
+Queue
+
+ARGS_1_9 = --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_9)"
+Queue
