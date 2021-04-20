@@ -1,0 +1,15 @@
+Global frequency set at 1000000000000 ticks per second
+Using XY Algorithm
+m_num_rows: 16
+m_num_cols: 16
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-V20.2]
+gem5 compiled Apr 17 2021 16:19:41
+gem5 started Apr 18 2021 17:42:32
+gem5 executing on grid42, pid 62020
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=256 --num-dirs=256 --network=garnet --topology=Mesh_XY --mesh-rows=16 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=1 --vcs-per-vnet=4 --injectionrate=0.001
+
+info: Standard input is not a terminal, disabling listeners.
+Exiting @ tick 10000000 because Network Tester completed simCycles
