@@ -12,10 +12,12 @@ Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
 Monte Carlo 2 (Run 1000 random NU topologies)
 - 16x16x2 random NU
 - 10,000,000 simcycles
-- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
+- PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05 (0.06 so 0.03:0.08:0.005)
 - traffic: uniform-random
 - command file: condor_MC2
 - results location: /home/aw868/new_aw868_gem5/results/MC2
+
+mkdir ARGS_{0..7}_{0..10}
 
 Traffic Pattern (1 chiplet)
 - 16x16x2 (0,0,15,15)
@@ -96,6 +98,8 @@ Traffic Pattern (5 topologies with median latency from Monte Carlo simulation)
 - traffic: sweep all 
 - command file: condor_T4_MC
 - results location: /home/aw868/new_aw868_gem5/results/T4_MC
+
+mkdir ARGS_{0..7}_{0..10}
 
 Wireless Traffic Pattern (1 chiplet, antennas=0)
 - 16x16x2 (0,0,15,15)
