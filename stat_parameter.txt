@@ -9,6 +9,13 @@ Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
 - command file: condor_MC1
 - results location: /home/aw868/new_aw868_gem5/results/MC1
 
+screen -S grep_latency
+screen -S grep_throughput
+
+ctl a + d
+screen -ls
+screen -r #######
+
 Monte Carlo 2 (Run 1000 random NU topologies)
 - 16x16x2 random NU
 - 10,000,000 simcycles
@@ -111,7 +118,7 @@ Wireless Traffic Pattern (1 chiplet, antennas=0)
 
 Wireless Traffic Pattern (1 chiplet, antennas=8 evenly spread out in layer 1)
 - 16x16x2 (0,0,15,15)
-- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- wireless: 1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -120,7 +127,7 @@ Wireless Traffic Pattern (1 chiplet, antennas=8 evenly spread out in layer 1)
 
 Wireless Traffic Pattern (2 chiplets, antennas=8 evenly spread out in layer 1)
 - 16x16x2 (0,0,15,7,0,8,15,15)
-- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- wireless: 1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -129,7 +136,7 @@ Wireless Traffic Pattern (2 chiplets, antennas=8 evenly spread out in layer 1)
 
 Wireless Traffic Pattern (4 chiplets, antennas=8 evenly spread out in layer 1)
 - 16x16x2 (0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15)
-- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- wireless: 1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -138,7 +145,7 @@ Wireless Traffic Pattern (4 chiplets, antennas=8 evenly spread out in layer 1)
 
 Wireless Traffic Pattern (8 chiplets, antennas=8 evenly spread out in layer 1)
 - 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
-- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- wireless: 1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -147,7 +154,7 @@ Wireless Traffic Pattern (8 chiplets, antennas=8 evenly spread out in layer 1)
 
 Wireless Traffic Pattern (16 chiplets, antennas=8 evenly spread out in layer 1)
 - 16x16x2 (0,0,3,3,4,0,7,3,8,0,11,3,12,0,15,3,0,4,3,7,4,4,7,7,8,4,11,7,12,4,15,7,0,8,3,11,4,8,7,11,8,8,11,11,12,8,15,11,0,12,3,15,4,12,7,15,8,12,11,15,12,12,15,15)
-- wireless: 1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1
+- wireless: 1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -156,7 +163,7 @@ Wireless Traffic Pattern (16 chiplets, antennas=8 evenly spread out in layer 1)
 
 Wireless Traffic Pattern (8 chiplets, antennas=16 evenly spread out in layer 1)
 - 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
-- wireless: 2,1,1,5,1,1,10,1,1,13,1,1,1,6,1,6,6,1,9,6,1,14,6,1,2,9,1,5,9,1,10,9,1,13,9,1,1,14,1,6,14,1,9,14,1,14,14,1
+- wireless: 1,1,1,14,1,1,6,3,1,9,3,1,2,4,1,13,4,1,4,5,1,11,5,1,4,10,1,11,10,1,2,11,1,13,11,1,6,12,1,9,12,1,1,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -165,7 +172,7 @@ Wireless Traffic Pattern (8 chiplets, antennas=16 evenly spread out in layer 1)
 
 Wireless Traffic Pattern (8 chiplets, antennas=32 evenly spread out in layer 1)
 - 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
-- wireless:
+- wireless:1,1,1,4,1,1,7,1,1,9,1,1,11,1,1,14,1,1,6,3,1,9,3,1,2,4,1,13,4,1,4,5,1,11,5,1,1,6,1,6,6,1,9,6,1,14,6,1,1,9,1,6,9,1,9,9,1,14,9,1,4,10,1,11,10,1,2,11,1,13,11,1,6,12,1,9,12,1,1,14,1,4,14,1,7,14,1,9,14,1,11,14,1,14,14,1
 - 10,000,000 simcycles
 - PIR: saturation point-0.3:saturation point:saturation point+0.1 in increments of 0.05
 - traffic: sweep all 
@@ -180,6 +187,8 @@ Wireless Traffic Pattern (8 chiplets, antennas=64 evenly spread out in layer 1)
 - traffic: sweep all 
 - command file: condor_WT8_A64
 - results location: /home/aw868/new_aw868_gem5/results/WT8_A64
+
+mkdir ARGS_{0..999}_{0..10}
 
 Monte Carlo Wireless (8 chiplets, antennas=32 randomly spread out in layer 1 and 2)
 - 16x16x2 (0,0,7,3,8,0,15,3,0,4,7,7,8,4,15,7,0,8,7,11,8,8,15,11,0,12,7,15,8,12,15,15)
