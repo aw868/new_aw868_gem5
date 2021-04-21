@@ -1,0 +1,13 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
+Error = condortest.err
+Output = condortest.out
+Log = condortest.log
+
+SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/MC2
+SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py
+
+ARGS_482_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,2,3,3,0,14,8,15,0,15,0,15,1,15,5,0,4,2,5,0,6,0,6,1,6,2,11,15,6,15,15,0,7,0,13,3,9,6,13,7,9,11,12,12,9,14,10,12,11,12,13,13,11,14,15,1,12,2,15,7,13,10,15,11,13,11,15,0,14,0,14,3,14,5,15,6,14,6,14,12,14,12,14,0,15,0,15,6,15,6,15,12,15,12,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_482_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_482_6)"
+Queue
