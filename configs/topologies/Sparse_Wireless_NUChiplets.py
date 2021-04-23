@@ -107,7 +107,7 @@ class Sparse_Wireless_NUChiplets(SimpleTopology):
         wirelessInputPattern = options.wireless_input_pattern
         wirelessInput = [int(x) for x in options.wireless_input.split(',') if x.strip().isdigit()]
         wirelessRouters = []
-        availableRouters = [x for x in range(num_routers)]
+        availableRouters = [x for x in range(y_depth*x_depth, num_routers)]
         print("wirelessInput: ", wirelessInput)
         assert(all(i >= 0 for i in wirelessInput))
 
@@ -133,9 +133,9 @@ class Sparse_Wireless_NUChiplets(SimpleTopology):
                                 availableRouters.remove(router+1)
                             if (router-1 in availableRouters and router%x_depth != 0):
                                 availableRouters.remove(router-1)
-                            if (router+x_depth in availableRouters and router/x_depth < y_depth-1):
+                            if (router+x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth < y_depth-1):
                                 availableRouters.remove(router+x_depth)
-                            if (router-x_depth in availableRouters and router/x_depth > 0):
+                            if (router-x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth > 0):
                                 availableRouters.remove(router-x_depth)
                             if (router+x_depth*y_depth in availableRouters):
                                 availableRouters.remove(router+x_depth*y_depth)
@@ -146,9 +146,8 @@ class Sparse_Wireless_NUChiplets(SimpleTopology):
             print("user-designated wireless")
             for i in range(0, len(wirelessInput), 3):
                 router = wirelessInput[i]*x_depth+wirelessInput[i+1]+wirelessInput[i+2]*x_depth*y_depth+(x_depth*y_depth)
-
-                assert(router in availableRouters)
                 print(router)
+                assert(router in availableRouters)
 
                 wirelessRouters.append(router)
                 availableRouters.remove(router)
@@ -156,9 +155,9 @@ class Sparse_Wireless_NUChiplets(SimpleTopology):
                     availableRouters.remove(router+1)
                 if (router-1 in availableRouters and router%x_depth != 0):
                     availableRouters.remove(router-1)
-                if (router+x_depth in availableRouters and router/x_depth < y_depth-1):
+                if (router+x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth < y_depth-1):
                     availableRouters.remove(router+x_depth)
-                if (router-x_depth in availableRouters and router/x_depth > 0):
+                if (router-x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth > 0):
                     availableRouters.remove(router-x_depth)
                 if (router+x_depth*y_depth in availableRouters):
                     availableRouters.remove(router+x_depth*y_depth)

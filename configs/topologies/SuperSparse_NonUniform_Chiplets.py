@@ -37,15 +37,14 @@ from m5.objects import *
 from common import FileSystemConfig
 
 from .BaseTopology import SimpleTopology
-import random
 
 # Creates a generic 3D Mesh assuming an equal number of cache
 # and directory controllers.
 # XYZ routing is enforced (using link weights)
 # to guarantee deadlock freedom.
 
-class Wireless_NUChiplets(SimpleTopology):
-    description='Wireless_NUChiplets'
+class SuperSparse_NonUniform_Chiplets(SimpleTopology):
+    description='SuperSparse_NonUniform_Chiplets'
 
     def __init__(self, controllers):
         self.nodes = controllers #includes directories and caches
@@ -57,11 +56,17 @@ class Wireless_NUChiplets(SimpleTopology):
         # layer 0: routers only (not included in num_cpus)
 
     def makeTopology(self, options, network, IntLink, ExtLink, Router):
-        print("File: Wireless_NUChiplets.py")
+        print("File: SuperSparse_NonUniform_Chiplets.py")
         nodes = self.nodes
         print("len(nodes) (includes caches and directories): ", len(nodes))
 
         user_routers = options.num_cpus # only the user specified number of routers (no layer 0)
+        user_dirs = options.num_dirs
+
+        print("number of user specified routers: ", (user_routers))
+        print("number of user specified directories: ", (user_dirs))
+
+        router_dir_ratio = user_routers/user_dirs
 
         link_latency = options.link_latency # used by simple and garnet
         router_latency = options.router_latency # only used by garnet
@@ -87,113 +92,18 @@ class Wireless_NUChiplets(SimpleTopology):
         num_routers = true_z_depth*x_depth*y_depth # total number of routers in the build (all layers)
         assert(z_depth * y_depth * x_depth < (num_routers))
         assert(true_z_depth * y_depth * x_depth == num_routers)
-        assert(options.nu_chiplets_input)
-        assert(options.wireless_input)
-        assert(options.wireless_input_pattern)
-
-        if (options.wireless_width):
-            wirelessWidth = options.wireless_width
-        else:
-            wirelessWidth = 4
-        if (options.wired_width):
-            regularWidth = options.wired_width
-        else:
-            regularWidth = 32
-
-        wirelessInputPattern = options.wireless_input_pattern
-        wirelessInput = [int(x) for x in options.wireless_input.split(',') if x.strip().isdigit()]
-        wirelessRouters = []
-        availableRouters = [x for x in range(y_depth*x_depth, num_routers)]
-        print("wirelessInput: ", wirelessInput)
-        assert(all(i >= 0 for i in wirelessInput))
-
-        if (wirelessInputPattern == 'r'):
-            print("randomly placed wireless")
-            assert(all(router < x_depth*y_depth/2 for router in wirelessInput))
-            for i in range(len(wirelessInput)):
-                layer_routers = [x for x in range((i+1)*x_depth*y_depth, (i+2)*x_depth*y_depth)]
-                layer_set = set(layer_routers)
-                for x in range(wirelessInput[i]):
-                    repeat = True
-                    while(repeat):
-                        # make sure there are enough routers in the layer that can be designated as wireless
-                        assert(len(layer_set.intersection(set(availableRouters))) >= wirelessInput[i]-x)
-                        router = random.randint((i+1)*x_depth*y_depth, (i+2)*x_depth*y_depth-1)
-                        if(router not in wirelessRouters and router in availableRouters):
-                            # only add to the array if it does not already exist in array
-                            wirelessRouters.append(router)
-                            # add an additional layer to the router value to account for addition of layer 0
-                            # remove wireless router and its adjacent routers from availableRouters list
-                            availableRouters.remove(router)
-                            if (router+1 in availableRouters and router%x_depth != x_depth-1):
-                                availableRouters.remove(router+1)
-                            if (router-1 in availableRouters and router%x_depth != 0):
-                                availableRouters.remove(router-1)
-                            if (router+x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth < y_depth-1):
-                                availableRouters.remove(router+x_depth)
-                            if (router-x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth > 0):
-                                availableRouters.remove(router-x_depth)
-                            if (router+x_depth*y_depth in availableRouters):
-                                availableRouters.remove(router+x_depth*y_depth)
-                            if (router-x_depth*y_depth in availableRouters):
-                                availableRouters.remove(router-x_depth*y_depth)
-                            repeat = False
-        elif (wirelessInputPattern == 'u'):
-            print("user-designated wireless")
-            for i in range(0, len(wirelessInput), 3):
-                router = wirelessInput[i]*x_depth+wirelessInput[i+1]+wirelessInput[i+2]*x_depth*y_depth+(x_depth*y_depth)
-
-                assert(router in availableRouters)
-                print(router)
-
-                wirelessRouters.append(router)
-                availableRouters.remove(router)
-                if (router+1 in availableRouters and router%x_depth != x_depth-1):
-                    availableRouters.remove(router+1)
-                if (router-1 in availableRouters and router%x_depth != 0):
-                    availableRouters.remove(router-1)
-                if (router+x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth < y_depth-1):
-                    availableRouters.remove(router+x_depth)
-                if (router-x_depth in availableRouters and (router%(x_depth*y_depth))/x_depth > 0):
-                    availableRouters.remove(router-x_depth)
-                if (router+x_depth*y_depth in availableRouters):
-                    availableRouters.remove(router+x_depth*y_depth)
-                if (router-x_depth*y_depth in availableRouters):
-                    availableRouters.remove(router-x_depth*y_depth)
-
-        print("wirelessRouters: ", wirelessRouters)
-
-        widthArr = []
-        serDesArr = []
-
-        for router in range(num_routers):
-            if router in wirelessRouters:
-                widthArr.append(wirelessWidth)
-                serDesArr.append(True)
-            else:
-                widthArr.append(regularWidth)
-                serDesArr.append(False)
-        
-        # print("wirelessInputPattern: ", wirelessInputPattern)
-        # print("widthArr", widthArr)
-        # print("serDesArr", serDesArr)
-
-        for layer in range(z_depth, -1, -1):
-            for row in range(y_depth-1, -1, -1):
-                for col in range(x_depth):
-                    print ("%3d" % (widthArr[row*x_depth+col+layer*y_depth*x_depth]), end=' ') 
-                print("")
-            print("")
 
         print("number of user specified routers: ", (user_routers))
         print("number of routers in layer 0: ", (x_depth*y_depth))
         print("total number of routers: ", num_routers)
         print("x_depth: ", x_depth)
         print("y_depth: ", y_depth)
-        print("true_z_depth", true_z_depth)  
+        print("z_depth: ", z_depth)
+        print("true_z_depth", true_z_depth)
+        print("\n")
 
         # Create the routers in the mesh (all layers including layer 0)
-        routers = [Router(router_id=i, latency = router_latency, width = widthArr[i]) \
+        routers = [Router(router_id=i, latency = router_latency) \
             for i in range(num_routers)]
         network.routers = routers
         print("total routers created: ", len(routers))
@@ -207,24 +117,49 @@ class Wireless_NUChiplets(SimpleTopology):
         cache_nodes = []
         dir_nodes = []
         for node in nodes:
+            # print("node.type: ", node.type)
             if node.type == 'L1Cache_Controller':
                 cache_nodes.append(node)
             elif node.type == 'Directory_Controller':
                 dir_nodes.append(node)
 
-        print("cache_nodes: ", len(cache_nodes))
-        print("dir_nodes: ", len(dir_nodes))
+        print("\nlen(cache_nodes): ", len(cache_nodes))
+        print("len(dir_nodes): ", len(dir_nodes))
+        # print("dir_nodes: ", dir_nodes)
         assert(len(cache_nodes) == user_routers)
+
+        dir_routers = []
+        availableRouters = [x for x in range(num_routers)]
+        # create array of candidate routers for directories
+        for router in range(len(dir_nodes)):
+            temp_router = availableRouters.pop(0)
+            dir_routers.append(temp_router)
+            # add smallest router in availableRouters, then remove adjacent routers
+            for space in range(1,router_dir_ratio):
+                if (temp_router+space in availableRouters and temp_router%x_depth < x_depth-space):
+                    availableRouters.remove(temp_router+space)
+                if (temp_router-space in availableRouters and temp_router%x_depth > (space-1)):
+                    availableRouters.remove(temp_router-space)
+                if (temp_router+(x_depth*space) in availableRouters and (temp_router%(x_depth*y_depth))/x_depth < y_depth-space):
+                    availableRouters.remove(temp_router+(x_depth*space))
+                if (temp_router-(x_depth*space) in availableRouters and (temp_router%(x_depth*y_depth))/x_depth > space-1):
+                    availableRouters.remove(temp_router-(x_depth*space))
+                if (temp_router+x_depth*y_depth*space in availableRouters):
+                    availableRouters.remove(temp_router+x_depth*y_depth*space)
+                if (temp_router-x_depth*y_depth*space in availableRouters):
+                    availableRouters.remove(temp_router-x_depth*y_depth*space)
+        print("dir_routers: ", dir_routers)
 
         # Connect each cache controller to the appropriate router
         ext_links = []
         for (i, n) in enumerate(dir_nodes):
-            cntrl_level, router_id = divmod(i, user_routers)
+            # cntrl_level, router_id = divmod(i, user_routers)
+            router_id = dir_routers[i]
             # print("router_id: ", router_id)
             # assert(cntrl_level < caches_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
                                     int_node=routers[router_id+x_depth*y_depth],
-                                    width = widthArr[router_id+x_depth*y_depth],
+                                    # int_node=routers[router_id],
                                     latency = link_latency))
             link_count += 1
 
@@ -234,7 +169,7 @@ class Wireless_NUChiplets(SimpleTopology):
             # assert(cntrl_level < caches_per_router)
             ext_links.append(ExtLink(link_id=link_count, ext_node=n,
                                     int_node=routers[router_id+x_depth*y_depth],
-                                    width = widthArr[router_id+x_depth*y_depth],
+                                    # int_node=routers[router_id],
                                     latency = link_latency))
             link_count += 1
 
@@ -243,7 +178,7 @@ class Wireless_NUChiplets(SimpleTopology):
         # Create the mesh links.
         int_links = []
         total=link_count
-        # East output to West input links 
+        # East output to West input links (weight = 1)
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -255,15 +190,12 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[west_in],
                                                 src_outport="East",
                                                 dst_inport="West",
-                                                width = regularWidth,
-                                                src_serdes = serDesArr[east_out],
-                                                dst_serdes = serDesArr[west_in],                                                
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
         print("\nNUM EAST-WEST LINKS = ", link_count-total)
         total=link_count
-        # West output to East input links 
+        # West output to East input links (weight = 1)
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -275,15 +207,12 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[east_in],
                                                 src_outport="West",
                                                 dst_inport="East",
-                                                width = regularWidth,                                                
-                                                src_serdes = serDesArr[west_out],
-                                                dst_serdes = serDesArr[east_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
         print("NUM WEST-EAST LINKS = ", link_count-total)
         total=link_count
-        # North output to South input links 
+        # North output to South input links (weight = 2)
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -295,15 +224,12 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[south_in],
                                                 src_outport="North",
                                                 dst_inport="South",
-                                                width = regularWidth,                                                
-                                                src_serdes = serDesArr[north_out],
-                                                dst_serdes = serDesArr[south_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
         print("NUM NORTH-SOUTH LINKS = ", link_count-total)
         total=link_count
-        # South output to North input links 
+        # South output to North input links (weight = 2)
         for z in range(true_z_depth):
             for x in range(x_depth):
                 for y in range(y_depth):
@@ -315,15 +241,12 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[north_in],
                                                 src_outport="South",
                                                 dst_inport="North",
-                                                width = regularWidth,                                                
-                                                src_serdes = serDesArr[south_out],
-                                                dst_serdes = serDesArr[north_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
         print("NUM SOUTH-NORTH LINKS = ", link_count-total)
         total=link_count
-        # Up output to Down input links
+        # Up output to Down input links (weight = 3)
         for z in range(true_z_depth):
             for y in range(y_depth):
                 for x in range(x_depth):
@@ -335,15 +258,12 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[down_in],
                                                 src_outport="Up",
                                                 dst_inport="Down",
-                                                width = regularWidth,                                                
-                                                src_serdes = serDesArr[up_out],
-                                                dst_serdes = serDesArr[down_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
         print("NUM UP-DOWN LINKS = ", link_count-total)
         total=link_count
-        # Down output to Up input links
+        # Down output to Up input links (weight = 3)
         for z in range(true_z_depth):
             for y in range(y_depth):
                 for x in range(x_depth):
@@ -355,31 +275,11 @@ class Wireless_NUChiplets(SimpleTopology):
                                                 dst_node=routers[up_in],
                                                 src_outport="Down",
                                                 dst_inport="Up",
-                                                width = regularWidth,                                                
-                                                src_serdes = serDesArr[down_out],
-                                                dst_serdes = serDesArr[up_in],
                                                 latency = link_latency,
                                                 weight=1))
                         link_count += 1
         print("NUM DOWN-UP LINKS = ", link_count-total)
         total=link_count
-        # All wireless input/output links
-        for src in range(len(wirelessRouters)):
-            for dest in range(len(wirelessRouters)):
-                if (src != dest):
-                    # print("src: %d, dest: %d" % (src, dest))
-                    int_links.append(IntLink(link_id=link_count,
-                                            src_node=routers[wirelessRouters[src]],
-                                            dst_node=routers[wirelessRouters[dest]],
-                                            src_outport="Transmit_" + str(wirelessRouters[dest]),
-                                            dst_inport="Receive_" + str(wirelessRouters[src]),
-                                            width = wirelessWidth,                                                
-                                            latency = link_latency,
-                                            weight=1))
-                    link_count += 1
-        print("WIRELESS LINKS = ", link_count-total)
-        total=link_count
-
         print("TOTAL NUM LINKS = ", len(int_links), "\n")
         network.int_links = int_links
 
