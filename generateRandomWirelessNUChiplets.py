@@ -41,14 +41,14 @@ SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_syn
 		wirelessRouters = []
 		wirelessRouterCoords = []
 		for i in range(2):
-			layer_routers = [x for x in range((i+1)*x_length*y_length, (i+2)*x_length*y_length)]
+			layer_routers = [x for x in range((i)*x_length*y_length, (i+1)*x_length*y_length)]
 			layer_set = set(layer_routers)
 			for x in range(16):
 				repeat = True
 				while(repeat):
 					# make sure there are enough routers in the layer that can be designated as wireless
 					assert(len(layer_set.intersection(set(availableRouters))) >= 16-x)
-					router = random.randint((i+1)*x_length*y_length, (i+2)*x_length*y_length-1)
+					router = random.randint((i)*x_length*y_length, (i+1)*x_length*y_length-1)
 					if(router not in wirelessRouters and router in availableRouters):
 						# only add to the array if it does not already exist in array
 						wirelessRouters.append(router)
@@ -59,9 +59,9 @@ SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_syn
 							availableRouters.remove(router+1)
 						if (router-1 in availableRouters and router%x_length != 0):
 							availableRouters.remove(router-1)
-						if (router+x_length in availableRouters and router/x_length < y_length-1):
+						if (router+x_length in availableRouters and (router%(x_length*y_length))/x_length < y_length-1):
 							availableRouters.remove(router+x_length)
-						if (router-x_length in availableRouters and router/x_length > 0):
+						if (router-x_length in availableRouters and (router%(x_length*y_length))/x_length > 0):
 							availableRouters.remove(router-x_length)
 						if (router+x_length*y_length in availableRouters):
 							availableRouters.remove(router+x_length*y_length)

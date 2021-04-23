@@ -17,10 +17,10 @@ chiplet_layout = input()
 
 injection_rate = 0.06
 traffic_patterns = [
-	"uniform_random", "tornado", "bit_complement", "bit_reverse", "bit_rotation", "neighbor", "shuffle", "transpose"
+	"uniform_random", "tornado", "bit_reverse", "bit_rotation", "neighbor", "shuffle", "transpose"
 ]
 
-with open('condor_T16', 'w') as f:
+with open('condor_T4_Z1', 'w') as f:
     sys.stdout = f 
     print("""Universe = vanilla
 Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
@@ -28,7 +28,7 @@ Error = condortest.err
 Output = condortest.out
 Log = condortest.log
 
-SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/T16
+SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/T4_Z1
 SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py\n""")
 
     for count,pattern in enumerate(traffic_patterns):

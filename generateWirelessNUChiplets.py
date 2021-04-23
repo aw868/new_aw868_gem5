@@ -23,7 +23,7 @@ z_length = 2
 
 injection_rate = 0.06
 traffic_patterns = [
-	"uniform_random", "tornado", "bit_complement", "bit_reverse", "bit_rotation", "neighbor", "shuffle", "transpose"
+	"uniform_random", "tornado", "bit_reverse", "bit_rotation", "neighbor", "shuffle", "transpose"
 ]
 
 if (num_chiplets == 1):
