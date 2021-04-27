@@ -66,7 +66,8 @@ class SuperSparse_NonUniform_Chiplets(SimpleTopology):
         print("number of user specified routers: ", (user_routers))
         print("number of user specified directories: ", (user_dirs))
 
-        router_dir_ratio = user_routers/user_dirs
+        router_dir_ratio = int(user_routers/user_dirs)
+        print("router_dir_ratio: ", (router_dir_ratio))
 
         link_latency = options.link_latency # used by simple and garnet
         router_latency = options.router_latency # only used by garnet
