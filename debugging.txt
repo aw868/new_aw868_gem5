@@ -46,4 +46,12 @@ Sparse 512 Core Test
 
 Sparse 512 Core Wireless Test
 ./build/ARM/gem5.opt -d /home/aw868/new_aw868_gem5/results/debug/ /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=100 --synthetic=uniform_random --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,6,6,1,9,6,1,1,9,1,14,9,1,6,14,1,9,14,1 --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.03
+(okay)
+
+Super Sparse 1024 Core Wireless Test
+./build/ARM/gem5.opt -d /home/aw868/new_aw868_gem5/results/debug/ /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=1024 --num-dirs=256 --network=garnet --topology=SuperSparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=4 --nu-chiplets-input=0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15 --sim-cycles=1000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+(okay)
+
+Super Sparse 2048 Core Wireless Test
+./build/ARM/gem5.opt -d /home/aw868/new_aw868_gem5/results/debug/ /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=2048 --num-dirs=256 --network=garnet --topology=SuperSparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=8 --nu-chiplets-input=0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15 --sim-cycles=1000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
 ()
