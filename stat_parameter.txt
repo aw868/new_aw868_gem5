@@ -1,6 +1,11 @@
 grep -nir "average_packet_network_latency" | sort > latency.txt
 grep -nir "packets_received::total" | sort > throughput.txt
 
+m5out/stats.txt:.*:system.ruby.network.
+
+ARGS_.*_.*/average_packet_network_latency 
+ARGS_.*_.*/packets_received::total       
+
 Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
 - 16x16x2 random NU
 - 10,000,000 simcycles
