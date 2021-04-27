@@ -974,7 +974,7 @@ sticky_vars.AddVariables(
     EnumVariable('BACKTRACE_IMPL', 'Post-mortem dump implementation',
                  backtrace_impls[-1], backtrace_impls),
     ('NUMBER_BITS_PER_SET', 'Max elements in set (default 64)',
-                 512),
+                 2048),
     BoolVariable('USE_HDF5', 'Enable the HDF5 support', have_hdf5),
     )
 
