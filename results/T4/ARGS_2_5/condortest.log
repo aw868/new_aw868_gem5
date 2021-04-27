@@ -1,0 +1,104 @@
+000 (013.027.000) 04/20 02:40:33 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+001 (013.027.000) 04/20 22:04:35 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (013.027.000) 04/20 22:04:41 Image size of job updated: 2000000
+	98  -  MemoryUsage of job (MB)
+	99528  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:04:46 Image size of job updated: 2000000
+	101  -  MemoryUsage of job (MB)
+	102828  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:21 Image size of job updated: 2000000
+	117  -  MemoryUsage of job (MB)
+	119196  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:26 Image size of job updated: 2000000
+	176  -  MemoryUsage of job (MB)
+	180048  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:31 Image size of job updated: 2000000
+	184  -  MemoryUsage of job (MB)
+	187704  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:36 Image size of job updated: 2000000
+	187  -  MemoryUsage of job (MB)
+	190608  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:41 Image size of job updated: 2000000
+	198  -  MemoryUsage of job (MB)
+	201960  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:46 Image size of job updated: 2000000
+	209  -  MemoryUsage of job (MB)
+	213312  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:51 Image size of job updated: 2000000
+	218  -  MemoryUsage of job (MB)
+	222948  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:05:56 Image size of job updated: 2000000
+	230  -  MemoryUsage of job (MB)
+	235224  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:01 Image size of job updated: 2000000
+	240  -  MemoryUsage of job (MB)
+	244992  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:06 Image size of job updated: 2000000
+	270  -  MemoryUsage of job (MB)
+	275748  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:11 Image size of job updated: 2000000
+	308  -  MemoryUsage of job (MB)
+	314556  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:16 Image size of job updated: 2000000
+	328  -  MemoryUsage of job (MB)
+	335808  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:21 Image size of job updated: 2000000
+	420  -  MemoryUsage of job (MB)
+	429660  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:26 Image size of job updated: 2000000
+	1050  -  MemoryUsage of job (MB)
+	1074612  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:06:31 Image size of job updated: 2000000
+	1168  -  MemoryUsage of job (MB)
+	1195920  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:17:07 Image size of job updated: 2000000
+	1177  -  MemoryUsage of job (MB)
+	1204500  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:17:12 Image size of job updated: 2144108
+	1503  -  MemoryUsage of job (MB)
+	1538592  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:17:17 Image size of job updated: 2228652
+	1625  -  MemoryUsage of job (MB)
+	1663332  -  ResidentSetSize of job (KB)
+...
+006 (013.027.000) 04/20 22:17:22 Image size of job updated: 2268844
+	1876  -  MemoryUsage of job (MB)
+	1920864  -  ResidentSetSize of job (KB)
+...
+005 (013.027.000) 04/20 22:17:24 Job terminated.
+	(0) Abnormal termination (signal 6)
+	(0) No core file
+		Usr 0 00:12:01, Sys 0 00:00:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:12:01, Sys 0 00:00:02  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :      Usage  Request Allocated 
+	   Cpus                 :       0.97        1         1 
+	   Disk (KB)            : 2000000     2000000   6471939 
+	   Memory (MB)          :    1876        1954      2007 
+...
