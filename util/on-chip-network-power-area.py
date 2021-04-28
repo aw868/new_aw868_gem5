@@ -33,22 +33,22 @@ import string, sys, subprocess, os
 print("Attempting compilation")
 from subprocess import call
 
-src_dir = 'ext/dsent'
-build_dir = 'build/ext/dsent'
+src_dir = '/home/aw868/new_aw868_gem5/ext/dsent'
+build_dir = '/home/aw868/new_aw868_gem5/build/ext/dsent'
 
 if not os.path.exists(build_dir):
     os.makedirs(build_dir)
 os.chdir(build_dir)
 
-error = call(['cmake', '../../../%s' % src_dir])
-if error:
-    print("Failed to run cmake")
-    exit(-1)
+#error = call(['cmake', '../../../%s' % src_dir])
+#if error:
+#    print("Failed to run cmake")
+#    exit(-1)
 
-error = call(['make'])
-if error:
-    print("Failed to run make")
-    exit(-1)
+#error = call(['make'])
+#if error:
+#    print("Failed to run make")
+#    exit(-1)
 
 print("Compiled dsent")
 os.chdir("../../../")
