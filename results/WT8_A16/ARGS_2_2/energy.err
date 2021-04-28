@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/aw868/new_aw868_gem5/util/on-chip-network-power-area.py", line 227, in <module>
+    main()
+  File "/home/aw868/new_aw868_gem5/util/on-chip-network-power-area.py", line 224, in main
+    buffers_per_control_vc, ni_flit_size_bits)
+  File "/home/aw868/new_aw868_gem5/util/on-chip-network-power-area.py", line 171, in parseStats
+    ["grep", pattern, stats_file]), '\n', -1)
+  File "/usr/lib/python2.7/subprocess.py", line 223, in check_output
+    raise CalledProcessError(retcode, cmd, output=output)
+subprocess.CalledProcessError: Command '['grep', 'sim_seconds', '/home/aw868/new_aw868_gem5//results/WT8_A16/ARGS_2_2/m5out/stats.txt']' returned non-zero exit status 1
