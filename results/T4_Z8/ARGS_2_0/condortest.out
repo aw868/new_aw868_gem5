@@ -1,0 +1,60 @@
+Global frequency set at 1000000000000 ticks per second
+Using Non-Uniform Chiplet Routing Algorithm
+
+base_router_list:
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+m_num_unused_links: 256
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-V20.2]
+gem5 compiled Apr 25 2021 17:25:42
+gem5 started Apr 30 2021 14:38:18
+gem5 executing on grid42, pid 1292701
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=2048 --num-dirs=256 --network=garnet --topology=SuperSparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=8 --nu-chiplets-input=0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+
+info: Standard input is not a terminal, disabling listeners.
+File: SuperSparse_NonUniform_Chiplets.py
+len(nodes) (includes caches and directories):  2304
+number of user specified routers:  2048
+number of user specified directories:  256
+router_dir_ratio:  8
+number of user specified routers:  2048
+number of routers in layer 0:  256
+total number of routers:  2304
+x_depth:  16
+y_depth:  16
+z_depth:  8
+true_z_depth 9
+
+
+total routers created:  2304
+
+len(cache_nodes):  2048
+len(dir_nodes):  256
+dir_routers:  [0, 8, 17, 25, 34, 42, 51, 59, 68, 76, 85, 93, 102, 110, 119, 127, 128, 136, 145, 153, 162, 170, 179, 187, 196, 204, 213, 221, 230, 238, 247, 255, 257, 265, 272, 280, 291, 299, 306, 314, 325, 333, 340, 348, 359, 367, 374, 382, 385, 393, 400, 408, 419, 427, 434, 442, 453, 461, 468, 476, 487, 495, 502, 510, 514, 522, 531, 539, 544, 552, 561, 569, 582, 590, 599, 607, 612, 620, 629, 637, 642, 650, 659, 667, 672, 680, 689, 697, 710, 718, 727, 735, 740, 748, 757, 765, 771, 779, 786, 794, 801, 809, 816, 824, 839, 847, 854, 862, 869, 877, 884, 892, 899, 907, 914, 922, 929, 937, 944, 952, 967, 975, 982, 990, 997, 1005, 1012, 1020, 1028, 1036, 1045, 1053, 1062, 1070, 1079, 1087, 1088, 1096, 1105, 1113, 1122, 1130, 1139, 1147, 1156, 1164, 1173, 1181, 1190, 1198, 1207, 1215, 1216, 1224, 1233, 1241, 1250, 1258, 1267, 1275, 1285, 1293, 1300, 1308, 1319, 1327, 1334, 1342, 1345, 1353, 1360, 1368, 1379, 1387, 1394, 1402, 1413, 1421, 1428, 1436, 1447, 1455, 1462, 1470, 1473, 1481, 1488, 1496, 1507, 1515, 1522, 1530, 1542, 1550, 1559, 1567, 1572, 1580, 1589, 1597, 1602, 1610, 1619, 1627, 1632, 1640, 1649, 1657, 1670, 1678, 1687, 1695, 1700, 1708, 1717, 1725, 1730, 1738, 1747, 1755, 1760, 1768, 1777, 1785, 1799, 1807, 1814, 1822, 1829, 1837, 1844, 1852, 1859, 1867, 1874, 1882, 1889, 1897, 1904, 1912, 1927, 1935, 1942, 1950, 1957, 1965, 1972, 1980, 1987, 1995, 2002, 2010, 2017, 2025, 2032, 2040]
+
+NUM EAST-WEST LINKS =  2160
+NUM WEST-EAST LINKS =  2160
+NUM NORTH-SOUTH LINKS =  2160
+NUM SOUTH-NORTH LINKS =  2160
+NUM UP-DOWN LINKS =  2048
+NUM DOWN-UP LINKS =  2048
+TOTAL NUM LINKS =  12736 
+
+Exiting @ tick 10000000 because Network Tester completed simCycles
