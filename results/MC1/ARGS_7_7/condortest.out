@@ -24,9 +24,9 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version [DEVELOP-FOR-V20.2]
 gem5 compiled Apr 17 2021 16:19:41
-gem5 started Apr 18 2021 03:29:42
-gem5 executing on grid42, pid 697320
-command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,6,5,7,0,8,12,9,0,12,11,13,0,14,15,15,0,15,2,15,3,15,4,15,5,15,7,0,6,5,13,6,6,6,13,15,8,15,10,15,11,15,14,9,12,12,13,7,13,7,13,8,13,8,14,0,14,2,15,3,14,6,14,7,14,7,14,9,14,11,15,12,14,12,14,3,15,6,15,7,15,8,15,12,15,12,15,15,15,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+gem5 started Apr 18 2021 03:29:47
+gem5 executing on grid42, pid 697358
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,6,5,7,0,8,12,9,0,12,11,13,0,14,15,15,0,15,2,15,3,15,4,15,5,15,7,0,6,5,13,6,6,6,13,15,8,15,10,15,11,15,14,9,12,12,13,7,13,7,13,8,13,8,14,0,14,2,15,3,14,6,14,7,14,7,14,9,14,11,15,12,14,12,14,3,15,6,15,7,15,8,15,12,15,12,15,15,15,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.09
 
 info: Standard input is not a terminal, disabling listeners.
 File: Sparse_NonUniform_Chiplets.py

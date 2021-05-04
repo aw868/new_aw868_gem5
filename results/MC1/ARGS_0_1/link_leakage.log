@@ -1,0 +1,55 @@
+000 (074.001.000) 04/29 20:15:53 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+001 (074.001.000) 04/29 20:15:55 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+007 (074.001.000) 04/29 20:15:55 Shadow exception!
+	Error from slot5@grid42.dwslgrid.ece.drexel.edu: Failed to execute '/home/aw868/new_aw868_gem5/condor_link_leakage.sh': (errno=13: 'Permission denied')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (074.001.000) 04/29 20:15:55 Job was held.
+	Error from slot5@grid42.dwslgrid.ece.drexel.edu: Failed to execute '/home/aw868/new_aw868_gem5/condor_link_leakage.sh': (errno=13: 'Permission denied')
+	Code 6 Subcode 13
+...
+000 (077.001.000) 04/29 20:16:34 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+001 (077.001.000) 04/29 20:16:35 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+007 (077.001.000) 04/29 20:16:35 Shadow exception!
+	Error from slot5@grid42.dwslgrid.ece.drexel.edu: Failed to execute '/home/aw868/new_aw868_gem5/condor_link_leakage.sh': (errno=13: 'Permission denied')
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+012 (077.001.000) 04/29 20:16:36 Job was held.
+	Error from slot5@grid42.dwslgrid.ece.drexel.edu: Failed to execute '/home/aw868/new_aw868_gem5/condor_link_leakage.sh': (errno=13: 'Permission denied')
+	Code 6 Subcode 13
+...
+009 (074.001.000) 04/29 20:17:28 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+009 (077.001.000) 04/29 20:17:30 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+000 (081.001.000) 04/29 20:18:07 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+001 (081.001.000) 04/29 20:18:12 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (081.001.000) 04/29 20:18:12 Image size of job updated: 264
+	1  -  MemoryUsage of job (MB)
+	264  -  ResidentSetSize of job (KB)
+...
+005 (081.001.000) 04/29 20:18:12 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :                 1         1 
+	   Disk (KB)            :        1        1   6540465 
+	   Memory (MB)          :        1        1      2007 
+...

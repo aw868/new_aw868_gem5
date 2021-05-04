@@ -1,20 +1,24 @@
-000 (041.006.000) 04/27 18:56:40 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+000 (041.007.000) 04/27 18:56:40 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
 ...
-001 (041.006.000) 04/28 11:27:41 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+001 (041.007.000) 04/28 11:27:44 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
 ...
-006 (041.006.000) 04/28 11:27:47 Image size of job updated: 423588
-	414  -  MemoryUsage of job (MB)
-	423588  -  ResidentSetSize of job (KB)
+006 (041.007.000) 04/28 11:27:49 Image size of job updated: 342540
+	335  -  MemoryUsage of job (MB)
+	342540  -  ResidentSetSize of job (KB)
 ...
-006 (041.006.000) 04/28 11:27:53 Image size of job updated: 598636
-	570  -  MemoryUsage of job (MB)
-	583572  -  ResidentSetSize of job (KB)
+006 (041.007.000) 04/28 11:27:54 Image size of job updated: 594000
+	566  -  MemoryUsage of job (MB)
+	578820  -  ResidentSetSize of job (KB)
 ...
-005 (041.006.000) 04/28 11:30:17 Job terminated.
+006 (041.007.000) 04/28 11:27:59 Image size of job updated: 598636
+	571  -  MemoryUsage of job (MB)
+	583704  -  ResidentSetSize of job (KB)
+...
+005 (041.007.000) 04/28 11:30:18 Job terminated.
 	(1) Normal termination (return value 0)
-		Usr 0 00:02:31, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:02:32, Sys 0 00:00:00  -  Run Remote Usage
 		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
-		Usr 0 00:02:31, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:02:32, Sys 0 00:00:00  -  Total Remote Usage
 		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
 	0  -  Run Bytes Sent By Job
 	0  -  Run Bytes Received By Job
@@ -23,5 +27,5 @@
 	Partitionable Resources :    Usage  Request Allocated 
 	   Cpus                 :     0.99        1         1 
 	   Disk (KB)            :     1           1   6540465 
-	   Memory (MB)          :   570           1      2007 
+	   Memory (MB)          :   571           1      2007 
 ...
