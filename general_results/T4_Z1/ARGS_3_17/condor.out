@@ -1,0 +1,58 @@
+Global frequency set at 1000000000000 ticks per second
+Using Non-Uniform Chiplet Routing Algorithm
+
+base_router_list:
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 2,  2,  2,  2,  2,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3,  3, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+ 0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  1, 
+m_num_unused_links: 32
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-V20.2]
+gem5 compiled Apr 25 2021 17:25:42
+gem5 started May  6 2021 01:00:02
+gem5 executing on grid42, pid 4162332
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=256 --num-dirs=256 --network=garnet --topology=NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=1 --nu-chiplets-input=0,0,7,7,8,0,15,7,0,8,7,15,8,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.45
+
+info: Standard input is not a terminal, disabling listeners.
+File: NonUniform_Chiplets.py
+len(nodes) (includes caches and directories):  512
+number of user specified routers:  256
+number of user specified directories:  256
+number of user specified routers:  256
+number of routers in layer 0:  256
+total number of routers:  512
+x_depth:  16
+y_depth:  16
+z_depth:  1
+true_z_depth 2
+
+
+total routers created:  512
+
+cache_nodes:  256
+dir_nodes:  256
+
+NUM EAST-WEST LINKS =  480
+NUM WEST-EAST LINKS =  480
+NUM NORTH-SOUTH LINKS =  480
+NUM SOUTH-NORTH LINKS =  480
+NUM UP-DOWN LINKS =  256
+NUM DOWN-UP LINKS =  256
+TOTAL NUM LINKS =  2432 
+
+Exiting @ tick 10000000 because Network Tester completed simCycles

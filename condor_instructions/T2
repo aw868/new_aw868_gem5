@@ -1,0 +1,499 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
+Error = condortest.err
+Output = condortest.out
+Log = condortest.log
+
+SYNCHRO_DIR = /home/aw868/new_aw868_gem5/results/T2
+SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py
+
+ARGS_0_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_0)"
+#Queue
+
+ARGS_0_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_1)"
+#Queue
+
+ARGS_0_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_2)"
+#Queue
+
+ARGS_0_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_3)"
+#Queue
+
+ARGS_0_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_4)"
+#Queue
+
+ARGS_0_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_5)"
+#Queue
+
+ARGS_0_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_6)"
+#Queue
+
+ARGS_0_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_7)"
+#Queue
+
+ARGS_0_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_8)"
+#Queue
+
+ARGS_0_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_9)"
+#Queue
+
+ARGS_0_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_10)"
+#Queue
+
+ARGS_0_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_11)"
+Queue
+
+ARGS_0_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_12)"
+Queue
+
+ARGS_0_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_13)"
+Queue
+
+ARGS_0_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.20
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_14)"
+Queue
+
+ARGS_0_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_15)"
+Queue
+
+ARGS_0_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_16)"
+Queue
+
+ARGS_0_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_17)"
+Queue
+
+ARGS_0_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_18)"
+Queue
+
+ARGS_0_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_19)"
+Queue
+
+ARGS_0_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(SYNCHRO_DIR)/ARGS_0_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_20)"
+Queue
+
+ARGS_1_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_0)"
+#Queue
+
+ARGS_1_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_1)"
+#Queue
+
+ARGS_1_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_2)"
+#Queue
+
+ARGS_1_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_3)"
+#Queue
+
+ARGS_1_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_4)"
+#Queue
+
+ARGS_1_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_5)"
+#Queue
+
+ARGS_1_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_6)"
+#Queue
+
+ARGS_1_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_7)"
+#Queue
+
+ARGS_1_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_8)"
+#Queue
+
+ARGS_1_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_9)"
+#Queue
+
+ARGS_1_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_1_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_10)"
+#Queue
+
+ARGS_2_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_0)"
+#Queue
+
+ARGS_2_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_1)"
+#Queue
+
+ARGS_2_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_2)"
+#Queue
+
+ARGS_2_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_3)"
+#Queue
+
+ARGS_2_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_4)"
+#Queue
+
+ARGS_2_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_5)"
+#Queue
+
+ARGS_2_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_6)"
+#Queue
+
+ARGS_2_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_7)"
+#Queue
+
+ARGS_2_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_8)"
+#Queue
+
+ARGS_2_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_9)"
+#Queue
+
+ARGS_2_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_2_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_10)"
+#Queue
+
+ARGS_3_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_0)"
+#Queue
+
+ARGS_3_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_1)"
+#Queue
+
+ARGS_3_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_2)"
+#Queue
+
+ARGS_3_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_3)"
+#Queue
+
+ARGS_3_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_4)"
+#Queue
+
+ARGS_3_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_5)"
+#Queue
+
+ARGS_3_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_6)"
+#Queue
+
+ARGS_3_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_7)"
+#Queue
+
+ARGS_3_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_8)"
+#Queue
+
+ARGS_3_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_9)"
+#Queue
+
+ARGS_3_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_3_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_10)"
+#Queue
+
+ARGS_4_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_0)"
+#Queue
+
+ARGS_4_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_1)"
+#Queue
+
+ARGS_4_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_2)"
+#Queue
+
+ARGS_4_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_3)"
+#Queue
+
+ARGS_4_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_4)"
+#Queue
+
+ARGS_4_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_5)"
+#Queue
+
+ARGS_4_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_6)"
+#Queue
+
+ARGS_4_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_7)"
+#Queue
+
+ARGS_4_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_8)"
+#Queue
+
+ARGS_4_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_9)"
+#Queue
+
+ARGS_4_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=bit_rotation --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_4_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_10)"
+#Queue
+
+ARGS_5_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_0)"
+#Queue
+
+ARGS_5_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_1)"
+#Queue
+
+ARGS_5_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_2)"
+#Queue
+
+ARGS_5_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_3)"
+#Queue
+
+ARGS_5_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_4)"
+#Queue
+
+ARGS_5_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_5)"
+#Queue
+
+ARGS_5_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_6)"
+#Queue
+
+ARGS_5_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_7)"
+#Queue
+
+ARGS_5_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_8)"
+#Queue
+
+ARGS_5_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_9)"
+#Queue
+
+ARGS_5_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_5_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_10)"
+#Queue
+
+ARGS_6_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_0)"
+#Queue
+
+ARGS_6_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_1)"
+#Queue
+
+ARGS_6_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_2)"
+#Queue
+
+ARGS_6_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_3)"
+#Queue
+
+ARGS_6_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_4)"
+#Queue
+
+ARGS_6_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_5)"
+#Queue
+
+ARGS_6_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_6)"
+#Queue
+
+ARGS_6_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_7)"
+#Queue
+
+ARGS_6_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_8)"
+#Queue
+
+ARGS_6_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_9)"
+#Queue
+
+ARGS_6_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_6_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_6_10)"
+#Queue
+
+ARGS_7_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.03
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_0)"
+#Queue
+
+ARGS_7_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.035
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_1)"
+#Queue
+
+ARGS_7_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.04
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_2)"
+#Queue
+
+ARGS_7_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.045
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_3)"
+#Queue
+
+ARGS_7_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.05
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_4)"
+#Queue
+
+ARGS_7_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.055
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_5)"
+#Queue
+
+ARGS_7_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.06
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_6)"
+#Queue
+
+ARGS_7_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.065
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_7)"
+#Queue
+
+ARGS_7_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_8)"
+#Queue
+
+ARGS_7_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.075
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_9)"
+#Queue
+
+ARGS_7_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,7,0,8,15,15 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.08
+Initialdir = $(SYNCHRO_DIR)/ARGS_7_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_7_10)"
+#Queue
+

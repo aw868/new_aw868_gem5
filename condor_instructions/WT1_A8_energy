@@ -1,0 +1,449 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/condor_energy.sh
+Error = energy.err
+Output = energy.out
+Log = energy.log
+
+RESULTS_DIR = /home/aw868/new_aw868_gem5/results/WT1_A8
+DSENT_CFG =  /home/aw868/new_aw868_gem5/ext/dsent/configs/router.cfg /home/aw868/new_aw868_gem5/ext/dsent/configs/electrical-link.cfg
+
+ARGS_0_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_0
+arguments = "$(ARGS_0_0) $(DSENT_CFG)"
+Queue
+
+ARGS_0_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_1
+arguments = "$(ARGS_0_1) $(DSENT_CFG)"
+Queue
+
+ARGS_0_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_2
+arguments = "$(ARGS_0_2) $(DSENT_CFG)"
+Queue
+
+ARGS_0_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_3
+arguments = "$(ARGS_0_3) $(DSENT_CFG)"
+Queue
+
+ARGS_0_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_4
+arguments = "$(ARGS_0_4) $(DSENT_CFG)"
+Queue
+
+ARGS_0_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_5
+arguments = "$(ARGS_0_5) $(DSENT_CFG)"
+Queue
+
+ARGS_0_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_6
+arguments = "$(ARGS_0_6) $(DSENT_CFG)"
+Queue
+
+ARGS_0_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_7
+arguments = "$(ARGS_0_7) $(DSENT_CFG)"
+Queue
+
+ARGS_0_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_8
+arguments = "$(ARGS_0_8) $(DSENT_CFG)"
+Queue
+
+ARGS_0_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_9
+arguments = "$(ARGS_0_9) $(DSENT_CFG)"
+Queue
+
+ARGS_0_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_0_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_0_10
+arguments = "$(ARGS_0_10) $(DSENT_CFG)"
+Queue
+
+ARGS_1_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_0
+arguments = "$(ARGS_1_0) $(DSENT_CFG)"
+Queue
+
+ARGS_1_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_1
+arguments = "$(ARGS_1_1) $(DSENT_CFG)"
+Queue
+
+ARGS_1_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_2
+arguments = "$(ARGS_1_2) $(DSENT_CFG)"
+Queue
+
+ARGS_1_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_3
+arguments = "$(ARGS_1_3) $(DSENT_CFG)"
+Queue
+
+ARGS_1_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_4
+arguments = "$(ARGS_1_4) $(DSENT_CFG)"
+Queue
+
+ARGS_1_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_5
+arguments = "$(ARGS_1_5) $(DSENT_CFG)"
+Queue
+
+ARGS_1_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_6
+arguments = "$(ARGS_1_6) $(DSENT_CFG)"
+Queue
+
+ARGS_1_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_7
+arguments = "$(ARGS_1_7) $(DSENT_CFG)"
+Queue
+
+ARGS_1_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_8
+arguments = "$(ARGS_1_8) $(DSENT_CFG)"
+Queue
+
+ARGS_1_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_9
+arguments = "$(ARGS_1_9) $(DSENT_CFG)"
+Queue
+
+ARGS_1_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_1_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_1_10
+arguments = "$(ARGS_1_10) $(DSENT_CFG)"
+Queue
+
+ARGS_2_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_0
+arguments = "$(ARGS_2_0) $(DSENT_CFG)"
+Queue
+
+ARGS_2_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_1
+arguments = "$(ARGS_2_1) $(DSENT_CFG)"
+Queue
+
+ARGS_2_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_2
+arguments = "$(ARGS_2_2) $(DSENT_CFG)"
+Queue
+
+ARGS_2_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_3
+arguments = "$(ARGS_2_3) $(DSENT_CFG)"
+Queue
+
+ARGS_2_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_4
+arguments = "$(ARGS_2_4) $(DSENT_CFG)"
+Queue
+
+ARGS_2_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_5
+arguments = "$(ARGS_2_5) $(DSENT_CFG)"
+Queue
+
+ARGS_2_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_6
+arguments = "$(ARGS_2_6) $(DSENT_CFG)"
+Queue
+
+ARGS_2_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_7
+arguments = "$(ARGS_2_7) $(DSENT_CFG)"
+Queue
+
+ARGS_2_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_8
+arguments = "$(ARGS_2_8) $(DSENT_CFG)"
+Queue
+
+ARGS_2_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_9
+arguments = "$(ARGS_2_9) $(DSENT_CFG)"
+Queue
+
+ARGS_2_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_2_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_2_10
+arguments = "$(ARGS_2_10) $(DSENT_CFG)"
+Queue
+
+ARGS_3_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_0
+arguments = "$(ARGS_3_0) $(DSENT_CFG)"
+Queue
+
+ARGS_3_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_1
+arguments = "$(ARGS_3_1) $(DSENT_CFG)"
+Queue
+
+ARGS_3_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_2
+arguments = "$(ARGS_3_2) $(DSENT_CFG)"
+Queue
+
+ARGS_3_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_3
+arguments = "$(ARGS_3_3) $(DSENT_CFG)"
+Queue
+
+ARGS_3_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_4
+arguments = "$(ARGS_3_4) $(DSENT_CFG)"
+Queue
+
+ARGS_3_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_5
+arguments = "$(ARGS_3_5) $(DSENT_CFG)"
+Queue
+
+ARGS_3_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_6
+arguments = "$(ARGS_3_6) $(DSENT_CFG)"
+Queue
+
+ARGS_3_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_7
+arguments = "$(ARGS_3_7) $(DSENT_CFG)"
+Queue
+
+ARGS_3_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_8
+arguments = "$(ARGS_3_8) $(DSENT_CFG)"
+Queue
+
+ARGS_3_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_9
+arguments = "$(ARGS_3_9) $(DSENT_CFG)"
+Queue
+
+ARGS_3_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_3_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_3_10
+arguments = "$(ARGS_3_10) $(DSENT_CFG)"
+Queue
+
+ARGS_4_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_0
+arguments = "$(ARGS_4_0) $(DSENT_CFG)"
+Queue
+
+ARGS_4_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_1
+arguments = "$(ARGS_4_1) $(DSENT_CFG)"
+Queue
+
+ARGS_4_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_2
+arguments = "$(ARGS_4_2) $(DSENT_CFG)"
+Queue
+
+ARGS_4_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_3
+arguments = "$(ARGS_4_3) $(DSENT_CFG)"
+Queue
+
+ARGS_4_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_4
+arguments = "$(ARGS_4_4) $(DSENT_CFG)"
+Queue
+
+ARGS_4_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_5
+arguments = "$(ARGS_4_5) $(DSENT_CFG)"
+Queue
+
+ARGS_4_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_6
+arguments = "$(ARGS_4_6) $(DSENT_CFG)"
+Queue
+
+ARGS_4_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_7
+arguments = "$(ARGS_4_7) $(DSENT_CFG)"
+Queue
+
+ARGS_4_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_8
+arguments = "$(ARGS_4_8) $(DSENT_CFG)"
+Queue
+
+ARGS_4_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_9
+arguments = "$(ARGS_4_9) $(DSENT_CFG)"
+Queue
+
+ARGS_4_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_4_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_4_10
+arguments = "$(ARGS_4_10) $(DSENT_CFG)"
+Queue
+
+ARGS_5_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_0
+arguments = "$(ARGS_5_0) $(DSENT_CFG)"
+Queue
+
+ARGS_5_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_1
+arguments = "$(ARGS_5_1) $(DSENT_CFG)"
+Queue
+
+ARGS_5_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_2
+arguments = "$(ARGS_5_2) $(DSENT_CFG)"
+Queue
+
+ARGS_5_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_3
+arguments = "$(ARGS_5_3) $(DSENT_CFG)"
+Queue
+
+ARGS_5_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_4
+arguments = "$(ARGS_5_4) $(DSENT_CFG)"
+Queue
+
+ARGS_5_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_5
+arguments = "$(ARGS_5_5) $(DSENT_CFG)"
+Queue
+
+ARGS_5_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_6
+arguments = "$(ARGS_5_6) $(DSENT_CFG)"
+Queue
+
+ARGS_5_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_7
+arguments = "$(ARGS_5_7) $(DSENT_CFG)"
+Queue
+
+ARGS_5_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_8
+arguments = "$(ARGS_5_8) $(DSENT_CFG)"
+Queue
+
+ARGS_5_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_9
+arguments = "$(ARGS_5_9) $(DSENT_CFG)"
+Queue
+
+ARGS_5_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_5_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_5_10
+arguments = "$(ARGS_5_10) $(DSENT_CFG)"
+Queue
+
+ARGS_6_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_0
+arguments = "$(ARGS_6_0) $(DSENT_CFG)"
+Queue
+
+ARGS_6_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_1
+arguments = "$(ARGS_6_1) $(DSENT_CFG)"
+Queue
+
+ARGS_6_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_2
+arguments = "$(ARGS_6_2) $(DSENT_CFG)"
+Queue
+
+ARGS_6_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_3
+arguments = "$(ARGS_6_3) $(DSENT_CFG)"
+Queue
+
+ARGS_6_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_4
+arguments = "$(ARGS_6_4) $(DSENT_CFG)"
+Queue
+
+ARGS_6_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_5
+arguments = "$(ARGS_6_5) $(DSENT_CFG)"
+Queue
+
+ARGS_6_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_6
+arguments = "$(ARGS_6_6) $(DSENT_CFG)"
+Queue
+
+ARGS_6_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_7
+arguments = "$(ARGS_6_7) $(DSENT_CFG)"
+Queue
+
+ARGS_6_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_8
+arguments = "$(ARGS_6_8) $(DSENT_CFG)"
+Queue
+
+ARGS_6_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_9
+arguments = "$(ARGS_6_9) $(DSENT_CFG)"
+Queue
+
+ARGS_6_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_6_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_6_10
+arguments = "$(ARGS_6_10) $(DSENT_CFG)"
+Queue
+
+ARGS_7_0 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_0/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_0
+arguments = "$(ARGS_7_0) $(DSENT_CFG)"
+Queue
+
+ARGS_7_1 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_1/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_1
+arguments = "$(ARGS_7_1) $(DSENT_CFG)"
+Queue
+
+ARGS_7_2 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_2/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_2
+arguments = "$(ARGS_7_2) $(DSENT_CFG)"
+Queue
+
+ARGS_7_3 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_3/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_3
+arguments = "$(ARGS_7_3) $(DSENT_CFG)"
+Queue
+
+ARGS_7_4 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_4/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_4
+arguments = "$(ARGS_7_4) $(DSENT_CFG)"
+Queue
+
+ARGS_7_5 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_5/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_5
+arguments = "$(ARGS_7_5) $(DSENT_CFG)"
+Queue
+
+ARGS_7_6 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_6/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_6
+arguments = "$(ARGS_7_6) $(DSENT_CFG)"
+Queue
+
+ARGS_7_7 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_7/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_7
+arguments = "$(ARGS_7_7) $(DSENT_CFG)"
+Queue
+
+ARGS_7_8 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_8/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_8
+arguments = "$(ARGS_7_8) $(DSENT_CFG)"
+Queue
+
+ARGS_7_9 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_9/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_9
+arguments = "$(ARGS_7_9) $(DSENT_CFG)"
+Queue
+
+ARGS_7_10 = /home/aw868/new_aw868_gem5/ results/WT1_A8/ARGS_7_10/m5out
+Initialdir = $(RESULTS_DIR)/ARGS_7_10
+arguments = "$(ARGS_7_10) $(DSENT_CFG)"
+Queue
+

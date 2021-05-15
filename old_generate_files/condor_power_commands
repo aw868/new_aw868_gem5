@@ -1,0 +1,363 @@
+screen -S grep_new_WT1_A8_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT1_A8_transmission_count.txt
+
+screen -S grep_new_WT1_A8_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT1_A8_latency.txt
+
+screen -S grep_new_WT1_A8_throughput
+grep -nir "packets_received::total" | sort -V > new_WT1_A8_throughput.txt
+
+screen -S grep_new_WT2_A8_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT2_A8_transmission_count.txt
+
+screen -S grep_new_WT2_A8_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT2_A8_latency.txt
+
+screen -S grep_new_WT2_A8_throughput
+grep -nir "packets_received::total" | sort -V > new_WT2_A8_throughput.txt
+
+screen -S grep_new_WT4_A8_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT4_A8_transmission_count.txt
+
+screen -S grep_new_WT4_A8_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT4_A8_latency.txt
+
+screen -S grep_new_WT4_A8_throughput
+grep -nir "packets_received::total" | sort -V > new_WT4_A8_throughput.txt
+
+screen -S grep_new_WT8_A8_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT8_A8_transmission_count.txt
+
+screen -S grep_new_WT8_A8_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT8_A8_latency.txt
+
+screen -S grep_new_WT8_A8_throughput
+grep -nir "packets_received::total" | sort -V > new_WT8_A8_throughput.txt
+
+screen -S grep_new_WT16_A8_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT16_A8_transmission_count.txt
+
+screen -S grep_new_WT16_A8_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT16_A8_latency.txt
+
+screen -S grep_new_WT16_A8_throughput
+grep -nir "packets_received::total" | sort -V > new_WT16_A8_throughput.txt
+
+screen -S grep_new_WT8_A16_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT8_A16_transmission_count.txt
+
+screen -S grep_new_WT8_A16_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT8_A16_latency.txt
+
+screen -S grep_new_WT8_A16_throughput
+grep -nir "packets_received::total" | sort -V > new_WT8_A16_throughput.txt
+
+screen -S grep_new_WT8_A32_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT8_A32_transmission_count.txt
+
+screen -S grep_new_WT8_A32_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT8_A32_latency.txt
+
+screen -S grep_new_WT8_A32_throughput
+grep -nir "packets_received::total" | sort -V > new_WT8_A32_throughput.txt
+
+screen -S grep_new_WT8_A64_transmission_count
+grep -nir "total_transmission_count" | sort -V > new_WT8_A64_transmission_count.txt
+
+screen -S grep_new_WT8_A64_latency
+grep -nir "average_packet_network_latency" | sort -V > new_WT8_A64_latency.txt
+
+screen -S grep_new_WT8_A64_throughput
+grep -nir "packets_received::total" | sort -V > new_WT8_A64_throughput.txt
+
+screen -S grep_WMC_A32_transmission_count
+grep -nir "total_transmission_count" | sort -V > WMC_A32_transmission_count.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_MC2_unused_links
+grep -nir "m_num_unused_links" | sort -V > MC2_unused_links.txt
+
+screen -S grep_MC2_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > MC2_router_dynamic_power.txt
+
+screen -S grep_MC2_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > MC2_router_leakage_power.txt
+
+screen -S grep_MC2_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > MC2_link_dynamic_power.txt
+
+screen -S grep_MC2_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > MC2_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T1_unused_links
+grep -nir "m_num_unused_links" | sort -V > T1_unused_links.txt
+
+screen -S grep_T1_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T1_router_dynamic_power.txt
+
+screen -S grep_T1_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T1_router_leakage_power.txt
+
+screen -S grep_T1_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T1_link_dynamic_power.txt
+
+screen -S grep_T1_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T1_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T2_unused_links
+grep -nir "m_num_unused_links" | sort -V > T2_unused_links.txt
+
+screen -S grep_T2_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T2_router_dynamic_power.txt
+
+screen -S grep_T2_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T2_router_leakage_power.txt
+
+screen -S grep_T2_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T2_link_dynamic_power.txt
+
+screen -S grep_T2_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T2_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T4_unused_links
+grep -nir "m_num_unused_links" | sort -V > T4_unused_links.txt
+
+screen -S grep_T4_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T4_router_dynamic_power.txt
+
+screen -S grep_T4_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T4_router_leakage_power.txt
+
+screen -S grep_T4_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T4_link_dynamic_power.txt
+
+screen -S grep_T4_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T4_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T8_unused_links
+grep -nir "m_num_unused_links" | sort -V > T8_unused_links.txt
+
+screen -S grep_T8_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T8_router_dynamic_power.txt
+
+screen -S grep_T8_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T8_router_leakage_power.txt
+
+screen -S grep_T8_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T8_link_dynamic_power.txt
+
+screen -S grep_T8_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T8_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T16_unused_links
+grep -nir "m_num_unused_links" | sort -V > T16_unused_links.txt
+
+screen -S grep_T16_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T16_router_dynamic_power.txt
+
+screen -S grep_T16_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T16_router_leakage_power.txt
+
+screen -S grep_T16_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T16_link_dynamic_power.txt
+
+screen -S grep_T16_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T16_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T4_Z1_unused_links
+grep -nir "m_num_unused_links" | sort -V > T4_Z1_unused_links.txt
+
+screen -S grep_T4_Z1_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T4_Z1_router_dynamic_power.txt
+
+screen -S grep_T4_Z1_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T4_Z1_router_leakage_power.txt
+
+screen -S grep_T4_Z1_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T4_Z1_link_dynamic_power.txt
+
+screen -S grep_T4_Z1_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T4_Z1_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_T4_Z4_unused_links
+grep -nir "m_num_unused_links" | sort -V > T4_Z4_unused_links.txt
+
+screen -S grep_T4_Z4_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > T4_Z4_router_dynamic_power.txt
+
+screen -S grep_T4_Z4_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > T4_Z4_router_leakage_power.txt
+
+screen -S grep_T4_Z4_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > T4_Z4_link_dynamic_power.txt
+
+screen -S grep_T4_Z4_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > T4_Z4_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT1_A8_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT1_A8_unused_links.txt
+
+screen -S grep_new_WT1_A8_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT1_A8_router_dynamic_power.txt
+
+screen -S grep_new_WT1_A8_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT1_A8_router_leakage_power.txt
+
+screen -S grep_new_WT1_A8_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT1_A8_link_dynamic_power.txt
+
+screen -S grep_new_WT1_A8_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT1_A8_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT2_A8_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT2_A8_unused_links.txt
+
+screen -S grep_new_WT2_A8_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT2_A8_router_dynamic_power.txt
+
+screen -S grep_new_WT2_A8_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT2_A8_router_leakage_power.txt
+
+screen -S grep_new_WT2_A8_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT2_A8_link_dynamic_power.txt
+
+screen -S grep_new_WT2_A8_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT2_A8_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT4_A8_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT4_A8_unused_links.txt
+
+screen -S grep_new_WT4_A8_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT4_A8_router_dynamic_power.txt
+
+screen -S grep_new_WT4_A8_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT4_A8_router_leakage_power.txt
+
+screen -S grep_new_WT4_A8_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT4_A8_link_dynamic_power.txt
+
+screen -S grep_new_WT4_A8_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT4_A8_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT8_A8_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT8_A8_unused_links.txt
+
+screen -S grep_new_WT8_A8_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT8_A8_router_dynamic_power.txt
+
+screen -S grep_new_WT8_A8_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT8_A8_router_leakage_power.txt
+
+screen -S grep_new_WT8_A8_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT8_A8_link_dynamic_power.txt
+
+screen -S grep_new_WT8_A8_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT8_A8_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT16_A8_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT16_A8_unused_links.txt
+
+screen -S grep_new_WT16_A8_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT16_A8_router_dynamic_power.txt
+
+screen -S grep_new_WT16_A8_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT16_A8_router_leakage_power.txt
+
+screen -S grep_new_WT16_A8_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT16_A8_link_dynamic_power.txt
+
+screen -S grep_new_WT16_A8_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT16_A8_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT8_A16_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT8_A16_unused_links.txt
+
+screen -S grep_new_WT8_A16_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT8_A16_router_dynamic_power.txt
+
+screen -S grep_new_WT8_A16_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT8_A16_router_leakage_power.txt
+
+screen -S grep_new_WT8_A16_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT8_A16_link_dynamic_power.txt
+
+screen -S grep_new_WT8_A16_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT8_A16_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT8_A32_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT8_A32_unused_links.txt
+
+screen -S grep_new_WT8_A32_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT8_A32_router_dynamic_power.txt
+
+screen -S grep_new_WT8_A32_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT8_A32_router_leakage_power.txt
+
+screen -S grep_new_WT8_A32_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT8_A32_link_dynamic_power.txt
+
+screen -S grep_new_WT8_A32_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT8_A32_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_new_WT8_A64_unused_links
+grep -nir "m_num_unused_links" | sort -V > new_WT8_A64_unused_links.txt
+
+screen -S grep_new_WT8_A64_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > new_WT8_A64_router_dynamic_power.txt
+
+screen -S grep_new_WT8_A64_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > new_WT8_A64_router_leakage_power.txt
+
+screen -S grep_new_WT8_A64_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > new_WT8_A64_link_dynamic_power.txt
+
+screen -S grep_new_WT8_A64_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > new_WT8_A64_link_leakage_power.txt
+
+--------------------------------------------------------------------------------------------
+
+screen -S grep_WMC_A32_unused_links
+grep -nir "m_num_unused_links" | sort -V > WMC_A32_unused_links.txt
+
+screen -S grep_WMC_A32_router_dynamic_power
+grep -nir "router_dynamic_power" | sort -V > WMC_A32_router_dynamic_power.txt
+
+screen -S grep_WMC_A32_router_leakage_power
+grep -nir "router_leakage_power" | sort -V > WMC_A32_router_leakage_power.txt
+
+screen -S grep_WMC_A32_link_dynamic_power
+grep -nir "link_dynamic_power" | sort -V > WMC_A32_link_dynamic_power.txt
+
+screen -S grep_WMC_A32_link_leakage_power
+grep -nir "link_leakage_power" | sort -V > WMC_A32_link_leakage_power.txt

@@ -1,0 +1,31 @@
+000 (124.6511.000) 05/03 04:38:10 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+009 (124.6511.000) 05/03 04:48:38 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+000 (134.6511.000) 05/03 04:57:39 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+033 (134.6511.000) 05/03 21:17:47 Changing job attribute JobPrio from 0 to -10
+...
+033 (134.6511.000) 05/03 21:18:48 Changing job attribute JobPrio from 0 to -10
+...
+001 (134.6511.000) 05/05 19:29:34 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (134.6511.000) 05/05 19:29:40 Image size of job updated: 2000000
+	115  -  MemoryUsage of job (MB)
+	116820  -  ResidentSetSize of job (KB)
+...
+004 (134.6511.000) 05/05 19:30:01 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:00:04, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :      Usage  Request Allocated 
+	   Cpus                 :       0.02        1         1 
+	   Disk (KB)            : 2000000     2000000   6540465 
+	   Memory (MB)          :     115        1954      2007 
+...
+009 (134.6511.000) 05/05 19:30:01 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...

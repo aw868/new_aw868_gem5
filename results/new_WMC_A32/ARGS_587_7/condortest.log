@@ -1,0 +1,103 @@
+000 (124.6464.000) 05/03 04:38:09 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+009 (124.6464.000) 05/03 04:48:35 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+000 (134.6464.000) 05/03 04:57:38 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+033 (134.6464.000) 05/03 21:17:46 Changing job attribute JobPrio from 0 to -10
+...
+033 (134.6464.000) 05/03 21:18:48 Changing job attribute JobPrio from 0 to -10
+...
+001 (134.6464.000) 05/05 19:03:16 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (134.6464.000) 05/05 19:03:22 Image size of job updated: 2000000
+	114  -  MemoryUsage of job (MB)
+	116556  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:05:32 Image size of job updated: 2000000
+	210  -  MemoryUsage of job (MB)
+	214236  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:05:37 Image size of job updated: 2000000
+	210  -  MemoryUsage of job (MB)
+	215028  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:05:42 Image size of job updated: 2000000
+	213  -  MemoryUsage of job (MB)
+	217272  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:05:47 Image size of job updated: 2000000
+	228  -  MemoryUsage of job (MB)
+	232716  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:05:52 Image size of job updated: 2000000
+	242  -  MemoryUsage of job (MB)
+	247764  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:05:57 Image size of job updated: 2000000
+	255  -  MemoryUsage of job (MB)
+	260436  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:02 Image size of job updated: 2000000
+	263  -  MemoryUsage of job (MB)
+	268620  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:07 Image size of job updated: 2000000
+	270  -  MemoryUsage of job (MB)
+	276408  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:12 Image size of job updated: 2000000
+	279  -  MemoryUsage of job (MB)
+	285384  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:17 Image size of job updated: 2000000
+	308  -  MemoryUsage of job (MB)
+	314952  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:22 Image size of job updated: 2000000
+	344  -  MemoryUsage of job (MB)
+	351780  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:27 Image size of job updated: 2000000
+	377  -  MemoryUsage of job (MB)
+	385176  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:32 Image size of job updated: 2000000
+	379  -  MemoryUsage of job (MB)
+	388080  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:37 Image size of job updated: 2000000
+	423  -  MemoryUsage of job (MB)
+	432564  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:42 Image size of job updated: 2000000
+	474  -  MemoryUsage of job (MB)
+	484572  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:47 Image size of job updated: 2000000
+	522  -  MemoryUsage of job (MB)
+	534336  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:06:52 Image size of job updated: 2000000
+	1244  -  MemoryUsage of job (MB)
+	1273800  -  ResidentSetSize of job (KB)
+...
+006 (134.6464.000) 05/05 19:29:58 Image size of job updated: 3250416
+	1649  -  MemoryUsage of job (MB)
+	1688280  -  ResidentSetSize of job (KB)
+...
+004 (134.6464.000) 05/05 19:29:58 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:21:34, Sys 0 00:00:55  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :      Usage  Request Allocated 
+	   Cpus                 :       1.00        1         1 
+	   Disk (KB)            : 2000000     2000000   6540465 
+	   Memory (MB)          :    1649        1954      2007 
+...
+009 (134.6464.000) 05/05 19:29:59 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...

@@ -1,0 +1,272 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/condor_power_sum.sh
+Error = power_sum.err
+Output = power_sum.out
+Log = power_sum.log
+
+RESULTS_DIR = /home/aw868/new_aw868_gem5/results/T16
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_0_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_1_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_2_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_3_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_4_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_5_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_6_10
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_0
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_1
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_2
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_3
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_4
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_5
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_6
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_7
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_8
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_9
+Queue
+
+Initialdir = $(RESULTS_DIR)/ARGS_7_10
+Queue
+

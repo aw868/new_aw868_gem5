@@ -1,10 +1,29 @@
-grep -nir "average_packet_network_latency" | sort > latency.txt
-grep -nir "packets_received::total" | sort > throughput.txt
+grep -nir "average_packet_network_latency" */*/stats.txt | sort -V > latency.txt
+grep -nir "packets_received::total" */*/stats.txt | sort -V > packets.txt
+grep -nir "m_num_unused_links" | sort -V > unused_links.txt
+grep -nir "transmission_count" | sort -V > transmission_count.txt
+grep -nir "router_dynamic_power" | sort -V > router_dynamic_power.txt
+grep -nir "router_leakage_power" | sort -V > router_leakage_power.txt
+grep -nir "link_dynamic_power" | sort -V > link_dynamic_power.txt
+grep -nir "link_leakage_power" | sort -V > link_leakage_power.txt
+
+grep -E "ARGS_[0-9]+_"
 
 m5out/stats.txt:.*:system.ruby.network.
+power_sum.out:3:link_dynamic_power:
+ARGS_._.*out.*\n
 
 ARGS_.*_.*/average_packet_network_latency 
 ARGS_.*_.*/packets_received::total       
+
+sort -o file{,}
+
+screen -S grep_latency
+screen -S grep_throughput
+
+ctl a + d
+screen -ls
+screen -r #######
 
 Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
 - 16x16x2 random NU
@@ -13,13 +32,6 @@ Monte Carlo 1 (Sweep 10 random NU topologies to find PIR saturation point)
 - traffic: uniform-random
 - command file: condor_MC1
 - results location: /home/aw868/new_aw868_gem5/results/MC1
-
-screen -S grep_latency
-screen -S grep_throughput
-
-ctl a + d
-screen -ls
-screen -r #######
 
 Monte Carlo 2 (Run 1000 random NU topologies)
 - 16x16x2 random NU

@@ -1,0 +1,59 @@
+Global frequency set at 1000000000000 ticks per second
+Using Non-Uniform Chiplet Routing Algorithm
+
+base_router_list:
+ 0,  0,  0,  0, 14, 14, 14, 14, 14, 14, 14, 15, 18, 18, 18, 17, 
+ 0,  0,  0,  0, 14, 14, 14, 14, 14, 14, 14, 15, 16,  3,  3, 17, 
+ 0,  0,  0,  0, 11, 11, 11, 11, 11, 11, 13,  5, 10,  3,  3,  7, 
+ 0,  0,  0,  0, 11, 11, 11, 11, 11, 11, 12,  5, 10,  3,  3,  7, 
+ 0,  0,  0,  0, 11, 11, 11, 11, 11, 11, 12,  5, 10,  3,  3,  7, 
+ 0,  0,  0,  0, 11, 11, 11, 11, 11, 11, 12,  5, 10,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5, 10,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  9,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  9,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  9,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  8,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  6,  3,  3,  7, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  6,  3,  3,  4, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  6,  3,  3,  4, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  5,  6,  3,  3,  4, 
+ 0,  0,  0,  0,  1,  1,  1,  1,  1,  1,  1,  2,  2,  3,  3,  4, 
+m_num_unused_links: 218
+gem5 Simulator System.  http://gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version [DEVELOP-FOR-V20.2]
+gem5 compiled Apr 25 2021 17:25:42
+gem5 started May 10 2021 07:45:14
+gem5 executing on grid40, pid 784349
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_NonUniform_Chiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,3,15,4,0,10,9,11,0,12,0,13,0,14,14,15,0,15,3,11,1,11,13,12,1,12,4,15,4,15,13,12,5,12,5,12,6,12,8,12,9,12,13,4,10,9,13,10,10,10,12,10,13,10,13,4,14,10,15,11,14,11,15,12,14,12,14,15,14,15,15,12,15,14,15 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=4 --vcs-per-vnet=4 --injectionrate=0.07
+
+info: Standard input is not a terminal, disabling listeners.
+File: Sparse_NonUniform_Chiplets.py
+len(nodes) (includes caches and directories):  768
+number of user specified routers:  512
+number of user specified directories:  256
+number of user specified routers:  512
+number of routers in layer 0:  256
+total number of routers:  768
+x_depth:  16
+y_depth:  16
+z_depth:  2
+true_z_depth 3
+
+
+total routers created:  768
+
+len(cache_nodes):  512
+len(dir_nodes):  256
+dir_routers:  [0, 2, 4, 6, 8, 10, 12, 14, 17, 19, 21, 23, 25, 27, 29, 31, 32, 34, 36, 38, 40, 42, 44, 46, 49, 51, 53, 55, 57, 59, 61, 63, 64, 66, 68, 70, 72, 74, 76, 78, 81, 83, 85, 87, 89, 91, 93, 95, 96, 98, 100, 102, 104, 106, 108, 110, 113, 115, 117, 119, 121, 123, 125, 127, 128, 130, 132, 134, 136, 138, 140, 142, 145, 147, 149, 151, 153, 155, 157, 159, 160, 162, 164, 166, 168, 170, 172, 174, 177, 179, 181, 183, 185, 187, 189, 191, 192, 194, 196, 198, 200, 202, 204, 206, 209, 211, 213, 215, 217, 219, 221, 223, 224, 226, 228, 230, 232, 234, 236, 238, 241, 243, 245, 247, 249, 251, 253, 255, 257, 259, 261, 263, 265, 267, 269, 271, 272, 274, 276, 278, 280, 282, 284, 286, 289, 291, 293, 295, 297, 299, 301, 303, 304, 306, 308, 310, 312, 314, 316, 318, 321, 323, 325, 327, 329, 331, 333, 335, 336, 338, 340, 342, 344, 346, 348, 350, 353, 355, 357, 359, 361, 363, 365, 367, 368, 370, 372, 374, 376, 378, 380, 382, 385, 387, 389, 391, 393, 395, 397, 399, 400, 402, 404, 406, 408, 410, 412, 414, 417, 419, 421, 423, 425, 427, 429, 431, 432, 434, 436, 438, 440, 442, 444, 446, 449, 451, 453, 455, 457, 459, 461, 463, 464, 466, 468, 470, 472, 474, 476, 478, 481, 483, 485, 487, 489, 491, 493, 495, 496, 498, 500, 502, 504, 506, 508, 510]
+
+NUM EAST-WEST LINKS =  720
+NUM WEST-EAST LINKS =  720
+NUM NORTH-SOUTH LINKS =  720
+NUM SOUTH-NORTH LINKS =  720
+NUM UP-DOWN LINKS =  512
+NUM DOWN-UP LINKS =  512
+TOTAL NUM LINKS =  3904 
+
+Exiting @ tick 10000000 because Network Tester completed simCycles

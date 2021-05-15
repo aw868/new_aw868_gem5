@@ -1,0 +1,103 @@
+000 (124.6466.000) 05/03 04:38:09 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+009 (124.6466.000) 05/03 04:48:35 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+000 (134.6466.000) 05/03 04:57:38 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+033 (134.6466.000) 05/03 21:17:46 Changing job attribute JobPrio from 0 to -10
+...
+033 (134.6466.000) 05/03 21:18:48 Changing job attribute JobPrio from 0 to -10
+...
+001 (134.6466.000) 05/05 19:03:23 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (134.6466.000) 05/05 19:03:28 Image size of job updated: 2000000
+	114  -  MemoryUsage of job (MB)
+	116688  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:05:38 Image size of job updated: 2000000
+	157  -  MemoryUsage of job (MB)
+	160512  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:05:43 Image size of job updated: 2000000
+	211  -  MemoryUsage of job (MB)
+	215160  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:05:48 Image size of job updated: 2000000
+	214  -  MemoryUsage of job (MB)
+	218460  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:05:53 Image size of job updated: 2000000
+	228  -  MemoryUsage of job (MB)
+	233376  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:05:58 Image size of job updated: 2000000
+	242  -  MemoryUsage of job (MB)
+	246972  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:04 Image size of job updated: 2000000
+	256  -  MemoryUsage of job (MB)
+	261888  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:10 Image size of job updated: 2000000
+	265  -  MemoryUsage of job (MB)
+	271128  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:16 Image size of job updated: 2000000
+	272  -  MemoryUsage of job (MB)
+	278256  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:22 Image size of job updated: 2000000
+	294  -  MemoryUsage of job (MB)
+	300696  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:28 Image size of job updated: 2000000
+	337  -  MemoryUsage of job (MB)
+	344520  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:34 Image size of job updated: 2000000
+	377  -  MemoryUsage of job (MB)
+	385176  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:40 Image size of job updated: 2000000
+	379  -  MemoryUsage of job (MB)
+	388080  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:46 Image size of job updated: 2000000
+	448  -  MemoryUsage of job (MB)
+	458040  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:52 Image size of job updated: 2000000
+	511  -  MemoryUsage of job (MB)
+	522984  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:06:58 Image size of job updated: 2000000
+	1244  -  MemoryUsage of job (MB)
+	1273800  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:26:19 Image size of job updated: 2303316
+	1744  -  MemoryUsage of job (MB)
+	1785036  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:26:36 Image size of job updated: 2453204
+	1745  -  MemoryUsage of job (MB)
+	1786752  -  ResidentSetSize of job (KB)
+...
+006 (134.6466.000) 05/05 19:29:58 Image size of job updated: 3495156
+	1992  -  MemoryUsage of job (MB)
+	2039400  -  ResidentSetSize of job (KB)
+...
+004 (134.6466.000) 05/05 19:29:58 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:21:37, Sys 0 00:00:53  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :      Usage  Request Allocated 
+	   Cpus                 :       1.00        1         1 
+	   Disk (KB)            : 2000000     2000000   6540465 
+	   Memory (MB)          :    1992        1954      2007 
+...
+009 (134.6466.000) 05/05 19:29:59 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...

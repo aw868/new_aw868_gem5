@@ -1,0 +1,98 @@
+000 (188.070.000) 05/05 21:04:39 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+001 (188.070.000) 05/06 01:24:08 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (188.070.000) 05/06 01:24:14 Image size of job updated: 2000000
+	40  -  MemoryUsage of job (MB)
+	39996  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:24:24 Image size of job updated: 2000000
+	150  -  MemoryUsage of job (MB)
+	153384  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:25:26 Image size of job updated: 2000000
+	205  -  MemoryUsage of job (MB)
+	209352  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:25:31 Image size of job updated: 2000000
+	262  -  MemoryUsage of job (MB)
+	267960  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:25:56 Image size of job updated: 2000000
+	292  -  MemoryUsage of job (MB)
+	298848  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:26:56 Image size of job updated: 2000000
+	384  -  MemoryUsage of job (MB)
+	392700  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:27:44 Image size of job updated: 2000000
+	501  -  MemoryUsage of job (MB)
+	512292  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:28:15 Image size of job updated: 2000000
+	538  -  MemoryUsage of job (MB)
+	549912  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:29:03 Image size of job updated: 2000000
+	573  -  MemoryUsage of job (MB)
+	586608  -  ResidentSetSize of job (KB)
+...
+006 (188.070.000) 05/06 01:30:35 Image size of job updated: 3238676
+	2538  -  MemoryUsage of job (MB)
+	2598816  -  ResidentSetSize of job (KB)
+...
+007 (188.070.000) 05/06 03:20:18 Shadow exception!
+	Assertion ERROR on (result)
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...
+000 (209.069.000) 05/06 15:00:20 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+001 (209.069.000) 05/06 17:37:14 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (209.069.000) 05/06 17:37:25 Image size of job updated: 2000000
+	1  -  MemoryUsage of job (MB)
+	132  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 17:38:18 Image size of job updated: 2000000
+	291  -  MemoryUsage of job (MB)
+	297000  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 17:39:10 Image size of job updated: 2000000
+	347  -  MemoryUsage of job (MB)
+	354684  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 17:40:40 Image size of job updated: 2000000
+	476  -  MemoryUsage of job (MB)
+	487212  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 17:45:51 Image size of job updated: 3236624
+	2526  -  MemoryUsage of job (MB)
+	2585748  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 22:18:52 Image size of job updated: 3245840
+	2526  -  MemoryUsage of job (MB)
+	2585748  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 22:34:05 Image size of job updated: 4090272
+	3319  -  MemoryUsage of job (MB)
+	3398076  -  ResidentSetSize of job (KB)
+...
+006 (209.069.000) 05/06 22:40:37 Image size of job updated: 4678048
+	3709  -  MemoryUsage of job (MB)
+	3797640  -  ResidentSetSize of job (KB)
+...
+022 (209.069.000) 05/06 22:46:25 Job disconnected, attempting to reconnect
+    Socket between submit and execute hosts closed unexpectedly
+    Trying to reconnect to slot5@grid42.dwslgrid.ece.drexel.edu <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+023 (209.069.000) 05/06 22:46:25 Job reconnected to slot5@grid42.dwslgrid.ece.drexel.edu
+    startd address: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+    starter address: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=1504_7436_109743>
+...
+007 (209.069.000) 05/06 22:46:25 Shadow exception!
+	FileTransfer::Download called during active transfer!
+	0  -  Run Bytes Sent By Job
+	1864886144  -  Run Bytes Received By Job
+...

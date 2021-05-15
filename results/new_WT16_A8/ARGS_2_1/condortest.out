@@ -25,9 +25,9 @@ gem5 is copyrighted software; use the --copyright option for details.
 
 gem5 version [DEVELOP-FOR-V20.2]
 gem5 compiled Apr 25 2021 17:25:42
-gem5 started May  3 2021 07:16:25
-gem5 executing on grid42, pid 2959207
-command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,3,3,4,0,7,3,8,0,11,3,12,0,15,3,0,4,3,7,4,4,7,7,8,4,11,7,12,4,15,7,0,8,3,11,4,8,7,11,8,8,11,11,12,8,15,11,0,12,3,15,4,12,7,15,8,12,11,15,12,12,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+gem5 started May  4 2021 02:53:37
+gem5 executing on grid42, pid 3306193
+command line: condor_exec.exe /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,3,3,4,0,7,3,8,0,11,3,12,0,15,3,0,4,3,7,4,4,7,7,8,4,11,7,12,4,15,7,0,8,3,11,4,8,7,11,8,8,11,11,12,8,15,11,0,12,3,15,4,12,7,15,8,12,11,15,12,12,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_complement --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
 
 info: Standard input is not a terminal, disabling listeners.
 File: Sparse_Wireless_NUChiplets.py

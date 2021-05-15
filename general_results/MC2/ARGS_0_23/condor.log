@@ -1,0 +1,64 @@
+000 (197.001.000) 05/06 00:44:49 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+009 (197.001.000) 05/06 01:00:53 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+000 (198.001.000) 05/06 02:14:16 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
+...
+033 (198.001.000) 05/06 02:24:00 Changing job attribute JobPrio from 0 to -10
+...
+000 (005.001.000) 05/07 18:15:32 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=215_0cf3_4>
+...
+001 (005.001.000) 05/07 18:16:29 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=215_0cf3_5>
+...
+006 (005.001.000) 05/07 18:16:35 Image size of job updated: 2000000
+	100  -  MemoryUsage of job (MB)
+	101904  -  ResidentSetSize of job (KB)
+...
+004 (005.001.000) 05/07 18:16:51 Job was evicted.
+	(0) Job was not checkpointed.
+		Usr 0 00:00:05, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	Partitionable Resources :      Usage  Request Allocated 
+	   Cpus                 :       0.16        1         1 
+	   Disk (KB)            : 2000000     2000000  18211831 
+	   Memory (MB)          :     100        1954      2683 
+...
+009 (005.001.000) 05/07 18:16:52 Job was aborted by the user.
+	via condor_rm (by user aw868)
+...
+000 (006.001.000) 05/07 18:52:41 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=215_0cf3_4>
+...
+001 (006.001.000) 05/07 18:53:27 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=215_0cf3_5>
+...
+006 (006.001.000) 05/07 18:53:33 Image size of job updated: 2000000
+	37  -  MemoryUsage of job (MB)
+	37488  -  ResidentSetSize of job (KB)
+...
+006 (006.001.000) 05/07 18:53:38 Image size of job updated: 2000000
+	51  -  MemoryUsage of job (MB)
+	51480  -  ResidentSetSize of job (KB)
+...
+006 (006.001.000) 05/07 18:53:43 Image size of job updated: 2000000
+	101  -  MemoryUsage of job (MB)
+	102564  -  ResidentSetSize of job (KB)
+...
+006 (006.001.000) 05/07 19:15:59 Image size of job updated: 2000000
+	1170  -  MemoryUsage of job (MB)
+	1197636  -  ResidentSetSize of job (KB)
+...
+006 (006.001.000) 05/07 19:28:43 Image size of job updated: 3268588
+	2368  -  MemoryUsage of job (MB)
+	2424180  -  ResidentSetSize of job (KB)
+...
+006 (006.001.000) 05/07 19:52:28 Image size of job updated: 4367340
+	3361  -  MemoryUsage of job (MB)
+	3441372  -  ResidentSetSize of job (KB)
+...
+007 (006.001.000) 05/07 19:54:13 Shadow exception!
+	Assertion ERROR on (result)
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+...

@@ -1,0 +1,10 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/condor_grep_power.sh
+Error = power_grep.err
+Output = power_grep.out
+Log = power_grep.log
+
+RESULTS_DIR = /home/aw868/new_aw868_gem5/results/
+
+Initialdir = $(RESULTS_DIR)/MC1/
+Queue

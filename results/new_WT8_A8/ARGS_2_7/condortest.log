@@ -104,3 +104,105 @@
 ...
 000 (144.029.000) 05/04 00:16:56 Job submitted from host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_4>
 ...
+001 (144.029.000) 05/04 02:19:58 Job executing on host: <127.0.0.1:9618?addrs=127.0.0.1-9618&noUDP&sock=222_da1d_5>
+...
+006 (144.029.000) 05/04 02:20:04 Image size of job updated: 2000000
+	37  -  MemoryUsage of job (MB)
+	37224  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:20:16 Image size of job updated: 2000000
+	52  -  MemoryUsage of job (MB)
+	52536  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:20:22 Image size of job updated: 2000000
+	105  -  MemoryUsage of job (MB)
+	106920  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:20:52 Image size of job updated: 2000000
+	156  -  MemoryUsage of job (MB)
+	158928  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:20:58 Image size of job updated: 2000000
+	188  -  MemoryUsage of job (MB)
+	191664  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:04 Image size of job updated: 2000000
+	188  -  MemoryUsage of job (MB)
+	192324  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:10 Image size of job updated: 2000000
+	200  -  MemoryUsage of job (MB)
+	204600  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:16 Image size of job updated: 2000000
+	210  -  MemoryUsage of job (MB)
+	214896  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:22 Image size of job updated: 2000000
+	222  -  MemoryUsage of job (MB)
+	227304  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:28 Image size of job updated: 2000000
+	233  -  MemoryUsage of job (MB)
+	238392  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:34 Image size of job updated: 2000000
+	242  -  MemoryUsage of job (MB)
+	246840  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:40 Image size of job updated: 2000000
+	274  -  MemoryUsage of job (MB)
+	279972  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:46 Image size of job updated: 2000000
+	320  -  MemoryUsage of job (MB)
+	327492  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:52 Image size of job updated: 2000000
+	332  -  MemoryUsage of job (MB)
+	339636  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:21:58 Image size of job updated: 2000000
+	417  -  MemoryUsage of job (MB)
+	426096  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:22:04 Image size of job updated: 2000000
+	478  -  MemoryUsage of job (MB)
+	488796  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:22:10 Image size of job updated: 2000000
+	1175  -  MemoryUsage of job (MB)
+	1202916  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:39:48 Image size of job updated: 2000000
+	1248  -  MemoryUsage of job (MB)
+	1277892  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:39:53 Image size of job updated: 2000000
+	1620  -  MemoryUsage of job (MB)
+	1658184  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:39:58 Image size of job updated: 2354412
+	1769  -  MemoryUsage of job (MB)
+	1811436  -  ResidentSetSize of job (KB)
+...
+006 (144.029.000) 05/04 02:40:02 Image size of job updated: 2354412
+	1771  -  MemoryUsage of job (MB)
+	1812888  -  ResidentSetSize of job (KB)
+...
+005 (144.029.000) 05/04 02:40:02 Job terminated.
+	(0) Abnormal termination (signal 6)
+	(0) No core file
+		Usr 0 00:19:12, Sys 0 00:00:02  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:19:12, Sys 0 00:00:02  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	0  -  Run Bytes Sent By Job
+	0  -  Run Bytes Received By Job
+	0  -  Total Bytes Sent By Job
+	0  -  Total Bytes Received By Job
+	Partitionable Resources :      Usage  Request Allocated 
+	   Cpus                 :       0.94        1         1 
+	   Disk (KB)            : 2000000     2000000   6540465 
+	   Memory (MB)          :    1771        1954      2007 
+...

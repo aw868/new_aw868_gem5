@@ -1,0 +1,789 @@
+Universe = vanilla
+Executable = /home/aw868/new_aw868_gem5/build/ARM/gem5.opt
+Error = condor.err
+Output = condor.out
+Log = condor.log
+
+RESULTS_DIR = /home/aw868/new_aw868_gem5/general_results/WT1_A8
+SYNTHTRAFFIC_RUN_SCRIPT =  /home/aw868/new_aw868_gem5/configs/example/garnet_synth_traffic.py
+
+ARGS_0_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.085
+Initialdir = $(RESULTS_DIR)/ARGS_0_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_0)"
+#Queue
+
+ARGS_0_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(RESULTS_DIR)/ARGS_0_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_1)"
+#Queue
+
+ARGS_0_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.095
+Initialdir = $(RESULTS_DIR)/ARGS_0_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_2)"
+#Queue
+
+ARGS_0_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(RESULTS_DIR)/ARGS_0_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_3)"
+#Queue
+
+ARGS_0_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+Initialdir = $(RESULTS_DIR)/ARGS_0_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_4)"
+#Queue
+
+ARGS_0_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(RESULTS_DIR)/ARGS_0_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_5)"
+Queue
+
+ARGS_0_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.175
+Initialdir = $(RESULTS_DIR)/ARGS_0_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_6)"
+#Queue
+
+ARGS_0_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.2
+Initialdir = $(RESULTS_DIR)/ARGS_0_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_7)"
+#Queue
+
+ARGS_0_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
+Initialdir = $(RESULTS_DIR)/ARGS_0_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_8)"
+#Queue
+
+ARGS_0_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(RESULTS_DIR)/ARGS_0_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_9)"
+#Queue
+
+ARGS_0_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.275
+Initialdir = $(RESULTS_DIR)/ARGS_0_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_10)"
+Queue
+
+ARGS_0_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(RESULTS_DIR)/ARGS_0_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_11)"
+Queue
+
+ARGS_0_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.325
+Initialdir = $(RESULTS_DIR)/ARGS_0_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_12)"
+Queue
+
+ARGS_0_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(RESULTS_DIR)/ARGS_0_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_13)"
+Queue
+
+ARGS_0_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.375
+Initialdir = $(RESULTS_DIR)/ARGS_0_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_14)"
+Queue
+
+ARGS_0_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(RESULTS_DIR)/ARGS_0_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_15)"
+Queue
+
+ARGS_0_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.425
+Initialdir = $(RESULTS_DIR)/ARGS_0_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_16)"
+Queue
+
+ARGS_0_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(RESULTS_DIR)/ARGS_0_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_17)"
+Queue
+
+ARGS_0_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.475
+Initialdir = $(RESULTS_DIR)/ARGS_0_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_18)"
+Queue
+
+ARGS_0_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(RESULTS_DIR)/ARGS_0_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_19)"
+Queue
+
+ARGS_0_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.525
+Initialdir = $(RESULTS_DIR)/ARGS_0_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_20)"
+Queue
+
+ARGS_0_21 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.55
+Initialdir = $(RESULTS_DIR)/ARGS_0_21
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_21)"
+Queue
+
+ARGS_0_22 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.575
+Initialdir = $(RESULTS_DIR)/ARGS_0_22
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_22)"
+Queue
+
+ARGS_0_23 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.6
+Initialdir = $(RESULTS_DIR)/ARGS_0_23
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_23)"
+Queue
+
+ARGS_0_24 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.625
+Initialdir = $(RESULTS_DIR)/ARGS_0_24
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_24)"
+#Queue
+
+ARGS_0_25 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=uniform_random --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.65
+Initialdir = $(RESULTS_DIR)/ARGS_0_25
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_0_25)"
+Queue
+
+ARGS_1_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.085
+Initialdir = $(RESULTS_DIR)/ARGS_1_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_0)"
+#Queue
+
+ARGS_1_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(RESULTS_DIR)/ARGS_1_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_1)"
+#Queue
+
+ARGS_1_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.095
+Initialdir = $(RESULTS_DIR)/ARGS_1_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_2)"
+#Queue
+
+ARGS_1_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(RESULTS_DIR)/ARGS_1_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_3)"
+#Queue
+
+ARGS_1_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+Initialdir = $(RESULTS_DIR)/ARGS_1_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_4)"
+#Queue
+
+ARGS_1_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(RESULTS_DIR)/ARGS_1_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_5)"
+#Queue
+
+ARGS_1_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.175
+Initialdir = $(RESULTS_DIR)/ARGS_1_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_6)"
+Queue
+
+ARGS_1_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.2
+Initialdir = $(RESULTS_DIR)/ARGS_1_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_7)"
+#Queue
+
+ARGS_1_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
+Initialdir = $(RESULTS_DIR)/ARGS_1_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_8)"
+#Queue
+
+ARGS_1_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(RESULTS_DIR)/ARGS_1_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_9)"
+Queue
+
+ARGS_1_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.275
+Initialdir = $(RESULTS_DIR)/ARGS_1_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_10)"
+#Queue
+
+ARGS_1_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(RESULTS_DIR)/ARGS_1_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_11)"
+Queue
+
+ARGS_1_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.325
+Initialdir = $(RESULTS_DIR)/ARGS_1_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_12)"
+Queue
+
+ARGS_1_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(RESULTS_DIR)/ARGS_1_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_13)"
+Queue
+
+ARGS_1_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.375
+Initialdir = $(RESULTS_DIR)/ARGS_1_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_14)"
+Queue
+
+ARGS_1_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(RESULTS_DIR)/ARGS_1_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_15)"
+#Queue
+
+ARGS_1_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.425
+Initialdir = $(RESULTS_DIR)/ARGS_1_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_16)"
+Queue
+
+ARGS_1_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(RESULTS_DIR)/ARGS_1_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_17)"
+Queue
+
+ARGS_1_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.475
+Initialdir = $(RESULTS_DIR)/ARGS_1_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_18)"
+Queue
+
+ARGS_1_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(RESULTS_DIR)/ARGS_1_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_19)"
+Queue
+
+ARGS_1_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.525
+Initialdir = $(RESULTS_DIR)/ARGS_1_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_20)"
+Queue
+
+ARGS_1_21 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.55
+Initialdir = $(RESULTS_DIR)/ARGS_1_21
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_21)"
+Queue
+
+ARGS_1_22 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.575
+Initialdir = $(RESULTS_DIR)/ARGS_1_22
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_22)"
+Queue
+
+ARGS_1_23 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.6
+Initialdir = $(RESULTS_DIR)/ARGS_1_23
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_23)"
+Queue
+
+ARGS_1_24 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.625
+Initialdir = $(RESULTS_DIR)/ARGS_1_24
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_24)"
+Queue
+
+ARGS_1_25 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=tornado --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.65
+Initialdir = $(RESULTS_DIR)/ARGS_1_25
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_1_25)"
+Queue
+
+ARGS_2_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.085
+Initialdir = $(RESULTS_DIR)/ARGS_2_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_0)"
+#Queue
+
+ARGS_2_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(RESULTS_DIR)/ARGS_2_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_1)"
+#Queue
+
+ARGS_2_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.095
+Initialdir = $(RESULTS_DIR)/ARGS_2_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_2)"
+#Queue
+
+ARGS_2_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(RESULTS_DIR)/ARGS_2_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_3)"
+#Queue
+
+ARGS_2_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+Initialdir = $(RESULTS_DIR)/ARGS_2_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_4)"
+#Queue
+
+ARGS_2_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(RESULTS_DIR)/ARGS_2_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_5)"
+#Queue
+
+ARGS_2_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.175
+Initialdir = $(RESULTS_DIR)/ARGS_2_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_6)"
+Queue
+
+ARGS_2_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.2
+Initialdir = $(RESULTS_DIR)/ARGS_2_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_7)"
+Queue
+
+ARGS_2_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
+Initialdir = $(RESULTS_DIR)/ARGS_2_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_8)"
+Queue
+
+ARGS_2_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(RESULTS_DIR)/ARGS_2_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_9)"
+Queue
+
+ARGS_2_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.275
+Initialdir = $(RESULTS_DIR)/ARGS_2_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_10)"
+Queue
+
+ARGS_2_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(RESULTS_DIR)/ARGS_2_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_11)"
+Queue
+
+ARGS_2_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.325
+Initialdir = $(RESULTS_DIR)/ARGS_2_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_12)"
+Queue
+
+ARGS_2_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(RESULTS_DIR)/ARGS_2_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_13)"
+Queue
+
+ARGS_2_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.375
+Initialdir = $(RESULTS_DIR)/ARGS_2_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_14)"
+Queue
+
+ARGS_2_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(RESULTS_DIR)/ARGS_2_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_15)"
+Queue
+
+ARGS_2_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.425
+Initialdir = $(RESULTS_DIR)/ARGS_2_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_16)"
+Queue
+
+ARGS_2_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(RESULTS_DIR)/ARGS_2_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_17)"
+Queue
+
+ARGS_2_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.475
+Initialdir = $(RESULTS_DIR)/ARGS_2_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_18)"
+Queue
+
+ARGS_2_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(RESULTS_DIR)/ARGS_2_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_19)"
+Queue
+
+ARGS_2_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.525
+Initialdir = $(RESULTS_DIR)/ARGS_2_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_20)"
+Queue
+
+ARGS_2_21 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.55
+Initialdir = $(RESULTS_DIR)/ARGS_2_21
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_21)"
+Queue
+
+ARGS_2_22 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.575
+Initialdir = $(RESULTS_DIR)/ARGS_2_22
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_22)"
+Queue
+
+ARGS_2_23 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.6
+Initialdir = $(RESULTS_DIR)/ARGS_2_23
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_23)"
+Queue
+
+ARGS_2_24 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.625
+Initialdir = $(RESULTS_DIR)/ARGS_2_24
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_24)"
+Queue
+
+ARGS_2_25 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=bit_reverse --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.65
+Initialdir = $(RESULTS_DIR)/ARGS_2_25
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_2_25)"
+Queue
+
+ARGS_3_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.085
+Initialdir = $(RESULTS_DIR)/ARGS_3_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_0)"
+#Queue
+
+ARGS_3_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(RESULTS_DIR)/ARGS_3_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_1)"
+#Queue
+
+ARGS_3_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.095
+Initialdir = $(RESULTS_DIR)/ARGS_3_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_2)"
+#Queue
+
+ARGS_3_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(RESULTS_DIR)/ARGS_3_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_3)"
+#Queue
+
+ARGS_3_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+Initialdir = $(RESULTS_DIR)/ARGS_3_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_4)"
+#Queue
+
+ARGS_3_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(RESULTS_DIR)/ARGS_3_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_5)"
+#Queue
+
+ARGS_3_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.175
+Initialdir = $(RESULTS_DIR)/ARGS_3_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_6)"
+#Queue
+
+ARGS_3_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.2
+Initialdir = $(RESULTS_DIR)/ARGS_3_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_7)"
+#Queue
+
+ARGS_3_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
+Initialdir = $(RESULTS_DIR)/ARGS_3_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_8)"
+#Queue
+
+ARGS_3_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(RESULTS_DIR)/ARGS_3_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_9)"
+#Queue
+
+ARGS_3_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.275
+Initialdir = $(RESULTS_DIR)/ARGS_3_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_10)"
+#Queue
+
+ARGS_3_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(RESULTS_DIR)/ARGS_3_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_11)"
+Queue
+
+ARGS_3_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.325
+Initialdir = $(RESULTS_DIR)/ARGS_3_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_12)"
+Queue
+
+ARGS_3_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(RESULTS_DIR)/ARGS_3_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_13)"
+Queue
+
+ARGS_3_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.375
+Initialdir = $(RESULTS_DIR)/ARGS_3_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_14)"
+Queue
+
+ARGS_3_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(RESULTS_DIR)/ARGS_3_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_15)"
+Queue
+
+ARGS_3_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.425
+Initialdir = $(RESULTS_DIR)/ARGS_3_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_16)"
+#Queue
+
+ARGS_3_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(RESULTS_DIR)/ARGS_3_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_17)"
+Queue
+
+ARGS_3_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.475
+Initialdir = $(RESULTS_DIR)/ARGS_3_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_18)"
+Queue
+
+ARGS_3_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(RESULTS_DIR)/ARGS_3_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_19)"
+Queue
+
+ARGS_3_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.525
+Initialdir = $(RESULTS_DIR)/ARGS_3_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_20)"
+Queue
+
+ARGS_3_21 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.55
+Initialdir = $(RESULTS_DIR)/ARGS_3_21
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_21)"
+Queue
+
+ARGS_3_22 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.575
+Initialdir = $(RESULTS_DIR)/ARGS_3_22
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_22)"
+Queue
+
+ARGS_3_23 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.6
+Initialdir = $(RESULTS_DIR)/ARGS_3_23
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_23)"
+Queue
+
+ARGS_3_24 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.625
+Initialdir = $(RESULTS_DIR)/ARGS_3_24
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_24)"
+Queue
+
+ARGS_3_25 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=neighbor --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.65
+Initialdir = $(RESULTS_DIR)/ARGS_3_25
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_3_25)"
+Queue
+
+ARGS_4_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.085
+Initialdir = $(RESULTS_DIR)/ARGS_4_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_0)"
+#Queue
+
+ARGS_4_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(RESULTS_DIR)/ARGS_4_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_1)"
+#Queue
+
+ARGS_4_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.095
+Initialdir = $(RESULTS_DIR)/ARGS_4_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_2)"
+#Queue
+
+ARGS_4_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(RESULTS_DIR)/ARGS_4_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_3)"
+#Queue
+
+ARGS_4_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+Initialdir = $(RESULTS_DIR)/ARGS_4_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_4)"
+#Queue
+
+ARGS_4_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(RESULTS_DIR)/ARGS_4_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_5)"
+#Queue
+
+ARGS_4_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.175
+Initialdir = $(RESULTS_DIR)/ARGS_4_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_6)"
+#Queue
+
+ARGS_4_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.2
+Initialdir = $(RESULTS_DIR)/ARGS_4_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_7)"
+#Queue
+
+ARGS_4_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
+Initialdir = $(RESULTS_DIR)/ARGS_4_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_8)"
+#Queue
+
+ARGS_4_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(RESULTS_DIR)/ARGS_4_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_9)"
+#Queue
+
+ARGS_4_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.275
+Initialdir = $(RESULTS_DIR)/ARGS_4_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_10)"
+#Queue
+
+ARGS_4_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(RESULTS_DIR)/ARGS_4_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_11)"
+#Queue
+
+ARGS_4_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.325
+Initialdir = $(RESULTS_DIR)/ARGS_4_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_12)"
+#Queue
+
+ARGS_4_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(RESULTS_DIR)/ARGS_4_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_13)"
+Queue
+
+ARGS_4_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.375
+Initialdir = $(RESULTS_DIR)/ARGS_4_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_14)"
+Queue
+
+ARGS_4_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(RESULTS_DIR)/ARGS_4_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_15)"
+#Queue
+
+ARGS_4_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.425
+Initialdir = $(RESULTS_DIR)/ARGS_4_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_16)"
+Queue
+
+ARGS_4_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(RESULTS_DIR)/ARGS_4_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_17)"
+Queue
+
+ARGS_4_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.475
+Initialdir = $(RESULTS_DIR)/ARGS_4_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_18)"
+Queue
+
+ARGS_4_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(RESULTS_DIR)/ARGS_4_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_19)"
+Queue
+
+ARGS_4_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.525
+Initialdir = $(RESULTS_DIR)/ARGS_4_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_20)"
+Queue
+
+ARGS_4_21 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.55
+Initialdir = $(RESULTS_DIR)/ARGS_4_21
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_21)"
+Queue
+
+ARGS_4_22 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.575
+Initialdir = $(RESULTS_DIR)/ARGS_4_22
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_22)"
+Queue
+
+ARGS_4_23 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.6
+Initialdir = $(RESULTS_DIR)/ARGS_4_23
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_23)"
+Queue
+
+ARGS_4_24 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.625
+Initialdir = $(RESULTS_DIR)/ARGS_4_24
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_24)"
+Queue
+
+ARGS_4_25 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=shuffle --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.65
+Initialdir = $(RESULTS_DIR)/ARGS_4_25
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_4_25)"
+Queue
+
+ARGS_5_0 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.085
+Initialdir = $(RESULTS_DIR)/ARGS_5_0
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_0)"
+#Queue
+
+ARGS_5_1 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.09
+Initialdir = $(RESULTS_DIR)/ARGS_5_1
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_1)"
+#Queue
+
+ARGS_5_2 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.095
+Initialdir = $(RESULTS_DIR)/ARGS_5_2
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_2)"
+#Queue
+
+ARGS_5_3 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.1
+Initialdir = $(RESULTS_DIR)/ARGS_5_3
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_3)"
+#Queue
+
+ARGS_5_4 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.125
+Initialdir = $(RESULTS_DIR)/ARGS_5_4
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_4)"
+#Queue
+
+ARGS_5_5 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.15
+Initialdir = $(RESULTS_DIR)/ARGS_5_5
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_5)"
+#Queue
+
+ARGS_5_6 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.175
+Initialdir = $(RESULTS_DIR)/ARGS_5_6
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_6)"
+#Queue
+
+ARGS_5_7 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.2
+Initialdir = $(RESULTS_DIR)/ARGS_5_7
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_7)"
+#Queue
+
+ARGS_5_8 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.225
+Initialdir = $(RESULTS_DIR)/ARGS_5_8
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_8)"
+#Queue
+
+ARGS_5_9 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.25
+Initialdir = $(RESULTS_DIR)/ARGS_5_9
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_9)"
+#Queue
+
+ARGS_5_10 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.275
+Initialdir = $(RESULTS_DIR)/ARGS_5_10
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_10)"
+#Queue
+
+ARGS_5_11 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.3
+Initialdir = $(RESULTS_DIR)/ARGS_5_11
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_11)"
+Queue
+
+ARGS_5_12 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.325
+Initialdir = $(RESULTS_DIR)/ARGS_5_12
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_12)"
+#Queue
+
+ARGS_5_13 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.35
+Initialdir = $(RESULTS_DIR)/ARGS_5_13
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_13)"
+Queue
+
+ARGS_5_14 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.375
+Initialdir = $(RESULTS_DIR)/ARGS_5_14
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_14)"
+Queue
+
+ARGS_5_15 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.4
+Initialdir = $(RESULTS_DIR)/ARGS_5_15
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_15)"
+#Queue
+
+ARGS_5_16 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.425
+Initialdir = $(RESULTS_DIR)/ARGS_5_16
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_16)"
+Queue
+
+ARGS_5_17 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.45
+Initialdir = $(RESULTS_DIR)/ARGS_5_17
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_17)"
+#Queue
+
+ARGS_5_18 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.475
+Initialdir = $(RESULTS_DIR)/ARGS_5_18
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_18)"
+Queue
+
+ARGS_5_19 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.5
+Initialdir = $(RESULTS_DIR)/ARGS_5_19
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_19)"
+Queue
+
+ARGS_5_20 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.525
+Initialdir = $(RESULTS_DIR)/ARGS_5_20
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_20)"
+#Queue
+
+ARGS_5_21 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.55
+Initialdir = $(RESULTS_DIR)/ARGS_5_21
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_21)"
+Queue
+
+ARGS_5_22 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.575
+Initialdir = $(RESULTS_DIR)/ARGS_5_22
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_22)"
+Queue
+
+ARGS_5_23 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.6
+Initialdir = $(RESULTS_DIR)/ARGS_5_23
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_23)"
+#Queue
+
+ARGS_5_24 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.625
+Initialdir = $(RESULTS_DIR)/ARGS_5_24
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_24)"
+#Queue
+
+ARGS_5_25 = --num-cpus=512 --num-dirs=256 --network=garnet --topology=Sparse_Wireless_NUChiplets --mesh-rows=16 --mesh-cols=16 --z-depth=2 --nu-chiplets-input=0,0,15,15 --wireless-input-pattern=u --wireless-input=1,1,1,14,1,1,4,5,1,11,5,1,4,10,1,11,10,1,1,14,1,14,14,1 --sim-cycles=10000000 --synthetic=transpose --routing-algorithm=5 --vcs-per-vnet=4 --injectionrate=0.65
+Initialdir = $(RESULTS_DIR)/ARGS_5_25
+arguments = "$(SYNTHTRAFFIC_RUN_SCRIPT) $(ARGS_5_25)"
+Queue
+
